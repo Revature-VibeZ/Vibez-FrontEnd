@@ -1,0 +1,13 @@
+<ng-container>
+    <div class="onepost" (click)="click()">
+        <div>Title: {{post.title}}</div>
+        <div>Content: {{post.content}}</div>
+        <div>Created: {{post.creationDate}}</div>
+        <div *ngIf="showComments && post.comments.length > 0">
+            <div *ngFor="let comment of post.comments">
+                <app-comment [comment]="comment"></app-comment>
+                <hr>
+            </div>
+        </div>
+    </div>
+</ng-container>
