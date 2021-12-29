@@ -24,11 +24,18 @@ export class ProfileComponent implements OnInit {
   //   }
   // }
 
-  determineUser(){
-    if(sessionStorage.getItem("username") === null){
+  /*
+  This function is to determine if the profile being loaded is the logged in user 
+  or if they are searching for someone else. Since some values are hard coded in
+  currently the conditionals will have to be changed to use whatever will determine
+  the logged in user.
+
+  */
+  determineUser() {
+    if (sessionStorage.getItem("username") === null) {
       this.getProfile()
     }
-    else{
+    else {
       this.getOtherProfile()
     }
   }
@@ -48,6 +55,11 @@ export class ProfileComponent implements OnInit {
 
   }
 
+
+  /*
+  Retrieve the data on the requested user based on username inputted into the search bar
+  Once the user is retrieved the sessionStorage is cleared so a new search may be preformed.
+  */
   getOtherProfile() {
     let username: any = sessionStorage.getItem("username");
     this.profileService.getUserByUsername(username).subscribe((response) => {
@@ -56,7 +68,10 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  reloadPage(){
+  /*`
+  Reloads the profile conponent without reloading the page.
+  */
+  reloadProfile() {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['profile']);
     })
