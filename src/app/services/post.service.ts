@@ -10,6 +10,8 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   getAll(){
+    console.log('inside post service ts get all');
+    
     let url = 'http://localhost:8080/posts';
     return this.http.get(url).pipe(map((response: any) => {
       console.log("getAll function!")
