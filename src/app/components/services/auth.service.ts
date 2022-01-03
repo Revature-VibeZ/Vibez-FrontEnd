@@ -48,6 +48,10 @@ login(username: string, password: string) {
   return this.http.post<any>(`${environment.API_URL}` + '/auth', {username, password})
     .pipe(map(user => {
       sessionStorage.setItem('currentUser', JSON.stringify(user));
+      console.log(atob(sessionStorage.getItem('currentUser')!.split('.')[1]))
+      let tokeninfo = atob(sessionStorage.getItem('currentUser')!.split('.')[1])
+      console.log(tokeninfo.split('"')[3]);
+      sessionStorage.setItem('userToken', tokeninfo.split('"')[3])
       this.currentUserSubject.next(user);
       return user;
     }));
@@ -55,7 +59,7 @@ login(username: string, password: string) {
 
 logout() {
   sessionStorage.removeItem('currentUser');
-
+  sessionStorage.removeItem('userToken');
   this.currentUserSubject.next(null);
 }
 
