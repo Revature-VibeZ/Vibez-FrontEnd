@@ -3,9 +3,16 @@
         <div>Title: {{post.title}}</div>
         <div>Content: {{post.content}}</div>
         <div>Created: {{post.creationDate}}</div>
+        <form>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1"></label>
+                <textarea class="form-control" type="text" id="exampleFormControlTextarea1" rows="3" #comment>Add a comment...</textarea>
+              </div>
+              <button class="btn btn-primary" (click)="createComment(post.id, comment.value)">Post</button>
+        </form>
         <div *ngIf="showComments && post.comments.length > 0">
             <div *ngFor="let comment of post.comments">
-                <app-comment [comment]="comment"></app-comment>
+                <app-post [post]="comment"></app-post>
                 <hr>
             </div>
         </div>
