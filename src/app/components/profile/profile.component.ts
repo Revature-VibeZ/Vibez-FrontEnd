@@ -46,7 +46,7 @@ export class ProfileComponent implements OnInit {
   //Function to get the profile of the logged in user
   getProfile() {
     //To be replaced with a function call to retrieve the id of the logged in user
-    let id = 1;
+    let id = 4;
     //Preforms a get request on the id of the user and maps the response to this.profile
     this.profileService.getUserById(id).subscribe((response) => {
       this.profile = response;
