@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,9 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-
-  constructor(private profileService: ProfileService, private router: Router) { }
-
+  constructor(private profileService: ProfileService, private router: Router, private as: AuthService) { }
+  sessionStorage = sessionStorage;
   ngOnInit(): void {
   }
   search: String = "";
@@ -38,8 +38,13 @@ export class NavComponent implements OnInit {
 
   loadPostFeed() {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['post-feed']);
+      this.router.navigate(['postfeed']);
     })
+  }
+
+  logout() {
+    this.as.logout();
+    this.router.navigate(['login']);
   }
 
 }

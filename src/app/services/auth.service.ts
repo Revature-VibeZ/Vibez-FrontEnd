@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs';
 import { User } from 'src/app/models/user.model';
+import { Router } from '@angular/router';
 
 
 const httpOptions = {
@@ -17,7 +18,7 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     var token = sessionStorage.getItem('currentUser');
     if (token == null){
       token = 'null'
@@ -53,6 +54,7 @@ login(username: string, password: string) {
       console.log(tokeninfo.split('"')[3]);
       sessionStorage.setItem('userToken', tokeninfo.split('"')[3])
       this.currentUserSubject.next(user);
+      this.router.navigate(['']);
       return user;
     }));
 }
