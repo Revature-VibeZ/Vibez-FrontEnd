@@ -14,7 +14,7 @@ export class PostServiceService {
     const formData = new FormData();
     formData.append("file", file);  
     formData.append("post", post); 
-    let postInfo = `post=${post}`   
+    formData.append("username", "username1");       
     return this.http.post(`${environment.API_URL}/post/new`, formData,  {
       headers: {    
       },
