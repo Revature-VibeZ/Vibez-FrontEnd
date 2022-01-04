@@ -6,7 +6,7 @@ import { map } from 'rxjs';
   providedIn: 'root'
 })
 export class PostService {
-  posts = [];
+  posts : any = [];
   constructor(private http: HttpClient) { }
 
   getAll(){
