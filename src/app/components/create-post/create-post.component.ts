@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PostServiceService } from 'src/app/services/post-service.service';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-create-post',
@@ -10,7 +10,7 @@ export class CreatePostComponent implements OnInit {
 
   file : File | undefined;
 
-  constructor(private postService: PostServiceService) { }
+  constructor(private postService: PostService) { }
 
   ngOnInit(): void {
   }
