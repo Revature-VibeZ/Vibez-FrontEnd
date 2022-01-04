@@ -7,13 +7,13 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./post-feed.component.css']
 })
 export class PostFeedComponent implements OnInit {
-  posts: any = [1,2,3,4,5];
+  posts: any = [];
 
   constructor(private ps: PostService) { }
 
-  ngOnInit(): void {
-    this.posts = this.ps.getAll()
+  ngOnInit(): void {    
+    this.ps.getAll().subscribe(_ => {
+      this.posts = this.ps.posts;
+    });
   }
-
-  
 }
