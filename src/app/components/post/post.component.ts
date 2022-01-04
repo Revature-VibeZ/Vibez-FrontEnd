@@ -5,26 +5,7 @@ import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-post',
-  template: 
-  `<ng-container>
-    <div class="onepost" (click)="click($event)">
-        <div>Title: {{post.title}}</div>
-        <div>Content: {{post.content}}</div>
-        <div>Created: {{post.creationDate}}</div>
-        <form>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1"></label>
-                <textarea ng-click="$event.stopPropagation" style="z-index: 1000;" class="form-control" type="text" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="content" name="content">Add a comment...</textarea>
-            </div>
-            <button class="btn btn-primary" (click)="createComment(post.id, content)">Post</button>
-        </form>
-        <div *ngIf="showComments && post.comments.length > 0">
-            <div style="border: 10px solid blue;" *ngFor="let comment of post.comments">
-                <app-post [showComments]="true" [post]="comment"></app-post>
-            </div>
-        </div>
-    </div>
-  </ng-container>`,
+  templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {

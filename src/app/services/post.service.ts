@@ -34,7 +34,7 @@ export class PostService {
       'Access-Control-Allow-Origin' : '*',
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     }
-    return this.http.get(url, headers   
+    return this.http.get(url, {headers}   
       ).pipe(map((response: any) => {
       console.log("getAll function!")
       console.log(response)
