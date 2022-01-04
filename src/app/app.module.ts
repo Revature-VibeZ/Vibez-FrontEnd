@@ -14,6 +14,20 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorInterceptor } from './helpers/error.interceptor';
+import { NavComponent } from './components/nav/nav.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { PostFeedComponent } from './components/post-feed/post-feed.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { PostComponent } from './components/post/post.component';
 
 
 @NgModule({
@@ -21,8 +35,12 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
     AppComponent,
     RegisterComponent,
     HomeComponent,
-    LoginComponent
-    
+    LoginComponent,    
+    NavComponent,
+    ProfileComponent,
+    PostFeedComponent,
+    CommentComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +53,17 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSliderModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    FormsModule,
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })
