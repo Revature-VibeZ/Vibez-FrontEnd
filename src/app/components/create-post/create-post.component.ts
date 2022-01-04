@@ -8,19 +8,31 @@ import { PostServiceService } from 'src/app/services/post-service.service';
 })
 export class CreatePostComponent implements OnInit {
 
-  constructor(private PostService: PostServiceService) { }
+  file : File | undefined;
+
+  constructor(private postService: PostServiceService) { }
 
   ngOnInit(): void {
   }
 
   createPost(post: string){
-    this.PostService.sendPost(post).subscribe((response: any) => {
+    this.postService.sendPost(post, this.file!).subscribe((response: any) => {
 
   },
   err => {
     alert("err");
-    ;
+    
   }  
   );
   }
+
+  onFileSelected(event: any) {
+
+    const Uploadedfile:File = event.target.files[0];
+
+    if (Uploadedfile) {   
+      this.file = Uploadedfile;        
+    }
+}
+
 }

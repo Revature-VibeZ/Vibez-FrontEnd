@@ -10,14 +10,15 @@ export class PostServiceService {
 
   constructor(private http: HttpClient) { }
 
-  sendPost(post : string) {
-
+  sendPost(post : string, file:File) {
+    const formData = new FormData();
+    formData.append("file", file);  
+    formData.append("post", post); 
     let postInfo = `post=${post}`
     
-    return this.http.post(`${environment.API_URL}/post`, postInfo,  {
-      headers: {
-      // leverages form params to not expose credentials to the url
-        'Content-type': 'application/x-www-form-urlencoded'
+    
+    return this.http.post(`${environment.API_URL}/post`, formData,  {
+      headers: {    
       },
     })
   }
