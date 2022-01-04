@@ -36,4 +36,16 @@ export class NavComponent implements OnInit {
     })
   }
 
+  loadPostForm() {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['create-post']);
+    })
+  }
+
+  loadPostFeed() {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['post-feed']);
+    })
+  }
+
 }
