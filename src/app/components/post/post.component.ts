@@ -37,28 +37,20 @@ export class PostComponent implements OnInit {
   click(e: Event) {
     e.stopPropagation();
     e.preventDefault();
-    console.log('click got triggered!!');
-
-    console.log(e);
-    console.log(e.target);
-    console.log(this.post.comments);
-    console.log(this.post.comments.length);
-
+    //should stop child comments from showing but doesn't
     this.showComments = !this.showComments;
   }
 
   createComment(parentId: number, comment: String) {
-    //get content of form
-    console.log(comment)
-    // sessionStorage.getItem
-    //make a post request to add a new post
+    if(!comment) return;
+    if(!parentId) return;
     let body = {
       content: comment,
       parentId
     }
     this.ps.create(body).subscribe((res: any) => {
+      //if post succeeds update page to show comment
       this.es.newPost(res);
     })
-    //if post succeeds update page to show comment
   }
 }
