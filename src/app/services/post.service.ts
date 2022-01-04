@@ -46,4 +46,13 @@ export class PostService {
     let url = `${environment.API_URL}/posts/new/?content=${post}&?username=${username}`   
     return this.http.post(url, formData)
   }
+
+  sendLike(postId : number) {
+    const formData = new FormData();
+    formData.append("postId", postId.toString());      
+    formData.append("username", "username1");    
+    let username = "username1";
+    let url = `${environment.API_URL}/likes/?id=${postId}&?username=${username}`   
+    return this.http.post(url, formData)
+  }
 }

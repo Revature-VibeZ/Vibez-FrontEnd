@@ -53,4 +53,11 @@ export class PostComponent implements OnInit {
       this.es.newPost(res);
     })
   }
+  createLike(postId: number) {
+    alert("button is working");    
+    this.ps.sendLike(postId).subscribe((res: any) => {
+      //if post succeeds update page to show comment
+      this.es.newPost(res);
+    })
+  }
 }

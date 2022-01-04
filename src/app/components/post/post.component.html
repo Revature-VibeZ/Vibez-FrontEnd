@@ -4,13 +4,17 @@
         <p class="inline">{{post.title}}</p>
         <div>{{post.content}}</div>
         <div class="time-created">{{post.creationDate | date:'EE, MMMM dd, yyyy h:mm a'}}</div>
+        <button class="btn btn-primary" (click)="createLike(post.id)">Like</button>
+        <p>{{post.likes.length}}</p>
+
         <form>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1"></label>
                 <textarea class="form-control textarea-right" placeholder="Add a comment..."type="text" id="exampleFormControlTextarea1" rows="3"
                     [(ngModel)]="content" name="content"></textarea>
             </div>
-            <button class="btn btn-primary" (click)="createComment(post.id, content)">Reply</button>
+
+            <button class="btn btn-primary" (click)="createComment(post.id, content)">Reply</button>            
         </form>
         <div class="reset-div" *ngIf="showComments && post.comments.length > 0">
             <div style="border: 10px solid lightgreen;" *ngFor="let comment of post.comments">
