@@ -18,7 +18,7 @@ export class AuthService {
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
-    var token = localStorage.getItem('currentUser');
+    var token = sessionStorage.getItem('currentUser');
     if (token == null){
       token = 'null'
     }

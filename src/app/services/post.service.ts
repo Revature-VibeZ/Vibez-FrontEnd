@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,22 +9,6 @@ import { map } from 'rxjs';
 export class PostService {
   posts : any = [];
   constructor(private http: HttpClient) { }
-
-  // login(data: any){
-  //   return this.http.post(`http://localhost:8080/api/auth`, data, {
-  //     headers: {'Content-type': 'application/json'},
-  //     observe: 'response'
-  //   }).pipe(
-  //     map(response => {
-  //       this.currentUser = response.body;
-  //       console.log(this.currentUser);
-  //       this.token = response.headers.get('Authorization') || '';
-  //       localStorage.setItem("token", this.token);
-  //       localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
-  //     })
-  //   );
-  // }
-
 
   getAll() {
     console.log('inside post service ts get all');
@@ -50,12 +35,15 @@ export class PostService {
     return this.http.post(url, body).pipe(map((response: any) => {
       return response;
     }));
-    // createBid(body: Bid) {
-    //   let url = `http://localhost:8080/bids/`;
-    //   return this.http.post(url, body).pipe(map((response: any) => {
-    //     return response;
-    //   }));
-    // }
+  }
 
+  sendPost(post : string, file:File) {
+    const formData = new FormData();
+    formData.append("file", file);  
+    formData.append("post", post); 
+    formData.append("username", "username1");    
+    let username = "username1";
+    let url = `${environment.API_URL}/posts/new/?content=${post}&?username=${username}`   
+    return this.http.post(url, formData)
   }
 }
