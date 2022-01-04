@@ -32,7 +32,7 @@ export class PostService {
     let headers : any = {
       'Content-Type' : 'application/json',
       'Access-Control-Allow-Origin' : '*',
-      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+      // 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     }
     return this.http.get(url, {headers}   
       ).pipe(map((response: any) => {
