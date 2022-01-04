@@ -5,11 +5,15 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
+import { PostFeedComponent } from './components/post-feed/post-feed.component';
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: '', component: HomeComponent },
-  { path: 'profile', component: ProfileComponent }
+  { path: 'profile', component: ProfileComponent },
+  { path: 'create-post', component: CreatePostComponent },
+  { path: 'post-feed', component: PostFeedComponent }
   // { path: '', component: HomeComponent, canActivate: [AuthGuard] } Example of how to add authguard
 
   // { path: '**', redirectTo: '' }
