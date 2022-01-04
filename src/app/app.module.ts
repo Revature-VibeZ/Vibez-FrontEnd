@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -34,7 +35,8 @@ import { PostComponent } from './components/post/post.component';
     AppComponent,
     RegisterComponent,
     HomeComponent,
-    LoginComponent,    
+    CreatePostComponent,
+    LoginComponent,   
     NavComponent,
     ProfileComponent,
     PostFeedComponent,
