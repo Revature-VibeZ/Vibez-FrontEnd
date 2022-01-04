@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs';
-import { User } from 'src/app/user.model';
+import { User } from 'src/app/models/user.model';
 
 
 const httpOptions = {
