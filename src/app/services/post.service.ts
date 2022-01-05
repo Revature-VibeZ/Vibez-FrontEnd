@@ -12,6 +12,7 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   getAll() {
+    console.log('inside post service ts get all');
     let url = `${environment.API_URL}/posts`;
     return this.http.get(url).pipe(map((res: any) => {      
       this.posts = res;
@@ -41,7 +42,9 @@ export class PostService {
     formData.append("postId", postId.toString());      
     let username: any = sessionStorage.getItem('userToken');
     formData.append("username", username);
-    let url = `${environment.API_URL}/likes/?id=${postId}&?username=${username}`   
+    formData.append("postId", postId.toString());
+    formData.append("username", "username1");
+    let url = `${environment.API_URL}/likes/?id=${postId}&?username=${username}`
     return this.http.post(url, formData)
   }
 
