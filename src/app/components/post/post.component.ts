@@ -21,7 +21,6 @@ export class PostComponent implements OnInit {
     parentId: 0,
     title: ''
   };
-
   @Input() showComments = false;
 
   content: String = "";
@@ -30,15 +29,25 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
     this.es.newPostEvent$.subscribe((res: any) => {
+      if(this.post.id !== res.parentId) return;
+      this.showComments = true;
+      res.likes = [];
       this.post.comments.push(res)
+    })
+    this.es.newLikeEvent$.subscribe((res: any) => {      
+      if(this.post.id !== res.postId) return;
+      this.post.likes.push(res)
     })
   }
 
   click(e: Event) {
+    this.stopClickPropagation(e);
+    this.showComments = !this.showComments;
+  }
+
+  stopClickPropagation(e: Event) {
     e.stopPropagation();
     e.preventDefault();
-    //should stop child comments from showing but doesn't
-    this.showComments = !this.showComments;
   }
 
   createComment(parentId: number, comment: String) {
@@ -53,11 +62,12 @@ export class PostComponent implements OnInit {
       this.es.newPost(res);
     })
   }
-  createLike(postId: number) {
-    alert("button is working");    
+
+  createLike(postId: number, e: Event) {
+    this.stopClickPropagation(e);
     this.ps.sendLike(postId).subscribe((res: any) => {
-      //if post succeeds update page to show comment
-      this.es.newPost(res);
+      //if like succeeds update page to show number of likes
+      this.es.newLike(res, postId);
     })
   }
 }

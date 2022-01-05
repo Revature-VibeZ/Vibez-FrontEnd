@@ -1,23 +1,27 @@
 <ng-container>
-    <div class="onepost" (click)="click($event)">
-        <img class="profile-image" src="https://i.pinimg.com/originals/44/e2/42/44e2422c7ecf1e9234c7fa4cdf03f060.jpg" alt="catbear">
+    <div class="onepost-regular" (click)="click($event)" [ngClass]="post.likes.length > 2 ? 'onepost-fancy' : 'onepost-regular'">
+        <img class="post-image" src={{post.image}} alt="catbear">
         <p class="inline">{{post.title}}</p>
         <div>{{post.content}}</div>
         <div class="time-created">{{post.creationDate | date:'EE, MMMM dd, yyyy h:mm a'}}</div>
-        <button class="btn btn-primary" (click)="createLike(post.id)">Like</button>
-        <p>{{post.likes.length}}</p>
-
+        <ng-container>
+            {{post.likes.length}}
+            <div *ngFor="let like of post.likes">
+                <div *ngIf="like.postId === post.id">dislike button</div>
+                <div *ngIf="like.userId !== post.authorId" class="align-center" (click)="createLike(post.id, $event)"> ♥ </div>
+            </div>
+        </ng-container>
         <form>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1"></label>
-                <textarea class="form-control textarea-right" placeholder="Add a comment..."type="text" id="exampleFormControlTextarea1" rows="3"
+                <textarea (click)="stopClickPropagation($event)" class="form-control textarea-right"
+                    placeholder="Add a comment..." type="text" id="exampleFormControlTextarea1" rows="3"
                     [(ngModel)]="content" name="content"></textarea>
             </div>
-
-            <button class="btn btn-primary" (click)="createComment(post.id, content)">Reply</button>            
+            <button class="btn btn-primary" (click)="createComment(post.id, content)">Reply</button>
         </form>
         <div class="reset-div" *ngIf="showComments && post.comments.length > 0">
-            <div style="border: 10px solid lightgreen;" *ngFor="let comment of post.comments">
+            <div *ngFor="let comment of post.comments">
                 <app-post [showComments]="true" [post]="comment"></app-post>
             </div>
         </div>
