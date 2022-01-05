@@ -1,0 +1,11 @@
+<p>create-post!</p>
+
+<form>
+    <label for="fname">Create Post:</label><br>
+    <input type="text" id="fname" name="fname" #post><br>
+    <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+
+    <button id = "exchangeButton"
+    (click)='createPost(post.value)'
+    >Post</button>
+</form>

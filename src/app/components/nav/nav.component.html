@@ -10,10 +10,19 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       </ul>
       <!-- Place Holder images -->
-      <img src="../../../assets/plus.png" alt="">
+      <img src="../../../assets/plus.png" routerLink='createpost' alt="">
       <img src="../../../assets/smile.png" (click)="loadProfile()" alt="">
-      <img src="../../../assets/heart.png" alt="">
-      <img src="../../../assets/star.png" alt="">
+      <img src="../../../assets/heart.png" alt=""> <!-- routerLink='friends' -->
+      <img src="../../../assets/star.png" (click)="loadPostFeed()" alt="">
+      <ng-container>
+        <div *ngIf="sessionStorage.getItem('currentUser')">
+          <button class="btn btn-primary" (click)="logout()">Logout</button>
+        </div>
+        <div *ngIf="!sessionStorage.getItem('currentUser')">
+          <button class="btn btn-primary" routerLink='login'>Login</button>
+          <button class="btn btn-primary" routerLink='register'>Register</button>
+        </div>
+      </ng-container>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Enter username" aria-label="Search" #username>
         <button class="btn btn-primary" type="submit" (click)="searchByUsername(username.value)">Search</button>

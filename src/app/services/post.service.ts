@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,13 @@ export class PostService {
     console.log('inside post service ts get all');
 
     let url = 'http://localhost:8080/posts';
-    return this.http.get(url).pipe(map((response: any) => {
+    let headers : any = {
+      'Content-Type' : 'application/json',
+      'Access-Control-Allow-Origin' : '*',
+      // 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    }
+    return this.http.get(url, {headers}   
+      ).pipe(map((response: any) => {
       console.log("getAll function!")
       console.log(response)
       this.posts = response;
@@ -28,12 +35,24 @@ export class PostService {
     return this.http.post(url, body).pipe(map((response: any) => {
       return response;
     }));
-    // createBid(body: Bid) {
-    //   let url = `http://localhost:8080/bids/`;
-    //   return this.http.post(url, body).pipe(map((response: any) => {
-    //     return response;
-    //   }));
-    // }
+  }
 
+  sendPost(post : string, file:File) {
+    const formData = new FormData();
+    formData.append("file", file);  
+    formData.append("post", post); 
+    formData.append("username", "username1");    
+    let username = "username1";
+    let url = `${environment.API_URL}/posts/new/?content=${post}&?username=${username}`   
+    return this.http.post(url, formData)
+  }
+
+  sendLike(postId : number) {
+    const formData = new FormData();
+    formData.append("postId", postId.toString());      
+    formData.append("username", "username1");    
+    let username = "username1";
+    let url = `${environment.API_URL}/likes/?id=${postId}&?username=${username}`   
+    return this.http.post(url, formData)
   }
 }
