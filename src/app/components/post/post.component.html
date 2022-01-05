@@ -4,13 +4,10 @@
         <p class="inline">{{post.title}}</p>
         <div>{{post.content}}</div>
         <div class="time-created">{{post.creationDate | date:'EE, MMMM dd, yyyy h:mm a'}}</div>
-        <ng-container>
-            {{post.likes.length}}
-            <div *ngFor="let like of post.likes">
-                <div *ngIf="like.postId === post.id">dislike button</div>
-                <div *ngIf="like.userId !== post.authorId" class="align-center" (click)="createLike(post.id, $event)"> ♥ </div>
-            </div>
-        </ng-container>
+        
+        
+        <button class="btn btn-primary" (click)="createLike(post.id, $event)">{{btnName}}</button>
+
         <form>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1"></label>

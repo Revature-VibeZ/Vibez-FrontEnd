@@ -9,6 +9,7 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
+  
   @Input() post: Post = {
     comments: [],
     authorId: 0,
@@ -24,10 +25,19 @@ export class PostComponent implements OnInit {
   @Input() showComments = false;
 
   content: String = "";
-
+  
+  isLiked: boolean = false;
+  btnName: String = "like";
   constructor(private es: EventService, private ps: PostService) { }
 
   ngOnInit(): void {
+    // (this.post.likes[0]['username']);
+    for (var val of this.post.likes) {
+      if (val['username']==sessionStorage.getItem('userToken')) {
+        this.isLiked = true;
+        this.btnName = "Dislike";
+      }
+    }
     this.es.newPostEvent$.subscribe((res: any) => {
       if(this.post.id !== res.parentId) return;
       this.showComments = true;
@@ -50,7 +60,7 @@ export class PostComponent implements OnInit {
     e.preventDefault();
   }
 
-  createComment(parentId: number, comment: String) {
+  createComment(parentId: number, comment: String) {    
     if(!comment) return;
     if(!parentId) return;
     let body = {
