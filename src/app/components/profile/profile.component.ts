@@ -14,6 +14,12 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.determineUser()
   }
+  message: string = '';
+update(password : string){
+this.profileService.update(password).subscribe(
+(Response)
+);
+}
 
   // determineUser(){
   //   if (searched username = token or whatever info we have on current user){
