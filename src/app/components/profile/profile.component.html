@@ -1,7 +1,7 @@
 <p>profile works!</p>
 <br>
 <p>Profile Picture Below</p>
-<img src="{{profile.profilePicture}}">  
+<img src="{{profile.profilePicture}}">
 <p>First name: {{profile.firstName}}</p>
 <p>Last name: {{profile.lastName}}</p>
 <p>Username: {{profile.username}}</p>
@@ -9,4 +9,10 @@
 <p>Email: {{profile.email}}</p>
 <p>Bio: {{profile.bio}}</p>
 
-<button class="btn btn-outline-primary" type="submit" (click)= "reloadProfile()">Reload</button>
+<button class="btn btn-outline-primary" type="submit" (click)="reloadProfile()">Reload</button>
+
+<div>
+    <label for="pass">Reset Password (8 characters minimum):</label>
+    <input type="password" id="pass" name="password" value={{profile.password}} minlength="3" #passValue>
+    <button class="btn btn-primary" (click)='update(passValue.value)'>Update</button>
+</div>
