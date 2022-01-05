@@ -23,6 +23,16 @@ export class ProfileService {
   getUserById(id: any): Observable<any> {
     return this.http.get(`${environment.API_URL}/users/${id}`);
   }
+  update(password: string) {
+    var username = sessionStorage.getItem("userToken")!;    
+    const formData = new FormData();
+    formData.append("username", username);      
+    formData.append("password", password);  
+    return this.http.put(`${environment.API_URL}/users`, formData,  {
+            
+  })
+ 
+  }
 
 
 
