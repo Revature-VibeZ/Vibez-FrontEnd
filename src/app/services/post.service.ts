@@ -11,8 +11,6 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    console.log('inside post service ts get all');
-
     let url = 'http://localhost:8080/posts';
     let headers : any = {
       'Content-Type' : 'application/json',
@@ -21,8 +19,6 @@ export class PostService {
     }
     return this.http.get(url, {headers}   
       ).pipe(map((response: any) => {
-      console.log("getAll function!")
-      console.log(response)
       this.posts = response;
     }));
   }
@@ -50,9 +46,18 @@ export class PostService {
   sendLike(postId : number) {
     const formData = new FormData();
     formData.append("postId", postId.toString());      
-    formData.append("username", "username1");    
-    let username = "username1";
+    let username: any = sessionStorage.getItem('userToken');
+    formData.append("username", username);
     let url = `${environment.API_URL}/likes/?id=${postId}&?username=${username}`   
     return this.http.post(url, formData)
+  }
+
+  deleteLike(postId: number) {
+    const formData = new FormData();
+    formData.append("postId", postId.toString());      
+    let username: any = sessionStorage.getItem('userToken');
+    formData.append("username", username);
+    let url = `${environment.API_URL}/likes/?postId=${postId}&username=${username}`   
+    return this.http.delete(url);
   }
 }
