@@ -43,11 +43,11 @@ this.profileService.update(password).subscribe(
       this.username = sessionStorage.getItem("userToken")
       this.getProfile()
     }
-    else if(sessionStorage.getItem("userToken") != null){
+    else if (sessionStorage.getItem("userToken") != null) {
       this.username = sessionStorage.getItem("username")
       this.getProfile()
     }
-    else{
+    else {
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['']);
       })
@@ -76,11 +76,10 @@ this.profileService.update(password).subscribe(
   Once the user is retrieved the sessionStorage is cleared so a new search may be preformed.
   */
   getProfile() {
-    
     this.profileService.getUserByUsername(this.username).subscribe((response) => {
       this.profile = response[0];
-      sessionStorage.removeItem("username")
-    });
+      sessionStorage.removeItem("username");
+    })
   }
 
   /*`

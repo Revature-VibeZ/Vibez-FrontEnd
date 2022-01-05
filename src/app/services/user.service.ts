@@ -9,6 +9,8 @@ export class UserService {
     constructor(private http: HttpClient) {}
 
     getAll() {
-        return this.http.get<User[]>(`${environment.API_URL}/users`);
+        this.http.get<User[]>(`${environment.API_URL}/users`).subscribe((res: any) => {
+            return res;
+        });
     }
 }
