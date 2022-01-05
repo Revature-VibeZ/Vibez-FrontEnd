@@ -34,7 +34,7 @@ export class AuthService {
 
   register(firstName: string, lastName: string, username: string, email: string, password: string): Observable<any> {
 
-    return this.http.post(`${environment.API_URL}` + '/user', {
+    return this.http.post(`${environment.API_URL}` + '/users', {
       
       firstName,
       lastName,
