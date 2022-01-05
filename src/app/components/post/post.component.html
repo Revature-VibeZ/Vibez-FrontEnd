@@ -6,7 +6,11 @@
         <div class="time-created">{{post.creationDate | date:'EE, MMMM dd, yyyy h:mm a'}}</div>
         
         <div>
-            {{post.likes.length}} <button [ngClass]="isLiked ? 'dislike' : 'like'" (click)="createLike(post.id, $event)">♥</button>
+            {{post.likes.length}} 
+            <button 
+                [ngClass]="isLiked ? 'dislike' : 'like'" (click)="createLike(post.id, $event)">
+                ♥
+            </button>
         </div>
 
 

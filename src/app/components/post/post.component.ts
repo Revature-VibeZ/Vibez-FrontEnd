@@ -43,6 +43,8 @@ export class PostComponent implements OnInit {
       this.post.comments.push(res)
     })
     this.es.newLikeEvent$.subscribe((res: any) => {
+      console.log('response is: ', res);
+      console.log('this.post.id is: ', this.post.id);
       if (this.post.id !== res.postId) return;
       this.isLiked = true;
       this.post.likes.push(res)
@@ -90,8 +92,6 @@ export class PostComponent implements OnInit {
     if(this.isLiked){
       this.ps.deleteLike(postId).subscribe((res: any) => {
         //if like succeeds update page to show number of likes
-        console.log(res);
-        
         this.es.deleteLike(res);
       })
     } else {
