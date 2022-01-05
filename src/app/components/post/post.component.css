@@ -95,6 +95,15 @@
 .dislike { 
     color: red;
 }
+
+.like, .dislike {
+    max-width: 5rem;
+    font-size: 4rem;
+    display: inline;
+    border: none;
+    border-radius: 1rem;
+    background-color: darkgrey;
+}
   
   
 
