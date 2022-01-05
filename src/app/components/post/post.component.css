@@ -87,6 +87,14 @@
     80% {border: 10px solid indigo;}
     100% {border: 10px solid violet;}
 }
+
+.like { 
+    color: grey;
+}
+
+.dislike { 
+    color: red;
+}
   
   
 

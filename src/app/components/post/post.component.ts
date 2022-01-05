@@ -9,7 +9,7 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  
+
   @Input() post: Post = {
     comments: [],
     authorId: 0,
@@ -25,28 +25,40 @@ export class PostComponent implements OnInit {
   @Input() showComments = false;
 
   content: String = "";
-  
+
   isLiked: boolean = false;
-  btnName: String = "like";
   constructor(private es: EventService, private ps: PostService) { }
 
   ngOnInit(): void {
     // (this.post.likes[0]['username']);
     for (var val of this.post.likes) {
-      if (val['username']==sessionStorage.getItem('userToken')) {
+      if (val['username'] == sessionStorage.getItem('userToken')) {
         this.isLiked = true;
-        this.btnName = "Dislike";
       }
     }
     this.es.newPostEvent$.subscribe((res: any) => {
-      if(this.post.id !== res.parentId) return;
+      if (this.post.id !== res.parentId) return;
       this.showComments = true;
       res.likes = [];
       this.post.comments.push(res)
     })
-    this.es.newLikeEvent$.subscribe((res: any) => {      
-      if(this.post.id !== res.postId) return;
+    this.es.newLikeEvent$.subscribe((res: any) => {
+      if (this.post.id !== res.postId) return;
+      this.isLiked = true;
       this.post.likes.push(res)
+    })
+    this.es.deleteLikeEvent$.subscribe((confirmedDeletedId: number) => {
+      // search through this post's likes, remove the match
+      console.log(confirmedDeletedId);
+      
+      let copy = this.post.likes;
+      for (let i = 0; i < copy.length; i++) {
+        let like = copy[i];
+        if(confirmedDeletedId === like.id){
+          this.post.likes.splice(i, 1);
+          this.isLiked = !this.isLiked;
+        }
+      }
     })
   }
 
@@ -60,9 +72,9 @@ export class PostComponent implements OnInit {
     e.preventDefault();
   }
 
-  createComment(parentId: number, comment: String) {    
-    if(!comment) return;
-    if(!parentId) return;
+  createComment(parentId: number, comment: String) {
+    if (!comment) return;
+    if (!parentId) return;
     let body = {
       content: comment,
       parentId
@@ -75,9 +87,18 @@ export class PostComponent implements OnInit {
 
   createLike(postId: number, e: Event) {
     this.stopClickPropagation(e);
-    this.ps.sendLike(postId).subscribe((res: any) => {
-      //if like succeeds update page to show number of likes
-      this.es.newLike(res, postId);
-    })
+    if(this.isLiked){
+      this.ps.deleteLike(postId).subscribe((res: any) => {
+        //if like succeeds update page to show number of likes
+        console.log(res);
+        
+        this.es.deleteLike(res);
+      })
+    } else {
+      this.ps.sendLike(postId).subscribe((res: any) => {
+        //if like succeeds update page to show number of likes
+        this.es.newLike(res, postId);
+      })
+    }
   }
 }
