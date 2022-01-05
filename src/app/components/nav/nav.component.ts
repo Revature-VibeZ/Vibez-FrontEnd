@@ -13,7 +13,7 @@ export class NavComponent implements OnInit {
   sessionStorage = sessionStorage;
   ngOnInit(): void {
   }
-  search: String = "";
+  search: any = '';
 
 
   /*
@@ -22,8 +22,10 @@ export class NavComponent implements OnInit {
   */
   searchByUsername(username: string) {
     sessionStorage.setItem("username", username);
+    this.search ='';
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['profile']);
+
     })
   }
 

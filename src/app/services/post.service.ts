@@ -1,54 +1,50 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  posts : any = [];
+  posts: any = [];
   constructor(private http: HttpClient) { }
 
   getAll() {
-    let url = 'http://localhost:8080/posts';
-    let headers : any = {
-      'Content-Type' : 'application/json',
-      'Access-Control-Allow-Origin' : '*',
-      // 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-    }
-    return this.http.get(url, {headers}   
-      ).pipe(map((response: any) => {
-      this.posts = response;
+    console.log('inside post service ts get all');
+    let url = `${environment.API_URL}/posts`;
+    return this.http.get(url).pipe(map((res: any) => {      
+      this.posts = res;
     }));
   }
 
   create(body: any) {
-    // update/remove hardcoded username later
-    // let username = sessionStorage.getItem('usertoken')
-    let username = "username1";
-    let url = `http://localhost:8080/posts/?username=${username}`;
+    let username: any = sessionStorage.getItem('userToken');
+    let url = `${environment.API_URL}/posts/?username=${username}`;
     return this.http.post(url, body).pipe(map((response: any) => {
       return response;
     }));
   }
 
-  sendPost(post : string, file:File) {
+  sendPost(post: string, file: File) {
     const formData = new FormData();
-    formData.append("file", file);  
-    formData.append("post", post); 
-    formData.append("username", "username1");    
-    let username = "username1";
-    let url = `${environment.API_URL}/posts/new/?content=${post}&?username=${username}`   
+    formData.append("file", file);
+    formData.append("post", post);
+    let username: any = sessionStorage.getItem('userToken');
+    formData.append("username", username);
+    let url = `${environment.API_URL}/posts/new/?content=${post}&?username=${username}`
     return this.http.post(url, formData)
   }
 
-  sendLike(postId : number) {
+  sendLike(postId: number) {
     const formData = new FormData();
     formData.append("postId", postId.toString());      
     let username: any = sessionStorage.getItem('userToken');
     formData.append("username", username);
-    let url = `${environment.API_URL}/likes/?id=${postId}&?username=${username}`   
+    formData.append("postId", postId.toString());
+    formData.append("username", "username1");
+    let url = `${environment.API_URL}/likes/?id=${postId}&?username=${username}`
     return this.http.post(url, formData)
   }
 
