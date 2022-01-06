@@ -18,24 +18,20 @@
         <div *ngIf="sessionStorage.getItem('currentUser')">
           <button class="btn btn-primary" (click)="logout()">Logout</button>
         </div>
-        <!-- <div *ngIf="!sessionStorage.getItem('currentUser')">
+        <div *ngIf="!sessionStorage.getItem('currentUser')">
           <button class="btn btn-primary" routerLink='login'>Login</button>
           <button class="btn btn-primary" routerLink='register'>Register</button>
-        </div> -->
+        </div>
       </ng-container>
-<<<<<<< HEAD
-      <!-- <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Enter username" aria-label="Search" #username>
-        <button class="btn btn-primary" type="submit" (click)="searchByUsername(username.value)">Search</button>
-=======
+<!-- 
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Enter username" aria-label="Search" [(ngModel)]="search" name="search">
         <button class="btn btn-primary" type="submit" (click)="searchByUsername(search)">Search</button>
->>>>>>> bc831f2542a14ce10d92bbe0da276fd619eb7f25
       </form>
     </div>
   </div>
-</nav>  -->
+</nav> 
+-->
 
 <nav id="nav-bar" class="top-right close">
 	<a class="disc l1">
