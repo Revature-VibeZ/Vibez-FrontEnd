@@ -49,16 +49,17 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
+    console.log("logout!");
     this.as.logout();
     this.router.navigate(['login']);
   }
   
-  nav = document.querySelector('nav') as HTMLElement;
+  nav = document.querySelector('menu') as HTMLElement;
   toggledText = "Menu";
 
   toggleNav() {
-    if(document.querySelector('nav') as HTMLElement){
-      this.nav = document.querySelector('nav') as HTMLElement;
+    if(document.querySelector('menu') as HTMLElement){
+      this.nav = document.querySelector('menu') as HTMLElement;
     }
     if(this.nav.classList.contains('close')){
       this.nav.classList.toggle('open');

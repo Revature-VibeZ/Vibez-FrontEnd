@@ -1,200 +1,333 @@
 @import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:800,900');
- html, body {
-	 height: 100%;
+
+html, body {
+	height: 100%;
 }
- body {
-	 background: beige;
-	 font-family: Alegreya Sans, sans-serif;
+
+body {
+	background: beige;
+	font-family: Alegreya Sans, sans-serif;
 }
- nav {
-	 display: block;
-	 position: fixed;
-	 width: 500px;
-	 height: 500px;
-	 user-select: none;
-	 transform: translate3d(25px, -25px, 0);
-	 transition: transform 0.5s cubic-bezier(0.3, 1.4, 0.5, 0.9);
+
+#logo{
+	width: 150px;
 }
- nav.open {
-	 transform: translate3d(0, 0, 0);
+
+#logout{
+	width: 2rem;
+	margin-left: 10px;
 }
- nav.top-right {
-	 top: -140px;
-	 right: -140px;
+
+#container{
+	margin-left: 2rem;
+	margin-right: 2rem;
+	width: 100%;
 }
- .disc {
-	 position: absolute;
-	 display: inline-block;
-	 text-align: center;
-	 cursor: pointer;
-	 font: 25px Alegreya Sans, sans-serif;
-	 line-height: 40px;
-	 padding-top: 10px;
-	 border-radius: 250px;
-	 transform: scale3d(0.5, 0.5, 0.5) rotate3d(0, 0, 1, 190deg);
-	 pointer-events: none;
-	 opacity: 0;
-	 cursor: pointer;
-	 transition: transform 0.5s cubic-bezier(0.3, 1.4, 0.5, 0.9), opacity 0.5s;
+
+/* #pop{
+	visibility: hidden;
+} */
+
+.logoutBtn:hover {
+	/* visibility: visible; */
 }
- .disc div {
-	 transform: rotate(180deg);
+
+.logout-text{
+	display: inline;
+	margin-left: 10px;
 }
- .open .disc {
-	 pointer-events: auto;
-	 opacity: 1;
+
+#menu {
+	display: block;
+	position: fixed;
+	width: 500px;
+	height: 500px;
+	user-select: none;
+	transform: translate3d(25px, -25px, 0);
+	transition: transform 0.5s cubic-bezier(0.3, 1.4, 0.5, 0.9);
 }
- .l1 {
-	 top: 0px;
-	 left: 0px;
-	 right: 0px;
-	 bottom: 0px;
-	 background: #ff6347;
-	 transition-delay: 0s;
+
+#menu.open {
+	transform: translate3d(0, 0, 0);
 }
- .open .l1 {
-	 transition-delay: 0s;
-	 transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 190deg);
-	 opacity: 1;
+
+#menu.top-right {
+	top: -100px;
+	right: -140px;
 }
- .open .l1:hover {
-	 background: shade(#ff6347, 90%);
-	 color: #ff6347;
-	 transition-delay: 0s;
+
+.disc {
+	position: absolute;
+	display: inline-block;
+	text-align: center;
+	cursor: pointer;
+	font: 25px Alegreya Sans, sans-serif;
+	line-height: 40px;
+	padding-top: 10px;
+	border-radius: 250px;
+	transform: scale3d(0.5, 0.5, 0.5) rotate3d(0, 0, 1, 190deg);
+	pointer-events: none;
+	opacity: 0;
+	cursor: pointer;
+	transition: transform 0.5s cubic-bezier(0.3, 1.4, 0.5, 0.9), opacity 0.5s;
 }
- .open .l1:active {
-	 background: shade(#ff6347, 50%);
-	 color: #ff6347;
+
+.disc div {
+	transform: rotate(180deg);
 }
- .open .l1.toggle {
-	 transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, 10deg);
+
+.open .disc {
+	pointer-events: auto;
+	opacity: 1;
 }
- .l2 {
-	 top: 50px;
-	 left: 50px;
-	 right: 50px;
-	 bottom: 50px;
-	 background: #ff7a39;
-	 transition-delay: 0.1s;
+
+.l1 {
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background: #61F9FA;
+	transition-delay: 0s;
 }
- .open .l2 {
-	 transition-delay: 0.1s;
-	 transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 190deg);
-	 opacity: 1;
+
+.open .l1 {
+	transition-delay: 0s;
+	transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 190deg);
+	opacity: 1;
 }
- .open .l2:hover {
-	 background: shade(#ff7a39, 90%);
-	 color: #ff7a39;
-	 transition-delay: 0s;
+
+.open .l1:hover {
+	background: shade(#FC33DB, 90%);
+	color: #FC33DB;
+	transition-delay: 0s;
 }
- .open .l2:active {
-	 background: shade(#ff7a39, 50%);
-	 color: #ff7a39;
+
+.open .l1:active {
+	background: shade(#ff6347, 50%);
+	color: #ff6347;
 }
- .open .l2.toggle {
-	 transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, 10deg);
+
+.open .l1.toggle {
+	transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, 10deg);
 }
- .l3 {
-	 top: 100px;
-	 left: 100px;
-	 right: 100px;
-	 bottom: 100px;
-	 background: #ff912b;
-	 transition-delay: 0.2s;
+
+.l2 {
+	top: 50px;
+	left: 50px;
+	right: 50px;
+	bottom: 50px;
+	background: #ff7a39;
+	transition-delay: 0.1s;
 }
- .open .l3 {
-	 transition-delay: 0.2s;
-	 transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 190deg);
-	 opacity: 1;
+
+.open .l2 {
+	transition-delay: 0.1s;
+	transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 190deg);
+	opacity: 1;
 }
- .open .l3:hover {
-	 background: shade(#ff912b, 90%);
-	 color: #ff912b;
-	 transition-delay: 0s;
+
+.open .l2:hover {
+	background: shade(#ff7a39, 90%);
+	color: #ff7a39;
+	transition-delay: 0s;
 }
- .open .l3:active {
-	 background: shade(#ff912b, 50%);
-	 color: #ff912b;
+
+.open .l2:active {
+	background: shade(#ff7a39, 50%);
+	color: #ff7a39;
 }
- .open .l3.toggle {
-	 transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, 10deg);
+
+.open .l2.toggle {
+	transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, 10deg);
 }
- .l4 {
-	 top: 150px;
-	 left: 150px;
-	 right: 150px;
-	 bottom: 150px;
-	 background: #ffa91c;
-	 transition-delay: 0.3s;
+
+.l3 {
+	top: 100px;
+	left: 100px;
+	right: 100px;
+	bottom: 100px;
+	background: #ff912b;
+	transition-delay: 0.2s;
 }
- .open .l4 {
-	 transition-delay: 0.3s;
-	 transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 190deg);
-	 opacity: 1;
+
+.open .l3 {
+	transition-delay: 0.2s;
+	transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 190deg);
+	opacity: 1;
 }
- .open .l4:hover {
-	 background: shade(#ffa91c, 90%);
-	 color: #ffa91c;
-	 transition-delay: 0s;
+
+.open .l3:hover {
+	background: shade(#ff912b, 90%);
+	color: #ff912b;
+	transition-delay: 0s;
 }
- .open .l4:active {
-	 background: shade(#ffa91c, 50%);
-	 color: #ffa91c;
+
+.open .l3:active {
+	background: shade(#ff912b, 50%);
+	color: #8A3CFA;
 }
- .open .l4.toggle {
-	 transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, 10deg);
+
+.open .l3.toggle {
+	transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, 10deg);
 }
- .l5 {
-	 top: 200px;
-	 left: 200px;
-	 right: 200px;
-	 bottom: 200px;
-	 background: #ffc00e;
-	 transition-delay: 0.4s;
+
+.l4 {
+	top: 150px;
+	left: 150px;
+	right: 150px;
+	bottom: 150px;
+	background: #2EF964;
+	transition-delay: 0.3s;
 }
- .open .l5 {
-	 transition-delay: 0.4s;
-	 transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 190deg);
-	 opacity: 1;
+
+.open .l4 {
+	transition-delay: 0.3s;
+	transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 190deg);
+	opacity: 1;
 }
- .open .l5:hover {
-	 background: shade(#ffc00e, 90%);
-	 color: #ffc00e;
-	 transition-delay: 0s;
+
+.open .l4:hover {
+	background: shade(#ffa91c, 90%);
+	color: #ffa91c;
+	transition-delay: 0s;
 }
- .open .l5:active {
-	 background: shade(#ffc00e, 50%);
-	 color: #ffc00e;
+
+.open .l4:active {
+	background: shade(#ffa91c, 50%);
+	color: #ffa91c;
 }
- .open .l5.toggle {
-	 transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, 10deg);
+
+.open .l4.toggle {
+	transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, 10deg);
 }
- .toggle {
-	 line-height: 100px;
-	 padding: 0;
-	 width: 100px;
-	 background: gold;
-	 opacity: 1;
-	 transform: none;
-	 pointer-events: auto;
-	 transition-delay: 0s;
+
+.l5 {
+	top: 200px;
+	left: 200px;
+	right: 200px;
+	bottom: 200px;
+	background: #ffc00e;
+	transition-delay: 0.4s;
 }
- .open .toggle {
-	 transform: rotate3d(0, 0, 1, 0deg);
-     transition-duration: .8s;
+
+.open .l5 {
+	transition-delay: 0.4s;
+	transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 190deg);
+	opacity: 1;
 }
- .toggle:hover {
-	 background: shade(gold, 90%);
-	 text-decoration: underline;
+
+.open .l5:hover {
+	background: shade(#ffc00e, 90%);
+	color: #ffc00e;
+	transition-delay: 0s;
 }
- .toggle:active {
-	 background: shade(gold, 50%);
-	 color: rgba(255, 215, 0, .5);
-	 transform: scale(0.9);
-	 transition-duration: 0s;
+
+.open .l5:active {
+	background: shade(#ffc00e, 50%);
+	color: #ffc00e;
+}
+
+.open .l5.toggle {
+	transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, 10deg);
+}
+
+.toggle {
+	line-height: 100px;
+	padding: 0;
+	width: 100px;
+	background: #FC33DB;
+	opacity: 1;
+	transform: none;
+	pointer-events: auto;
+	transition-delay: 0s;
+}
+
+.open .toggle {
+	transform: rotate3d(0, 0, 1, 0deg);
+	transition-duration: .8s;
+}
+
+.toggle:hover {
+	background: shade(gold, 90%);
+	text-decoration: underline;
+}
+
+.toggle:active {
+	background: shade(gold, 50%);
+	color: rgba(255, 215, 0, .5);
+	transform: scale(0.9);
+	transition-duration: 0s;
 }
 
 a {
-    color: #000000;
-    text-decoration: none;
+	color: #000000;
+	text-decoration: none;
 }
+
+
+#wrap {
+	
+	display: inline-block;
+	position: relative;
+	height: 60px;
+	padding: 0;
+  }
+
+  #form{
+	  margin-top: 1rem;
+  }
+  
+  input[type="text"] {
+	height: 56px;
+	font-size: 20px;
+	display: inline-block;
+	font-family: "Lato";
+	font-weight: 100;
+	border: none;
+	outline: none;
+	color: #555;
+	padding: 3px;
+	padding-right: 60px;
+	width: 0px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: none;
+	z-index: 3;
+	transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+	cursor: pointer;
+  }
+  
+  input[type="text"]:focus:hover {
+	border-bottom: 1px solid #BBB;
+  }
+  
+  input[type="text"]:focus {
+	width: 260px;
+	z-index: 1;
+	border-bottom: 1px solid #BBB;
+	cursor: text;
+	margin-left:260px;
+  }
+  input[type="submit"] {
+	height: 67px;
+	width: 63px;
+	display: inline-block;
+	color:red;
+	float: right;
+  
+	text-indent: -10000px;
+	border: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 2;
+	cursor: pointer;
+	opacity: 0;
+	cursor: pointer;
+	transition: opacity .4s ease;
+  }
+  
+  input[type="submit"]:hover {
+	opacity: 0.0;
+  }
