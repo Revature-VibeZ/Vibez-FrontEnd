@@ -28,6 +28,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { PostFeedComponent } from './components/post-feed/post-feed.component';
 import { PostComponent } from './components/post/post.component';
+import { ChatroomComponent } from './components/chatroom/chatroom.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { PostComponent } from './components/post/post.component';
     NavComponent,
     ProfileComponent,
     PostFeedComponent,
-    PostComponent
+    PostComponent,
+    ChatroomComponent
   ],
   imports: [
     BrowserModule,
