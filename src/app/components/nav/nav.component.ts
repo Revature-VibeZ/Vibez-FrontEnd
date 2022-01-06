@@ -15,18 +15,22 @@ export class NavComponent implements OnInit {
     private as: AuthService
   ) {}
   sessionStorage = sessionStorage;
+
   ngOnInit(): void {}
   search: String = '';
+
 
   /*
   Saves username typed into search bar into the sessionStorage and then redirects to user profile.
   Will need some tweaking eventually.
   */
   searchByUsername(username: string) {
+
     sessionStorage.setItem('username', username);
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['profile']);
     });
+
   }
 
   /*
