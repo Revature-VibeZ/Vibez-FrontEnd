@@ -21,12 +21,15 @@ export class ProfileComponent implements OnInit {
   }
 
   determineUser() {
+
     if (sessionStorage.getItem("username") === null) {
       this.username = sessionStorage.getItem("userToken")
+      
       this.getProfile()
     }
     else if (sessionStorage.getItem("userToken") != null) {
       this.username = sessionStorage.getItem("username")
+      this.isUser = false;
       this.getProfile()
     }
     else {
@@ -36,7 +39,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-
+  isUser: boolean = true;
   username?: any;
   //Object to recieve the JSON that will include all the user information
   profile?: any
@@ -61,4 +64,6 @@ export class ProfileComponent implements OnInit {
       this.router.navigate(['profile']);
     })
   }
+
+  
 }
