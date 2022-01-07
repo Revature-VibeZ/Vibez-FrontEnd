@@ -26,7 +26,7 @@
 
 <ng-container>
   <div *ngIf="sessionStorage.getItem('currentUser')">
-    <button class="btn btn-primary" (click)="logout()">Logout</button>
+    <button class="btn btn-primary logout" (click)="logout()">Logout</button>
   </div>
   <!-- <div *ngIf="!sessionStorage.getItem('currentUser')">
     <button class="btn btn-primary" routerLink='login'>Login</button>
