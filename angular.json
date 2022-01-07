@@ -34,7 +34,7 @@
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.js",
-              "node_modules/jquery/dist/jquery.js",
+              "src/assets/js/jquery.min.js",  
               "src/assets/js/stomp.min.js",
               "src/assets/js/sockjs.min.js",
               "src/assets/js/app.js"   
