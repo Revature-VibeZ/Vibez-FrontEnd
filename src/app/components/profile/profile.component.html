@@ -5,13 +5,13 @@
 <p>First name: {{profile.firstName}}</p>
 <p>Last name: {{profile.lastName}}</p>
 <p>Username: {{profile.username}}</p>
-<p>Password: {{profile.password}}</p>
+<p *ngIf="isUser">Password: {{profile.password}}</p>
 <p>Email: {{profile.email}}</p>
 <p>Bio: {{profile.bio}}</p>
 
 <button class="btn btn-outline-primary" type="submit" (click)="reloadProfile()">Reload</button>
 
-<div>
+<div *ngIf="isUser">
     <label for="pass">Reset Password (8 characters minimum):</label>
     <input type="password" id="pass" name="password" value={{profile.password}} minlength="3" #passValue>
     <button class="btn btn-primary" (click)='update(passValue.value)'>Update</button>
