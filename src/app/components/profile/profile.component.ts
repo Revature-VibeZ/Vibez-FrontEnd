@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,10 +10,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  constructor(private profileService: ProfileService, private router: Router) { }
+  constructor(private es: EventService, private profileService: ProfileService, private router: Router, private us: UserService) { }
 
   ngOnInit(): void {
-    this.determineUser()
+    this.determineUser();
+    this.es.uploadProfileImage$.subscribe((res: any) => {
+      if (!this.profile) return;
+      console.log('res: ', res);
+      this.profile.profilePicture = res;
+    })
   }
   message: string = '';
   update(password: string) {
@@ -21,12 +28,15 @@ export class ProfileComponent implements OnInit {
   }
 
   determineUser() {
+
     if (sessionStorage.getItem("username") === null) {
       this.username = sessionStorage.getItem("userToken")
+
       this.getProfile()
     }
     else if (sessionStorage.getItem("userToken") != null) {
       this.username = sessionStorage.getItem("username")
+      this.isUser = false;
       this.getProfile()
     }
     else {
@@ -36,7 +46,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-
+  isUser: boolean = true;
   username?: any;
   //Object to recieve the JSON that will include all the user information
   profile?: any
@@ -61,4 +71,28 @@ export class ProfileComponent implements OnInit {
       this.router.navigate(['profile']);
     })
   }
+
+  file: File | undefined;
+  uploadImage(event: any) {
+    const Uploadedfile: File = event.target.files[0];
+    if (Uploadedfile) {
+      this.file = Uploadedfile;
+      console.log('profile ts line 80');
+      
+      this.us.uploadProfilePicture(this.file).subscribe((response: any) => {
+        console.log(response);
+
+        // this.es.uploadProfileImage(response);
+      },
+        err => {
+          alert("err");
+        }
+      )
+
+    }
+  }
+
+
+
+
 }
