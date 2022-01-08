@@ -98,6 +98,7 @@ export class LoginComponent implements OnInit {
     this.lock.classList.add('next');
     console.log('lock');
   }
+  
   successSection = document.querySelector('.success') as HTMLElement;
   passwordNext() {
     this.passwordSection = document.querySelector(
