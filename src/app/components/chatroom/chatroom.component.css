@@ -1,0 +1,72 @@
+#mydiv {
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    width: 25%; 
+    border: 1px solid #d3d3d3;
+    max-height:75%;
+  
+  
+  }
+
+  #usrmsgsBox{
+  
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    width: 100%; 
+    max-height:300%;
+    overflow:auto;
+    
+    
+  }
+  
+  #mydivheader {  
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+    background-color: #9999F8;
+    color: #fff;
+  }
+  
+  
+  /* position:fixed; right:0px; bottom:0; */
+  
+  
+  
+  /* CSS */
+  .button-15 {
+    /* background-image: linear-gradient(#42A1EC, #0070C9); */
+    background-color: #9999F8;
+    border: 1px solid #FB33DB;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: black;
+    cursor: pointer;
+    direction: ltr;
+    display: block;
+    font-family: "SF Pro Text","SF Pro Icons","AOS Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    line-height: 1.47059;
+    min-width: 30px;
+    overflow: visible;
+    padding: 4px 15px;
+    text-align: center;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    position:fixed; right:0px; bottom:0;
+  }
+  
+  
+  
+  .button-15:hover {
+    /* background-image: linear-gradient(#51A9EE, #147BCD); */
+    background-color: #7FFF00;
+    border-color: #1482D0;
+    text-decoration: none;
+  }

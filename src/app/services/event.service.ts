@@ -8,6 +8,7 @@ export class EventService {
     @Output() newPostEvent$: EventEmitter<any> = new EventEmitter();
     @Output() newLikeEvent$: EventEmitter<any> = new EventEmitter();
     @Output() deleteLikeEvent$: EventEmitter<any> = new EventEmitter();
+    @Output() uploadProfileImage$: EventEmitter<any> = new EventEmitter();
     
     newPost(body: any) {
         this.newPostEvent$.emit(body);
@@ -20,5 +21,9 @@ export class EventService {
 
     deleteLike(likeId: number) {
         this.deleteLikeEvent$.emit(likeId)
+    }
+
+    uploadProfileImage(body: any) {
+        this.uploadProfileImage$.emit(body);
     }
 }

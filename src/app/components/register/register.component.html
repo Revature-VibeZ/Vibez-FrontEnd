@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<!-- <div class="col-md-12">
     <div class="card card-container">
       <form
         *ngIf="!isSuccessful"
@@ -122,4 +122,146 @@
         Your registration is successful! Please proceed to login.
       </div>
     </div>
-  </div>
+  </div> -->
+
+<div class="back"></div>
+<div class="registration-form">
+  <header>
+    <h1>Create Account</h1>
+    <p>If you already have an account, login</p>
+    <a routerLink="/login">here</a>
+  </header>
+  <form
+    name="form"
+    (ngSubmit)="f.form.valid && onSubmit()"
+    #f="ngForm"
+    novalidate
+  >
+    <div class="input-section firstname-section">
+      <input
+        class="firstname"
+        type="firstname"
+        name="firstname"
+        placeholder="ENTER YOUR FIRSTNAME HERE"
+        autocomplete="off"
+        (keyup)="firstnameIcon()"
+        (keyup.enter)="firstnameNext()"
+        [(ngModel)]="form.firstName"
+        required
+        minlength="3"
+        maxlength="20"
+        #firstname="ngModel"
+      />
+      <div class="animated-button">
+        <span class="icon-firstname"
+          ><img src="../../../assets/user.svg" /></span
+        ><span class="next-button firstname" (click)="firstnameNext()"
+          ><img src="../../../assets/arrow-up.svg" class="fa fa-arrow-up"
+        /></span>
+      </div>
+    </div>
+    <div class="input-section lastname-section folded">
+      <input
+        class="lastname"
+        type="lastname"
+        name="lastname"
+        placeholder="ENTER YOUR LASTNAME HERE"
+        autocomplete="off"
+        (keyup)="lastnameIcon()"
+        (keyup.enter)="lastnameNext()"
+        [(ngModel)]="form.lastName"
+        required
+        minlength="3"
+        maxlength="20"
+        #lastname="ngModel"
+      />
+      <div class="animated-button">
+        <span class="icon-lastname"
+          ><img src="../../../assets/user.svg" /></span
+        ><span class="next-button lastname" (click)="lastnameNext()"
+          ><img src="../../../assets/arrow-up.svg" class="fa fa-arrow-up"
+        /></span>
+      </div>
+    </div>
+    <div class="input-section username-section folded">
+      <input
+        class="username"
+        type="username"
+        name="username"
+        placeholder="ENTER YOUR USERNAME HERE"
+        autocomplete="off"
+        (keyup)="usernameIcon()"
+        (keyup.enter)="usernameNext()"
+        [(ngModel)]="form.userName"
+        required
+        minlength="3"
+        maxlength="20"
+        #username="ngModel"
+      />
+      <div class="animated-button">
+        <span class="icon-paper-plane"
+          ><img src="../../../assets/user.svg" /></span
+        ><span class="next-button username" (click)="usernameNext()"
+          ><img src="../../../assets/arrow-up.svg" class="fa fa-arrow-up"
+        /></span>
+      </div>
+    </div>
+    <div class="input-section email-section folded">
+      <input
+        class="email"
+        type="email"
+        name="email"
+        placeholder="ENTER YOUR EMAIL HERE"
+        autocomplete="off"
+        (keyup)="emailIcon()"
+        (keyup.enter)="emailNext()"
+        [(ngModel)]="form.email"
+        required
+        minlength="3"
+        maxlength="20"
+        #lastname="ngModel"
+      />
+      <div class="animated-button">
+        <span class="icon-email"
+          ><img src="../../../assets/user.svg" /></span
+        ><span class="next-button email" (click)="emailNext()"
+          ><img src="../../../assets/arrow-up.svg" class="fa fa-arrow-up"
+        /></span>
+      </div>
+    </div>
+    <div class="input-section password-section folded">
+      <input
+        class="password"
+        type="password"
+        name="password"
+        placeholder="ENTER YOUR PASSWORD HERE"
+        autocomplete="off"
+        (keyup)="passwordIcon()"
+        (keyup.enter)="passwordNext()"
+        [(ngModel)]="form.password"
+        required
+        minlength="3"
+        #password="ngModel"
+      />
+      <div class="animated-button">
+        <span class="icon-lock"><img src="../../../assets/lock.svg" /></span
+        ><span class="next-button password" (click)="passwordNext()"
+          ><img src="../../../assets/arrow-up.svg" class="fa fa-arrow-up"
+        /></span>
+        <img src="" alt="" />
+      </div>
+    </div>
+    <div *ngIf="isSignUpFailed" class="failure">
+      <p class="wrongInput" (click)="reload()">
+        Invalid Credentials <br />
+        Click Here to Try Again
+      </p>
+    </div>
+    <div *ngIf="isSuccessful" class="success">
+      <p class="wrongInput" (click)="reload()">
+        Account Created! <br />
+        Click <a routerLink="/login">Here</a> to Proceed to Login
+      </p>
+    </div>
+  </form>
+</div>
