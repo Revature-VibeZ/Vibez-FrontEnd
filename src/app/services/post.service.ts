@@ -43,7 +43,6 @@ export class PostService {
     let username: any = sessionStorage.getItem('userToken');
     formData.append("username", username);
     formData.append("postId", postId.toString());
-    formData.append("username", "username1");
     let url = `${environment.API_URL}/likes/?id=${postId}&?username=${username}`
     return this.http.post(url, formData)
   }
@@ -52,7 +51,6 @@ export class PostService {
     const formData = new FormData();
     formData.append("postId", postId.toString());      
     let username: any = sessionStorage.getItem('userToken');
-    formData.append("username", username);
     let url = `${environment.API_URL}/likes/?postId=${postId}&username=${username}`   
     return this.http.delete(url);
   }

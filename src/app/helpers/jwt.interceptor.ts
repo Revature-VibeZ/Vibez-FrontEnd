@@ -11,7 +11,7 @@ export class JwtInterceptor implements HttpInterceptor {
         let currentUser: any = sessionStorage.getItem('currentUser');
         currentUser = JSON.parse(currentUser);
         if(!currentUser) return next.handle(request);
-        let token = currentUser.token;
+        let token = currentUser.token;        
         if (currentUser) {
             request = request.clone({
                 setHeaders: {

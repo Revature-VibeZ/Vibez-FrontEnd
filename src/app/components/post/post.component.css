@@ -1,4 +1,4 @@
-/* .onepost-fancy {
+.onepost-fancy {
     display: grid;
     align-items: center;
     justify-content: center;
@@ -103,8 +103,8 @@
     border: none;
     border-radius: 1rem;
     background-color: darkgrey;
-} */
-
+}
+/* 
 body {
     background-color: #eee
 }
@@ -131,4 +131,4 @@ body {
     position: absolute;
     width: 100%;
     height: 100vh;
-}
+} */
