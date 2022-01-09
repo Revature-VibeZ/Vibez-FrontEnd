@@ -28,13 +28,12 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService
-  ) {
-    if (this.authService.currentUserValue) {
-      this.router.navigate(['/']);
-    }
-  }
+  ) { }
 
   ngOnInit() {
+    if (sessionStorage.getItem('userToken')) {
+      this.router.navigate(['/']);
+    }
     // this.loginForm = this.formBuilder.group({
     //   username: ['', Validators.required],
     //   password: ['', Validators.required]
