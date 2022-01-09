@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/models/user.model';
-import { catchError, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -33,6 +33,7 @@ export class UserService {
   getUserById(id: any): Observable<any> {
     return this.http.get(`${environment.API_URL}/users/${id}`);
   }
+
   update(password: string) {
     var username = sessionStorage.getItem('userToken')!;
     const formData = new FormData();
@@ -45,17 +46,8 @@ export class UserService {
     const formData = new FormData();
     formData.append('file', file);
     let username: any = sessionStorage.getItem('userToken');
-    let url = `${environment.API_URL}/users/?username=${username}`;
-    // return this.http.put(url, formData);
-    console.log(url, formData);
-    
-    return this.http.put(url, formData).pipe(
-        map((res: any) => {
-          console.log('asdfasdf');
-          
-          return res;
-        })
-      );
-    
+    formData.append('username', username);
+    let url = `${environment.API_URL}/users`;
+    return this.http.put(url, formData);
   }
 }
