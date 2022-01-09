@@ -11,8 +11,7 @@ import { User } from 'src/app/models/user.model';
 })
 export class ProfileComponent implements OnInit {
   isUser: boolean = true;
-  username?: any;
-  profile: User = {
+  profile: any = {
     firstName: '',
     lastName: '',
     username: '',
@@ -25,21 +24,24 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private es: EventService,
-    private router: Router,
     private us: UserService
   ) {}
 
   ngOnInit(): void {
-    // this.determineUser();
     let username = sessionStorage.getItem('userToken');
     this.us.getUserByUsername(username).subscribe((res: User[]) => {
       this.profile = res[0];
     });
-    this.es.uploadProfileImage$.subscribe((res: any) => {
+    this.es.uploadProfileImageEvent$.subscribe((res: any) => {
       if (!this.profile) return;
-      console.log('res: ', res);
       this.profile.profilePicture = res;
     });
+    this.es.searchProfileEvent$.subscribe((res: any) => {
+      if(res.length !== 1) return;
+      let loggedInUsername = sessionStorage.getItem('userToken')
+      this.isUser = res[0].username === loggedInUsername;
+      this.profile = res[0];
+    })
   }
 
   update(password: string) {
@@ -88,14 +90,8 @@ export class ProfileComponent implements OnInit {
     const Uploadedfile: File = event.target.files[0];
     if (Uploadedfile) {
       this.file = Uploadedfile;
-      console.log('profile ts line 80');
-
-      this.us.uploadProfilePicture(this.file).subscribe((res: any) => {
-        console.log(res);
-        
-        // this.es.uploadProfileImage(response);
-        console.log('afhiwuhefaiwuehf');
-        
+      this.us.uploadProfilePicture(this.file).subscribe((res: any) => {        
+        this.es.uploadProfileImage(res.profilePicture);
       });
     }
   }

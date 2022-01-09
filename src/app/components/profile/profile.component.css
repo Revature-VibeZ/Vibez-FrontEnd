@@ -1,28 +1,30 @@
 body {
     font-family: "Roboto";
 }
-.back {
-    background: linear-gradient(120grad, #643986, #98AED5);
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
 
 #updateBtn {
-    
     background-color: #9999F8;
-
     border-color: black;
-    
-   
-}
-#userInfo {
-    width: 55%;
-    margin :auto;
-
 }
 
-.test {
-    color:blue;
+.custom-round-circle {
+    padding-top: 1rem;
+    border-radius: 10rem;
+    height: 20rem;
+    width: 20rem;
+}
 
+.main-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background: linear-gradient(120grad, #643986, #98AED5);
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    padding: 10rem 0;
+}
+
+input {
+    margin-bottom: 1rem;
 }
