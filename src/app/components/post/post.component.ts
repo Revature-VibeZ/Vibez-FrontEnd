@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Post } from 'src/app/models/Post';
 import { EventService } from 'src/app/services/event.service';
 import { PostService } from 'src/app/services/post.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-post',
@@ -12,7 +14,7 @@ export class PostComponent implements OnInit {
 
   @Input() post: Post = {
     comments: [],
-    authorId: 0,
+    username: '',
     content: '',
     creationDate: '',
     friends: [],
@@ -23,11 +25,12 @@ export class PostComponent implements OnInit {
     title: ''
   };
   @Input() showComments = false;
+  @Input() showReplyForm = false;
 
   content: String = "";
 
   isLiked: boolean = false;
-  constructor(private es: EventService, private ps: PostService) { }
+  constructor(private es: EventService, private ps: PostService, private us: UserService, private router: Router) { }
 
   ngOnInit(): void {
     // (this.post.likes[0]['username']);
@@ -62,6 +65,19 @@ export class PostComponent implements OnInit {
   click(e: Event) {
     this.stopClickPropagation(e);
     this.showComments = !this.showComments;
+  }
+
+  toggleReply() {
+    this.showReplyForm = !this.showReplyForm;
+  }
+
+  loadProfile(username: string) {
+    console.log('load profile function');
+    
+    this.us.getUserByUsername(username).subscribe((res: any) => {
+      this.es.searchProfile(res);
+      this.router.navigate(['/login']);
+    });
   }
 
   stopClickPropagation(e: Event) {

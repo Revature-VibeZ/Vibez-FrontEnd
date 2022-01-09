@@ -1,10 +1,9 @@
-<ng-container>
+<!-- <ng-container>
     <div class="onepost-regular" (click)="click($event)" [ngClass]="post.likes.length > 2 ? 'onepost-fancy' : 'onepost-regular'">
         <img class="post-image" src={{post.image}} alt="catbear">
         <p class="inline">{{post.title}}</p>
         <div>{{post.content}}</div>
         <div class="time-created">{{post.creationDate | date:'EE, MMMM dd, yyyy h:mm a'}}</div>
-        
         <div>
             {{post.likes.length}} 
             <button 
@@ -12,8 +11,6 @@
                 ♥
             </button>
         </div>
-
-
         <form>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1"></label>
@@ -29,7 +26,50 @@
             </div>
         </div>
     </div>
-</ng-container>
+</ng-container> -->
+
+<!-- ----------------------------------------------------------------------------------- -->
+<div class="post" [ngClass]="post.likes.length > 2 ? 'animate-border' : 'regular-border'">
+    <div class="post-image">
+        <img src={{post.image}} alt="">
+    </div>
+    <div class="post-content">
+        <p class="post-date">Posted on <time datetime="16-11-2018">{{post.creationDate | date:'EE, MMMM dd, yyyy h:mm a'}}</time> by <a class="post-author" (click)="loadProfile(post.username)">{{post.username}}</a></p>
+        <h2 class="post-title">{{post.title}}</h2>
+        <div class="post-excerpt">
+            <p>{{post.content}}</p>
+        </div>
+        <div style="display: inline">
+            {{post.likes.length}}
+            <button [ngClass]="isLiked ? 'dislike' : 'like'" (click)="createLike(post.id, $event)">
+                ♥
+            </button>
+        </div>
+        <div style="display: inline; font-size: 1rem; padding-left: 1rem;" (click)="toggleReply()">
+            REPLY
+        </div>
+        <div *ngIf="post.comments.length > 0">
+            {{showComments? "Hide" : "View"}} 12 replies
+            <button [ngClass]="showComments ? 'show-comments' : 'hide-comments'" (click)="click($event)">
+                {{showComments ? "🔼" : "🔽"}}
+            </button>
+        </div>
+        <form *ngIf="showReplyForm">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1"></label>
+                <textarea (click)="stopClickPropagation($event)" class="form-control textarea-right" placeholder="Add a reply..." type="text" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="content" name="content"></textarea>
+            </div>
+            <button class="btn btn-primary" (click)="createComment(post.id, content)">Reply</button>
+        </form>
+        <div class="reset-div" *ngIf="showComments && post.comments.length > 0">
+            <div *ngFor="let comment of post.comments">
+                <app-post [showComments]="true" [post]="comment"></app-post>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ----------------------------------------------------------------------------------- -->
+
 <!-- 
 <div id = "back">
 <div class="container mt-4 mb-5">

@@ -1,5 +1,5 @@
 export interface Post {
-    authorId: number,
+    username: string,
     comments: any[],
     content: string,
     creationDate: string,
