@@ -1,125 +1,75 @@
-<!-- 
-
-<div class="back">
-<div class="registration-form">
-<p>Profile Picture Below</p>
-<img src="{{profile.profilePicture}}">
-<p>First name: {{profile.firstName}}</p>
-<p>Last name: {{profile.lastName}}</p>
-<p>Username: {{profile.username}}</p>
-<p *ngIf="isUser">Password: {{profile.password}}</p>
-<p>Email: {{profile.email}}</p>
-<p>Bio: {{profile.bio}}</p>
-
-<button class="btn btn-outline-primary" type="submit" (click)="reloadProfile()">Reload</button>
-
-<div *ngIf="isUser">
-    <label for="pass">Reset Password (8 characters minimum):</label>
-    <input type="password" id="pass" name="password" value={{profile.password}} minlength="3" #passValue>
-    <button class="btn btn-primary" (click)='update(passValue.value)'>Update</button>
-</div>
-</div>
-
-</div> -->
-
-
-<div class="back" id = "accountInfo">
-    <div id = "userInfo">
-    <div class="main-body">
-    
-      <br><br>
-    
-          <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex flex-column align-items-center text-center">
-                    <img src={{profile.profilePicture}} alt="Admin" class="rounded-circle" width="150">
-                    <div class="mt-3">
-                      <h4 id = 'u_usernameTitle'></h4>
-                      <p class="text-secondary mb-1">{{profile.username}}</p>
-                      <br>
-                      
-                      <!-- <input type="file" class="btn btn-info test"  (change)="uploadImage($event)" #fileUpload>  -->
-
-  
-                    </div>
-                  </div>
-                </div>
-              </div>
-  
-            </div>
-            <div class="col-md-8">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">First Name</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" id = 'u_firstname' placeholder ={{profile.firstName}}>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Last Name</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" id = 'u_lastname'  placeholder ={{profile.lastName}}>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Username</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" id = 'u_username'  placeholder ={{profile.username}}>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Email</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" id = 'u_email'  placeholder ={{profile.email}}>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row" *ngIf="isUser">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Password</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" id = 'u_password'  placeholder = "New Password" >
-                    </div>
-
-                  </div>
-                  <hr>
-                  <div class = "row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Profile Picture</h6> <br>
-                    </div>
-                    <div class="input-group">
-                      <div class="">
-                      <input type="file" class="form-control" id="inputGroupFile04" (change)="uploadImage($event)" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                    </div>
-                    <br><br><br>
-
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-12">                    
-                      <button class="btn btn-info" id="updateBtn"> Update</button>
-                    </div>
-                  </div>
-                </div>
-              </div> 
-  
-            </div>
+<div class="row gutters-sm main-body">
+  <div class="col-md-8 mb-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex flex-column align-items-center text-center fix-width">
+          <img src={{profile.profilePicture}} alt="Admin" class="custom-round-circle" width="150">
+          <div class="mt-3">
+            <h4 id='u_usernameTitle'></h4>
+            <h6 class="mb-0">{{profile.username}}</h6>
           </div>
-  
         </div>
+      </div>
     </div>
-</div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">First Name</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            <input type="text" class="form-control" id='u_firstname' placeholder={{profile.firstName}}>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Last Name</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            <input type="text" class="form-control" id='u_lastname' placeholder={{profile.lastName}}>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Username</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            <input type="text" class="form-control" id='u_username' placeholder={{profile.username}}>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Email</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            <input type="text" class="form-control" id='u_email' placeholder={{profile.email}}>
+          </div>
+        </div>
+        <div class="row" *ngIf="isUser">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Password</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            <input type="text" class="form-control" id='u_password' placeholder="New Password">
+          </div>
+        </div>
+        <div class="row" *ngIf="isUser">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Profile Picture</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            <input type="file" class="form-control" id="inputGroupFile04" (change)="uploadImage($event)"
+              aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+          </div>
+        </div>
+        <div class="row" *ngIf="isUser">
+          <div class="col-sm-12">
+            <button class="btn btn-info" id="updateBtn"> Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -3,27 +3,51 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/models/user.model';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-    getAll() {
-        this.http.get<User[]>(`${environment.API_URL}/users`).subscribe((res: any) => {
-            return res;
-        });
-    }
+  getAll() {
+    this.http
+      .get<User[]>(`${environment.API_URL}/users`)
+      .subscribe((res: any) => {
+        return res;
+      });
+  }
 
+  getUserByUsername(username: any): Observable<any> {
+    return this.http
+      .get(`${environment.API_URL}/users?username=${username}`)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
 
-    uploadProfilePicture(file: File) {
-        const formData = new FormData();
-        formData.append("file", file);
-        let username: any = sessionStorage.getItem('userToken');
-        console.log(username);
-        let url = `${environment.API_URL}/users/?username=${username}`
-        return this.http.put(url, formData);
+  /*Retrieves an Observable JSON of type User from our DB. 
+        Retrieves a specific user by their id passed in as a Path param
+        */
+  getUserById(id: any): Observable<any> {
+    return this.http.get(`${environment.API_URL}/users/${id}`);
+  }
 
-    }
+  update(password: string) {
+    var username = sessionStorage.getItem('userToken')!;
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('password', password);
+    return this.http.put(`${environment.API_URL}/users`, formData);
+  }
 
+  uploadProfilePicture(file: File){
+    const formData = new FormData();
+    formData.append('file', file);
+    let username: any = sessionStorage.getItem('userToken');
+    formData.append('username', username);
+    let url = `${environment.API_URL}/users`;
+    return this.http.put(url, formData);
+  }
 }

@@ -10,7 +10,7 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'postfeed', component: PostFeedComponent, canActivate: [AuthGuard]},
   { path: 'createpost', component: CreatePostComponent, canActivate: [AuthGuard]},
