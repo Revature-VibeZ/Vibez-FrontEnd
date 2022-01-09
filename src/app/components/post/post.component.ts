@@ -43,16 +43,11 @@ export class PostComponent implements OnInit {
       this.post.comments.push(res)
     })
     this.es.newLikeEvent$.subscribe((res: any) => {
-      console.log('response is: ', res);
-      console.log('this.post.id is: ', this.post.id);
       if (this.post.id !== res.postId) return;
       this.isLiked = true;
       this.post.likes.push(res)
     })
-    this.es.deleteLikeEvent$.subscribe((confirmedDeletedId: number) => {
-      // search through this post's likes, remove the match
-      console.log(confirmedDeletedId);
-      
+    this.es.deleteLikeEvent$.subscribe((confirmedDeletedId: number) => {      
       let copy = this.post.likes;
       for (let i = 0; i < copy.length; i++) {
         let like = copy[i];

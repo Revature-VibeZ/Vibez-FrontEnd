@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
+import { User } from '../models/user.model';
 
 
 @Injectable({
@@ -8,7 +9,8 @@ export class EventService {
     @Output() newPostEvent$: EventEmitter<any> = new EventEmitter();
     @Output() newLikeEvent$: EventEmitter<any> = new EventEmitter();
     @Output() deleteLikeEvent$: EventEmitter<any> = new EventEmitter();
-    @Output() uploadProfileImage$: EventEmitter<any> = new EventEmitter();
+    @Output() uploadProfileImageEvent$: EventEmitter<any> = new EventEmitter();
+    @Output() searchProfileEvent$: EventEmitter<any> = new EventEmitter();
     
     newPost(body: any) {
         this.newPostEvent$.emit(body);
@@ -24,6 +26,10 @@ export class EventService {
     }
 
     uploadProfileImage(body: any) {
-        this.uploadProfileImage$.emit(body);
+        this.uploadProfileImageEvent$.emit(body);
+    }
+
+    searchProfile(body: User) {
+        this.searchProfileEvent$.emit(body);
     }
 }
