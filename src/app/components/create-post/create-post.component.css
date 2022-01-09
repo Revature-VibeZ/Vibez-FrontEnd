@@ -1,0 +1,16 @@
+#newform{
+    
+    margin-right: 19%;
+    margin-left: 19%;
+    margin-top: 5%;
+}
+
+#fname{
+    width: 85%;
+}
+#back{
+    background: linear-gradient(120grad, #643986, #98AED5);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}

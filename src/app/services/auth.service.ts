@@ -52,7 +52,7 @@ login(username: string, password: string) {
       let tokeninfo = atob(sessionStorage.getItem('currentUser')!.split('.')[1])
       sessionStorage.setItem('userToken', tokeninfo.split('"')[3])
       this.currentUserSubject.next(user);
-      this.router.navigate(['']);
+      this.router.navigate(['postfeed']);
       return user;
     }));
 }

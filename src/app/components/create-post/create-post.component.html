@@ -1,11 +1,36 @@
-<p>create-post!</p>
+<app-nav></app-nav>
 
-<form>
+<!-- <form>
     <label for="fname">Create Post:</label><br>
+     
     <input type="text" id="fname" name="fname" #post><br>
     <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
 
     <button id = "exchangeButton"
     (click)='createPost(post.value)'
     >Post</button>
+</form> -->
+
+<div id="back">
+
+
+<form id="newform">
+    <div class="card text-center">
+        <div class="card-header">
+            Create Post
+        </div>
+        <div class="card-body">
+                <textarea class="form-control textarea-right" placeholder="Add a comment..." type="text"
+                id="fname" name="fname" #post rows="3"></textarea>
+        </div>
+
+        <!-- <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload> -->
+
+        <div class="input-group mb-3">
+            <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload id="inputGroupFile02">
+          </div>
+
+        </div>
+        <button class="btn btn-info" id="exchangeButton" (click)='createPost(post.value)'>Post</button>
 </form>
+</div>
