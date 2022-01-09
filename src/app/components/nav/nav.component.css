@@ -14,13 +14,18 @@ body {
 }
 
 #logout{
-	width: 2rem;
-	margin-left: 10px;
+	z-index: 100;
+}
+
+#logout:hover {
+	cursor: pointer;
 }
 
 #container{
-	margin-left: 2rem;
-	margin-right: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem;
 	width: 100%;
 }
 
@@ -263,13 +268,12 @@ a {
 	text-decoration: none;
 }
 
-
 #wrap {
-	
 	display: inline-block;
 	position: relative;
 	height: 60px;
 	padding: 0;
+	z-index: 100;
   }
 
   #form{
@@ -535,3 +539,12 @@ a {
 	 float: left;
 	z-index: 100;
 } */
+
+/* make the search for username input box and search button clickable */
+.form-control, .search-button {
+	z-index: 10;
+}
+
+.search-button:hover {
+	cursor: pointer;
+}

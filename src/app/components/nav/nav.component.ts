@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,29 +12,34 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavComponent implements OnInit {
   constructor(
-    private profileService: ProfileService,
     private router: Router,
-    private as: AuthService
+    private as: AuthService,
+    private us: UserService,
+    private es: EventService
   ) { }
-  sessionStorage = sessionStorage;
 
   ngOnInit(): void { }
 
   //Used for data binding on the search bar. Saves user input for use in profile search.
   search: string = '';
-
-
+  
   /*
   Saves username typed into search bar into the sessionStorage and then redirects to user profile.
   Will need some tweaking eventually.
   */
+  // searchByUsername(username: string) {
+  //   sessionStorage.setItem('username', username);
+  //   this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+  //     this.router.navigate(['profile']);
+  //   });
+  // }
+
   searchByUsername(username: string) {
-
-    sessionStorage.setItem('username', username);
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['profile']);
+    this.us.getUserByUsername(username).subscribe((res: any) => {
+      if(res.length !== 1) return;
+      this.es.searchProfile(res);
+      this.router.navigate(['/profile']);
     });
-
   }
 
   /*
@@ -56,16 +63,15 @@ export class NavComponent implements OnInit {
     and then redirects them to the login screen.
   */
   logout() {
-    console.log("logout!");
     this.as.logout();
-    this.router.navigate(['login']);
+    this.router.navigate(['/login']);
   }
-  
+
   nav = document.querySelector('menu') as HTMLElement;
   toggledText = "Menu";
 
   toggleNav() {
-    if(document.querySelector('menu') as HTMLElement){
+    if (document.querySelector('menu') as HTMLElement) {
       this.nav = document.querySelector('menu') as HTMLElement;
     }
     if (this.nav.classList.contains('close')) {

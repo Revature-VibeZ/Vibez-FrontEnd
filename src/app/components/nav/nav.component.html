@@ -1,75 +1,16 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink=''>VibeZ</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      </ul>
-
-      <img src="../../../assets/plus.png" routerLink='createpost' alt="">
-      <img src="../../../assets/smile.png" (click)="loadProfile()" alt="">
-      <img src="../../../assets/heart.png" alt="">
-      <img src="../../../assets/star.png" (click)="loadPostFeed()" alt="">
-      
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Enter username" aria-label="Search"
-          [(ngModel)]="search" name="search">
-        <button class="btn btn-primary" type="submit" (click)="searchByUsername(search)">Search</button>
-      </form>
-    </div>
-  </div>
-</nav> -->
-
-
-<nav class="navbar navbar-expand-lg ">
-  <div class="" id="container">
-    <img src="../../../assets/VibeZ-Logo-blue.png" id ="logo" routerLink='' alt="">
-
-    <a  (click)="logout()" class="logoutBtn">
-      <img src="../../../assets/log-out.svg" id="logout" alt=""> <h5 class="logout-text">Logout</h5>
-    </a>
-
-    <div id="wrap">
-      <form action="" autocomplete="on" id="form">
-        <img src="../../../assets/search.svg" alt=""> 
-      <input id="search" name="search" type="text" placeholder="What're we looking for ?"><input id="search_submit" value="Rechercher" type="submit">
-      </form>
-    </div>
-
-   
- 
-    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
-    </div>
-    <!-- <div id="pop">Logout</div> -->
-    </nav>
-
+<div class="" id="container">
+  <img src="../../../assets/VibeZ-Logo-blue.png" id="logo" routerLink='' alt="">
+  <a (click)="logout()" class="logoutBtn">
+    <img src="../../../assets/log-out.svg" id="logout" alt="">
+  </a>
+  <form class="d-flex" >
+    <input class="form-control me-2" style="z-index: 10;" type="search" placeholder="Search profiles"
+      aria-label="Search" [(ngModel)]="search" name="search">
+    <img class="search-button" src="../../../assets/search.svg" (click)="searchByUsername(search)">
+  </form>
+</div>
 
 <menu id="menu" class="top-right close">
-	<a class="disc l1">
-		<div routerLink='createpost'>Add</div>
-	</a>
-	<a class="disc l2">
-		<div (click)="loadProfile()">Profile</div>
-	</a>
-	<a class="disc l3">
-		<div>Friends</div> <!--router link for friends-->
-	</a>
-	<a class="disc l4">
-		<div (click)="loadPostFeed()">Posts</div>
-	</a>
-	<a class="disc l5 toggle" (click)="toggleNav()" #toggle>
-		{{toggledText}}
-	</a>
-</menu>
-
-<nav id="nav-bar" class="top-right close">
   <a class="disc l1">
     <div routerLink='createpost'>Add</div>
   </a>
@@ -86,4 +27,23 @@
   <a class="disc l5 toggle" (click)="toggleNav()" #toggle>
     {{toggledText}}
   </a>
-</nav>
+</menu>
+
+<!-- <nav id="nav-bar" class="top-right close">
+  <a class="disc l1">
+    <div routerLink='createpost'>Add</div>
+  </a>
+  <a class="disc l2">
+    <div (click)="loadProfile()">Profile</div>
+  </a>
+  <a class="disc l3">
+    <div>Friends</div>
+    router link for friends
+  </a>
+  <a class="disc l4">
+    <div (click)="loadPostFeed()">Posts</div>
+  </a>
+  <a class="disc l5 toggle" (click)="toggleNav()" #toggle>
+    {{toggledText}}
+  </a>
+</nav> -->
