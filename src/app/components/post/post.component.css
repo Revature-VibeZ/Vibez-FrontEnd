@@ -131,7 +131,7 @@ input[type="text"] {
     display: inline;
     border: none;
     /* border-radius: 1rem; */
-    background-color: none;
+    background-color: #202020;
 }
 
 .show-comments:hover, .hide-comments:hover {
