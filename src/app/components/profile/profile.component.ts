@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import { EventService } from 'src/app/services/event.service';
 import { User } from 'src/app/models/user.model';
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -25,7 +26,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private es: EventService,
     private us: UserService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     let username = sessionStorage.getItem('userToken');
@@ -37,60 +38,34 @@ export class ProfileComponent implements OnInit {
       this.profile.profilePicture = res;
     });
     this.es.searchProfileEvent$.subscribe((res: any) => {
-      if(res.length !== 1) return;
+      if (res.length !== 1) return;
       let loggedInUsername = sessionStorage.getItem('userToken')
       this.isUser = res[0].username === loggedInUsername;
       this.profile = res[0];
     })
   }
 
-  update(password: string) {
-    this.us.update(password).subscribe(Response);
+  password: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  email: string = '';
+
+  update(firstName: string, lastName: string, email: string, password: string) {
+    this.us.update(firstName, lastName, email, password).subscribe(
+      (res) => {
+        console.log("howdy");
+      });
+    this.password = '';
+    this.firstName= '';
+    this.lastName = '';
+    this.email= '';
   }
-
-  // determineUser() {
-  //   if (sessionStorage.getItem("username") === null) {
-  //     this.username = sessionStorage.getItem("userToken")
-  //     this.getProfile()
-  //   }
-  //   else if (sessionStorage.getItem("userToken") != null) {
-  //     this.username = sessionStorage.getItem("username")
-  //     this.isUser = false;
-  //     this.getProfile()
-  //   }
-  //   else {
-  //     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-  //       this.router.navigate(['']);
-  //     })
-  //   }
-  // }
-
-  /*
-  //Function to get the profile of the logged in user
-  Retrieve the data on the requested user based on username inputted into the search bar
-  Once the user is retrieved the sessionStorage is cleared so a new search may be preformed.
-  */
-  // getProfile() {
-  //   this.us.getUserByUsername(this.username).subscribe((response) => {
-  //     this.profile = response[0];
-  //     sessionStorage.removeItem("username");
-  //   })
-  // }
-
-  /*`
-  Reloads the profile conponent without reloading the page.
-  */
-  // reloadProfile() {
-  //   this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-  //     this.router.navigate(['profile']);
-  //   })
-  // }
 
   uploadImage(event: any) {
     const Uploadedfile: File = event.target.files[0];
     if (Uploadedfile) {
       this.file = Uploadedfile;
-      this.us.uploadProfilePicture(this.file).subscribe((res: any) => {        
+      this.us.uploadProfilePicture(this.file).subscribe((res: any) => {
         this.es.uploadProfileImage(res.profilePicture);
       });
     }

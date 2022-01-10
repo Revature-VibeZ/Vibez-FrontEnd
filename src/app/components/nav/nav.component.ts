@@ -31,6 +31,7 @@ export class NavComponent implements OnInit {
     this.us.getUserByUsername(username).subscribe((res: any) => {
       if(res.length !== 1) return;
       this.es.searchProfile(res);
+      this.search = '';
       this.router.navigate(['/profile']);
     });
   }

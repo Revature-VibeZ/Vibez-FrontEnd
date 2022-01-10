@@ -3,12 +3,17 @@
   <div class="col-md-4 mb-3 max-width">
     <div class="card">
       <div class="card-body">
+        
         <div class="d-flex flex-column align-items-center text-center fix-width">
+          <div class="mt-3">
+            <h4 id='u_usernameTitle'></h4>
+            <h4 class="mb-0">{{profile.username}}</h4>
+          </div>
           <img src={{profile.profilePicture}} alt="Admin" class="custom-round-circle" style ="max-width:100%;
           max-height:100%;">
           <div class="mt-3">
             <h4 id='u_usernameTitle'></h4>
-            <h6 class="mb-0">{{profile.username}}</h6>
+            <h6 class="mb-0">{{profile.bio}}</h6>
           </div>
         </div>
       </div>
@@ -23,7 +28,9 @@
             <h6 class="mb-0">First Name</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <input type="text" class="form-control" id='u_firstname' placeholder={{profile.firstName}}>
+            <input type="text" class="form-control" id='u_firstname' placeholder={{profile.firstName}} [(ngModel)]="firstName" name="firstName" *ngIf="isUser">
+            <p *ngIf="!isUser">{{profile.firstName}}</p> 
+
           </div>
         </div>
         <div class="row">
@@ -31,15 +38,8 @@
             <h6 class="mb-0">Last Name</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <input type="text" class="form-control" id='u_lastname' placeholder={{profile.lastName}}>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Username</h6>
-          </div>
-          <div class="col-sm-9 text-secondary">
-            <input type="text" class="form-control" id='u_username' placeholder={{profile.username}}>
+            <input type="text" class="form-control" id='u_lastname'[(ngModel)]="lastName" name="lastName" placeholder={{profile.lastName}} *ngIf="isUser">
+            <p *ngIf="!isUser">{{profile.lastName}}</p> 
           </div>
         </div>
         <div class="row">
@@ -47,7 +47,8 @@
             <h6 class="mb-0">Email</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <input type="text" class="form-control" id='u_email' placeholder={{profile.email}}>
+            <input type="text" class="form-control" id='u_email'[(ngModel)]="email" name="email" placeholder={{profile.email}} *ngIf="isUser">
+            <p *ngIf="!isUser">{{profile.email}}</p> 
           </div>
         </div>
         <div class="row" *ngIf="isUser">
@@ -55,7 +56,7 @@
             <h6 class="mb-0">Password</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <input type="text" class="form-control" id='u_password' placeholder="New Password">
+            <input type="text" class="form-control" id='u_password'[(ngModel)]="password" name="password" placeholder="New Password">
           </div>
         </div>
         <div class="row" *ngIf="isUser">
@@ -69,9 +70,10 @@
         </div>
         <div class="row" *ngIf="isUser">
           <div class="col-sm-12">
-            <button class="btn btn-info" id="updateBtn"> Update</button>
+            <button class="btn btn-info" id="updateBtn" (click)="update(firstName, lastName, email, password)"> Update</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+
