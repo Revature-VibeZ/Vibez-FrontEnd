@@ -13,8 +13,12 @@
           max-height:100%;">
           <div class="mt-3">
             <h4 id='u_usernameTitle'></h4>
-            <h6 class="mb-0">{{profile.bio}}</h6>
+            <h6 class="mb-0" ></h6>
+            
           </div>
+          <textarea  type="text" class="form-control" id='u_bio' placeholder={{profile.bio}} [(ngModel)]="bio" name="bio" *ngIf="isUser && editMode"></textarea>
+          <p *ngIf="isUser && !editMode">{{profile.bio}}</p>
+          <p *ngIf="!isUser">{{profile.bio}}</p>
         </div>
       </div>
     </div>
@@ -28,7 +32,8 @@
             <h6 class="mb-0">First Name</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <input type="text" class="form-control" id='u_firstname' placeholder={{profile.firstName}} [(ngModel)]="firstName" name="firstName" *ngIf="isUser">
+            <input type="text" class="form-control" id='u_firstname' placeholder={{profile.firstName}} [(ngModel)]="firstName" name="firstName" *ngIf="isUser && editMode">
+            <p *ngIf="isUser && !editMode">{{profile.firstName}}</p>
             <p *ngIf="!isUser">{{profile.firstName}}</p> 
 
           </div>
@@ -38,7 +43,8 @@
             <h6 class="mb-0">Last Name</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <input type="text" class="form-control" id='u_lastname'[(ngModel)]="lastName" name="lastName" placeholder={{profile.lastName}} *ngIf="isUser">
+            <input type="text" class="form-control" id='u_lastname'[(ngModel)]="lastName" name="lastName" placeholder={{profile.lastName}} *ngIf="isUser && editMode">
+            <p *ngIf="isUser && !editMode">{{profile.lastName}}</p>
             <p *ngIf="!isUser">{{profile.lastName}}</p> 
           </div>
         </div>
@@ -47,19 +53,20 @@
             <h6 class="mb-0">Email</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <input type="text" class="form-control" id='u_email'[(ngModel)]="email" name="email" placeholder={{profile.email}} *ngIf="isUser">
+            <input type="text" class="form-control" id='u_email'[(ngModel)]="email" name="email" placeholder={{profile.email}} *ngIf="isUser && editMode">
+            <p *ngIf="isUser && !editMode">{{profile.email}}</p> 
             <p *ngIf="!isUser">{{profile.email}}</p> 
           </div>
         </div>
-        <div class="row" *ngIf="isUser">
+        <div class="row" *ngIf="isUser && editMode">
           <div class="col-sm-3">
             <h6 class="mb-0">Password</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <input type="text" class="form-control" id='u_password'[(ngModel)]="password" name="password" placeholder="New Password">
+            <input type="text" class="form-control" id='u_password'[(ngModel)]="password" name="password" placeholder="New Password" >
           </div>
         </div>
-        <div class="row" *ngIf="isUser">
+        <div class="row" *ngIf="isUser && editMode">
           <div class="col-sm-3">
             <h6 class="mb-0">Profile Picture</h6>
           </div>
@@ -68,9 +75,14 @@
               aria-describedby="inputGroupFileAddon04" aria-label="Upload">
           </div>
         </div>
-        <div class="row" *ngIf="isUser">
+        <div class="row" *ngIf="isUser && !editMode">
           <div class="col-sm-12">
-            <button class="btn btn-info" id="updateBtn" (click)="update(firstName, lastName, email, password)"> Update</button>
+            <button class="btn btn-info" id="editBtn" (click)="changeToEditMode()"> Edit</button>
+          </div>
+        </div>
+        <div class="row" *ngIf="isUser && editMode">
+          <div class="col-sm-12">
+            <button class="btn btn-info" id="updateBtn" (click)="update(firstName, lastName, email, password, bio)"> Update</button>
           </div>
         </div>
       </div>
