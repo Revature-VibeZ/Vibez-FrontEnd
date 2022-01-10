@@ -11,6 +11,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AuthService', () => {
   let service: AuthService;
+  
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -22,4 +23,16 @@ describe('AuthService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should logout', () =>{
+    expect(sessionStorage.getItem('userToken')).toBeFalsy();
+    expect(sessionStorage.getItem('currentUser')).toBeFalsy();
+  })
+
+  it('should login', () =>{
+    service.login("username1","password");
+    expect(sessionStorage.getItem('userToken')).toBeTruthy();
+    expect(sessionStorage.getItem('currentUser')).toBeTruthy();
+  })
+
 });
