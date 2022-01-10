@@ -134,7 +134,7 @@ svg{
 	left: 50px;
 	right: 50px;
 	bottom: 50px;
-	background: #F777CE;
+	background: #FB33DB;
 	transition-delay: 0.1s;
 }
 
@@ -164,7 +164,7 @@ svg{
 	left: 100px;
 	right: 100px;
 	bottom: 100px;
-	background: #4F48FA;
+	background: #0310EA;
 	transition-delay: 0.2s;
 }
 
@@ -194,7 +194,7 @@ svg{
 	left: 150px;
 	right: 150px;
 	bottom: 150px;
-	background: #2EF964;
+	background: #7FFF00;
 	transition-delay: 0.3s;
 }
 
@@ -299,7 +299,7 @@ a {
   }
 
   #topnav{
-	  background-color: #2C1E5B;
+	  background-color: #101010;
   }
   
   input[type="text"] {
