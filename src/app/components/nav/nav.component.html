@@ -1,33 +1,3 @@
-<!-- <div class="" id="container">
-  <img src="../../../assets/VibeZ-Logo-blue.png" id="logo" routerLink='' alt="">
-  <a (click)="logout()" class="logoutBtn">
-    <img src="../../../assets/log-out.svg" id="logout" alt="">
-  </a>
-  <form class="d-flex" >
-    <input class="form-control me-2" style="z-index: 10;" type="search" placeholder="Search profiles"
-      aria-label="Search" [(ngModel)]="search" name="search">
-    <img class="search-button" src="../../../assets/search.svg" (click)="searchByUsername(search)">
-  </form>
-</div>
-
-<menu id="menu" class="top-right close">
-  <a class="disc l1">
-    <div routerLink='createpost'>Add</div>
-  </a>
-  <a class="disc l2">
-    <div (click)="loadProfile()">Profile</div>
-  </a>
-  <a class="disc l3">
-    <div>Friends</div>
-    link for friends
-  </a>
-  <a class="disc l4">
-    <div (click)="loadPostFeed()">Posts</div>
-  </a>
-  <a class="disc l5 toggle" (click)="toggleNav()" #toggle>
-    {{toggledText}}
-  </a>
-</menu> -->
 <nav class="navbar navbar-expand-lg" id="topnav">
   <div class="" id="container">
     <img src="../../../assets/VibeZ-Logo-blue.png" id="logo" routerLink='' alt="">
@@ -35,7 +5,7 @@
       <img src="../../../assets/log-out.svg" id="logout" (click)="logout()" alt=""> Logout
     </a>
     <div id="wrap">
-      <form action="" autocomplete="on" id="form">
+      <form autocomplete="on" id="form">
         <img src="../../../assets/search.svg" alt="">
         <input id="search" [(ngModel)]="search" name="search" type="text" placeholder="Enter username">
         <input id="search_submit" value="Rechercher" type="submit" (click)="searchByUsername(search)">
@@ -45,14 +15,13 @@
 </nav>
 <menu id="menu" class="top-right close">
   <a class="disc l1">
-    <div routerLink='/createpost'>Add</div>
+    <div routerLink='/postfeed'>Add</div>
   </a>
   <a class="disc l2">
     <div (click)="loadProfile()">Profile</div>
   </a>
   <a class="disc l3">
     <div>Friends</div>
-    <!--router link for friends-->
   </a>
   <a class="disc l4">
     <div (click)="loadPostFeed()">Posts</div>
