@@ -14,12 +14,12 @@ export class PostService {
   getAll() {
     
     let url = `${environment.API_URL}/posts`;
-    return this.http.get(url).pipe(map((res: any) => {      
+    return this.http.get(url).pipe(map((res: any) => {            
       this.posts = res;
     }));
   }
 
-  create(body: any) {
+  createReply(body: any) {
     let username: any = sessionStorage.getItem('userToken');
     let url = `${environment.API_URL}/posts/?username=${username}`;
     return this.http.post(url, body).pipe(map((response: any) => {
@@ -27,13 +27,14 @@ export class PostService {
     }));
   }
 
-  sendPost(post: string, file: File) {
+  createTopLevelPost(post: any, file: File) {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("post", post);
+    formData.append("title", post.title);
+    formData.append("content", post.content);
     let username: any = sessionStorage.getItem('userToken');
     formData.append("username", username);
-    let url = `${environment.API_URL}/posts/new/?content=${post}&?username=${username}`
+    let url = `${environment.API_URL}/posts/new`
     return this.http.post(url, formData)
   }
 

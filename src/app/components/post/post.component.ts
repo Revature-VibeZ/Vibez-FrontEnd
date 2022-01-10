@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Post } from 'src/app/models/Post';
 import { EventService } from 'src/app/services/event.service';
 import { PostService } from 'src/app/services/post.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-post',
@@ -9,10 +12,10 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-//This component is used to control likes and comments. It contains logic to make sure a single user can like a specific post once to prevent abusing system for likes. 
+
   @Input() post: Post = {
     comments: [],
-    authorId: 0,
+    author: {},
     content: '',
     creationDate: '',
     friends: [],
@@ -20,48 +23,87 @@ export class PostComponent implements OnInit {
     image: '',
     likes: [],
     parentId: 0,
-    title: ''
+    title: '',
   };
   @Input() showComments = false;
+  @Input() showReplyForm = false;
 
   content: String = "";
-
+  numberOfNestedReplies = 0;
   isLiked: boolean = false;
-  constructor(private es: EventService, private ps: PostService) { }
+  constructor(private es: EventService, private ps: PostService, private us: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    
-    for (var val of this.post.likes) {
+    this.numberOfNestedReplies = this.recursiveCountReplies(this.post.comments);
+    for (let val of this.post.likes) {
       if (val['username'] == sessionStorage.getItem('userToken')) {
         this.isLiked = true;
       }
     }
-    this.es.newPostEvent$.subscribe((res: any) => {
+    this.es.newPostEvent$.subscribe((res: Post) => {
       if (this.post.id !== res.parentId) return;
       this.showComments = true;
-      res.likes = [];
-      this.post.comments.push(res)
+      this.numberOfNestedReplies += 1;
+      this.post.comments.push(res);
     })
     this.es.newLikeEvent$.subscribe((res: any) => {
       if (this.post.id !== res.postId) return;
+      console.log('res: ', res);
+      console.log('this.post.likes: ', this.post.likes);
+      
       this.isLiked = true;
       this.post.likes.push(res)
+      console.log(this.post.likes);
+
     })
     this.es.deleteLikeEvent$.subscribe((confirmedDeletedId: number) => {      
       let copy = this.post.likes;
-      for (let i = 0; i < copy.length; i++) {
-        let like = copy[i];
+      console.log(copy);
+      
+      for (let i = 0; i < copy!.length; i++) {
+        let like = copy![i];
+        console.log(like);
+        
         if(confirmedDeletedId === like.id){
-          this.post.likes.splice(i, 1);
-          this.isLiked = !this.isLiked;
+          console.log('made it');
+          console.log(this.isLiked);
+          
+          this.isLiked = false;
+          console.log(this.isLiked);
+          console.log(this.post.likes);
+          
+          this.post.likes!.splice(i, 1);
+          console.log(this.post.likes);
+
         }
       }
     })
   }
 
+  recursiveCountReplies(replies: Post[]): number{
+    let count = 0;
+    for(let reply of replies){
+      if(reply.comments.length === 0) return count += 1;    
+      count += this.recursiveCountReplies(reply.comments) + 1;
+    }
+    return count;
+  }
+  
   click(e: Event) {
     this.stopClickPropagation(e);
     this.showComments = !this.showComments;
+  }
+  
+  toggleReply(e: Event) {
+    this.stopClickPropagation(e);
+    this.showReplyForm = !this.showReplyForm;
+  }
+  
+  loadProfile(username: string) {
+    this.us.getUserByUsername(username).subscribe((res: any) => {
+      this.es.searchProfile(res);
+      this.router.navigate(['/profile']);
+    });
   }
 
   stopClickPropagation(e: Event) {
@@ -76,7 +118,7 @@ export class PostComponent implements OnInit {
       content: comment,
       parentId
     }
-    this.ps.create(body).subscribe((res: any) => {
+    this.ps.createReply(body).subscribe((res: any) => {
       //if post succeeds update page to show comment
       this.es.newPost(res);
     })

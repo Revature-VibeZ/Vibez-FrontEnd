@@ -38,8 +38,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const { username, password } = this.form;
     
-    
-   
     this.authService
       .login(username, password)
       .pipe(first())
@@ -47,7 +45,6 @@ export class LoginComponent implements OnInit {
         (data: any) => {
           this.isSuccessful = true;
           this.isSignInFailed = false;
-          
         },
         (error: { message: string }) => {
           this.errorMessage = error.message;

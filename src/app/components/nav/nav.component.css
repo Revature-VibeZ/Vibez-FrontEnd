@@ -4,13 +4,19 @@ html, body {
 	height: 100%;
 }
 
+#draggableDiv1 {
+	position: absolute;
+	z-index: 9;	
+  }
+
+
 body {
 	background: beige;
 	font-family: Alegreya Sans, sans-serif;
 }
 
 #logo{
-	width: 150px;
+	width: 11rem;
 }
 
 #logout{
@@ -21,12 +27,28 @@ body {
 	cursor: pointer;
 }
 
+.logoutBtn{
+	float: right;
+	color: #80FF01;
+}
+
 #container{
+	margin: 2rem;
+	width: 100%;
+	z-index: 90;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 1rem;
-	width: 100%;
+}
+
+.test{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+svg{
+	color: green;
 }
 
 /* #pop{
@@ -42,13 +64,13 @@ body {
 }
 
 #menu {
-	display: block;
-	position: fixed;
+	display: block;	
 	width: 500px;
 	height: 500px;
 	user-select: none;
 	transform: translate3d(25px, -25px, 0);
 	transition: transform 0.5s cubic-bezier(0.3, 1.4, 0.5, 0.9);
+	z-index: 1;
 }
 
 #menu.open {
@@ -56,7 +78,7 @@ body {
 }
 
 #menu.top-right {
-	top: -100px;
+	top: -60px;
 	right: -140px;
 }
 
@@ -101,8 +123,8 @@ body {
 }
 
 .open .l1:hover {
-	background: shade(#FC33DB, 90%);
-	color: #FC33DB;
+	background: shade(#ff7a39, 90%);
+	color: #ff7a39;
 	transition-delay: 0s;
 }
 
@@ -120,7 +142,7 @@ body {
 	left: 50px;
 	right: 50px;
 	bottom: 50px;
-	background: #ff7a39;
+	background: #FB33DB;
 	transition-delay: 0.1s;
 }
 
@@ -150,7 +172,7 @@ body {
 	left: 100px;
 	right: 100px;
 	bottom: 100px;
-	background: #ff912b;
+	background: #0310EA;
 	transition-delay: 0.2s;
 }
 
@@ -180,7 +202,7 @@ body {
 	left: 150px;
 	right: 150px;
 	bottom: 150px;
-	background: #2EF964;
+	background: #7FFF00;
 	transition-delay: 0.3s;
 }
 
@@ -268,27 +290,43 @@ a {
 	text-decoration: none;
 }
 
+.search-button {
+	display: inline;
+}
+
+/* #search_submit{
+	z-index: 100;
+} */
+
 #wrap {
+	float: right;
 	display: inline-block;
 	position: relative;
 	height: 60px;
 	padding: 0;
-	z-index: 100;
-  }
+  } 
 
   #form{
-	  margin-top: 1rem;
+	  margin-right: 1rem;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  height: 100%;
+  }
+
+  #topnav{
+	  background-color: #101010;
   }
   
   input[type="text"] {
-	height: 56px;
+	height: 40px;
 	font-size: 20px;
 	display: inline-block;
 	font-family: "Lato";
 	font-weight: 100;
 	border: none;
 	outline: none;
-	color: #555;
+	color: #80FF01;
 	padding: 3px;
 	padding-right: 60px;
 	width: 0px;
