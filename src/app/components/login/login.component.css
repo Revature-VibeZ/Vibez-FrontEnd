@@ -14,13 +14,14 @@ body {
     height: 100%;
 }
 
+
 .banner {
     padding-top: 3rem;
 }
 
 .container {
     display: flex;
-    margin: 25% 10%;
+    margin: 9% 10%;
     justify-content: center;
     flex-direction: row;
     align-items: center;
@@ -81,10 +82,10 @@ body {
     z-index: 1;
 }
 .registration-form .input-section.folded input {
-    background-color: #E9E2C0;
+    background-color: #E1BCEF;
 }
 .registration-form .input-section.folded span {
-    background-color: #E9E2C0;
+    background-color: #E1BCEF;
 }
 .registration-form .input-section.folded + .folded {
     width: 90%;
@@ -104,7 +105,7 @@ body {
 }
 .registration-form form input {
     background: #eee;
-    color: #8F8FD6;
+    color: gray;
     width: 80%;
     border: 0;
     padding: 20px 40px;
@@ -114,12 +115,12 @@ body {
     outline: none;
 }
 .registration-form form input::placeholder {
-    color: #8F8FD6;
+    color: gray;
     font-weight: 100;
 }
 .animated-button {
     width: 20%;
-    background-color: #D4D4FF;
+    background-color: #FCA4E8;
 }
 .animated-button span {
     display: flex;
