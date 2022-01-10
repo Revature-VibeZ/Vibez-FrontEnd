@@ -22,17 +22,6 @@ export class NavComponent implements OnInit {
 
   //Used for data binding on the search bar. Saves user input for use in profile search.
   search: string = '';
-  
-  /*
-  Saves username typed into search bar into the sessionStorage and then redirects to user profile.
-  Will need some tweaking eventually.
-  */
-  // searchByUsername(username: string) {
-  //   sessionStorage.setItem('username', username);
-  //   this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-  //     this.router.navigate(['profile']);
-  //   });
-  // }
 
   searchByUsername(username: string) {
     this.us.getUserByUsername(username).subscribe((res: any) => {

@@ -1,138 +1,3 @@
-/* .onepost-fancy {
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    background-color: darkgrey;
-    padding: 1rem;
-    margin: 1rem;
-    border-radius: 1.25rem;
-    font-size: 3rem;
-    font-family: Arial, Helvetica, sans-serif;
-    
-    
-    border-radius: 1rem;
-    animation-duration: 5s;
-    animation-name: funVibe;
-    animation-iteration-count: infinite;
-    animation-direction: alternate-reverse;
-}
-
-.onepost-regular {
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    background-color: darkgrey;
-    padding: 1rem;
-    margin: 1rem;
-    border-radius: 1.25rem;
-    font-size: 3rem;
-    font-family: Arial, Helvetica, sans-serif;
-
-    
-    border: 1px solid black;
-}
-
-.textarea-right {
-    text-align: left;
-    background-color: darkgrey;
-}
-
-.textarea-right:focus {
-    
-    border:1px solid white;
-    box-shadow: 0 0 10px white;
-}
-
-.profile-image {
-    height: 5rem;
-    width: 5rem;
-    border-radius: 5rem;
-}
-
-.post-image {
-    max-height: 20rem;
-    max-width: 20rem;
-    border-radius: 1rem;
-    margin: 0 auto;
-    margin-top: 1rem;
-}
-
-.inline {
-    display: inline;
-    margin: 1rem;
-}
-
-.time-created {
-    font-size: 1rem;
-}
-
-.reset-div {
-    border: 0;
-    margin: 0;
-}
-
-.fancy-border {
-    border-radius: 1rem;
-    animation-duration: 1s;
-    animation-name: funVibe;
-    animation-iteration-count: infinite;
-    animation-direction: alternate-reverse;
-}
-
-@keyframes funVibe {
-    0% {border: 10px solid red;}
-    20% {border: 10px solid orange;}
-    40% {border: 10px solid green;}
-    60% {border: 10px solid blue;}
-    80% {border: 10px solid indigo;}
-    100% {border: 10px solid violet;}
-}
-
-.like { 
-    color: grey;
-}
-
-.dislike { 
-    color: red;
-}
-
-.like, .dislike {
-    max-width: 5rem;
-    font-size: 4rem;
-    display: inline;
-    border: none;
-    border-radius: 1rem;
-    background-color: darkgrey;
-}
-/* 
-body {
-    background-color: #eee
-}
-
-.time {
-    font-size: 9px !important
-}
-
-.socials i {
-    margin-right: 14px;
-    font-size: 17px;
-    color: #d2c8c8;
-    cursor: pointer
-}
-
-.feed-image img {
-    width: 100%;
-    height: auto
-}
-
-#back {
-   
-    background: linear-gradient(120grad, #643986, #98AED5);
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-} */
-
 * {
     box-sizing: border-box;
 }
@@ -143,12 +8,25 @@ body {
 
 .post {
     display: flex;
-    width: 70%;
+    flex-direction: row;
+    width: 100%;
+    max-width: 50rem;
+    min-width: 5rem;
     margin: 50px auto;
     box-shadow: 0 5px 15px 0 #777;
 }
 
+.replies {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 45rem;
+    min-width: 5rem;
+    margin: 50px auto;
+}
+
 .post-date {
+    display: inline;
     font-size: 13px;
     color: #bbb;
 }
@@ -158,44 +36,35 @@ body {
 }
 
 .post-excerpt {
-    letter-spacing: 1px;
-    line-height: 1.33;
+    /* letter-spacing: 1px; */
+    /* line-height: 1.33; */
+}
+
+input[type="text"] {
+    word-wrap: break-word;
+    word-break: break-all;
+    height: 80px;
 }
 
 .post-image {
     position: relative;
-    flex: 0 0 40%;
-    width: auto;
-    max-width: 300px;
+    /* flex: 0 0 40%; */
+    max-width: 20rem;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    margin: 0;
+    padding: 0;
 }
 
-.post-image>img {
-    /* visibility: hidden; */
-    height: 100%;
+.post-picture {
+    height: auto;
     width: 100%;
-    max-width: 20rem;
-    max-height: 20rem;
-    /* position: absolute; */
-}
-
-.post-image-1 {
-    background-image: url(https://images.freeimages.com/images/large-previews/bf4/the-road-through-the-woods-1449194.jpg);
-}
-
-.post-image-2 {
-    background-image: url(https://images.freeimages.com/images/large-previews/7e9/ladybird-1367182.jpg);
-}
-
-.post-image-3 {
-    background-image: url(https://images.freeimages.com/images/large-previews/ddb/corn-field-2-1368926.jpg);
 }
 
 .post-content {
-    flex: 0 0 60%;
-    padding: 20px 30px;
+    margin: 1rem;
+    height: 100%;
 }
 
 .post-link {
@@ -227,9 +96,6 @@ body {
         height: 270px;
         max-width: 100%;
     }
-    /* .post-content {
-      padding: 20px 0;
-    } */
 }
 
 
@@ -263,4 +129,49 @@ body {
     border: none;
     /* border-radius: 1rem; */
     background-color: none;
+}
+
+.show-comments:hover, .hide-comments:hover {
+    cursor: pointer;
+}
+
+.reset-div {
+    border: 0;
+    margin: 0;
+}
+
+
+.animate-border {
+    animation-duration: 1s;
+    animation-name: funVibe;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes funVibe {
+    0% {border: 1rem solid red;}
+    20% {border: 1rem solid orange;}
+    40% {border: 1rem solid green;}
+    60% {border: 1rem solid blue;}
+    80% {border: 1rem solid indigo;}
+    100% {border: 1rem solid violet;}
+}
+
+.reply-profile-picture {
+    border-radius: 5rem;
+    height: 5rem;
+    width: 5rem;
+    margin-right: 1rem;
+    display: inline;
+}
+
+.profile-image {
+    position: relative;
+    
+    width: 10rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+    padding: 0;
 }
