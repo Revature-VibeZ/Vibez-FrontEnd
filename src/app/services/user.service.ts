@@ -34,12 +34,10 @@ export class UserService {
     return this.http.get(`${environment.API_URL}/users/${id}`);
   }
 
-  update(password: string) {
+  update(firstName: string, lastName: string, password: string, email: string) {
     var username = sessionStorage.getItem('userToken')!;
-    const formData = new FormData();
-    formData.append('username', username);
-    formData.append('password', password);
-    return this.http.put(`${environment.API_URL}/users`, formData);
+    let currentUser: any = { username, password, firstName, lastName, email }
+    return this.http.put(`${environment.API_URL}/users/update`, currentUser);
   }
 
   uploadProfilePicture(file: File){
