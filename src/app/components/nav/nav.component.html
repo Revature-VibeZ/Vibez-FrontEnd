@@ -13,20 +13,24 @@
     </div>
   </div>
 </nav>
-<menu id="menu" class="top-right close">
-  <a class="disc l1">
-    <div routerLink='/postfeed'>Add</div>
-  </a>
-  <a class="disc l2">
-    <div (click)="loadProfile()">Profile</div>
-  </a>
-  <a class="disc l3">
-    <div>Friends</div>
-  </a>
-  <a class="disc l4">
-    <div (click)="loadPostFeed()">Posts</div>
-  </a>
-  <a class="disc l5 toggle" (click)="toggleNav()" #toggle>
-    {{toggledText}}
-  </a>
-</menu>
+
+<div id="draggableDiv1">
+  <menu id="menu" class="top-right close">
+    <a class="disc l1">
+      <div routerLink='createpost'>Add</div>
+    </a>
+    <a class="disc l2">
+      <div (click)="loadProfile()">Profile</div>
+    </a>
+    <a class="disc l3">
+      <div>Friends</div>
+      <!--router link for friends-->
+    </a>
+    <a class="disc l4">
+      <div (click)="loadPostFeed()">Posts</div>
+    </a>
+    <a class="disc l5 toggle" (click)="toggleNav()" #toggle>
+      {{toggledText}}
+    </a>
+  </menu>
+</div>

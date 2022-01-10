@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { EventService } from 'src/app/services/event.service';
+declare function dragElement2(element: Element): void;
 
 @Component({
   selector: 'app-nav',
@@ -18,7 +19,10 @@ export class NavComponent implements OnInit {
     private es: EventService
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    dragElement2(document.getElementById("draggableDiv1")!);
+    
+  }
 
   //Used for data binding on the search bar. Saves user input for use in profile search.
   search: string = '';
