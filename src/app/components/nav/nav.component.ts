@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileService } from 'src/app/services/profile.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
@@ -26,6 +25,8 @@ export class NavComponent implements OnInit {
 
   //Used for data binding on the search bar. Saves user input for use in profile search.
   search: string = '';
+  
+  //Function used to locate username from input provided by user.
 
   searchByUsername(username: string) {
     this.us.getUserByUsername(username).subscribe((res: any) => {

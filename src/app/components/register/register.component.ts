@@ -5,6 +5,8 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
+
+//This component contains all the logic needed to take information from form data(user input) and makes a call to the backend to create a user.
 export class RegisterComponent implements OnInit {
   form: any = {
     firstName: null,
@@ -24,8 +26,7 @@ export class RegisterComponent implements OnInit {
   onSubmit(){
     const { firstName, lastName, userName, email, password } = this.form;
 
-    console.log(this.form);
-    console.log('Username: ' + userName + ' Password: ' + password);
+    
 
     this.authService
       .register(firstName, lastName, userName, email, password)
@@ -48,7 +49,7 @@ export class RegisterComponent implements OnInit {
       '.icon-firstname'
     ) as HTMLElement;
     this.iconFirstname.classList.add('next');
-    console.log('firstname');
+    
   }
   firstnameSection: any;
   lastnameSection: any;
@@ -69,7 +70,7 @@ export class RegisterComponent implements OnInit {
       '.icon-lastname'
     ) as HTMLElement;
     this.iconLastname.classList.add('next');
-    console.log('firstname');
+    
   }
   
   usernameSwitch = document.querySelector('.username-section') as HTMLElement;
@@ -90,7 +91,7 @@ export class RegisterComponent implements OnInit {
       '.icon-paper-plane'
     ) as HTMLElement;
     this.paperPlane.classList.add('next');
-    console.log('paper plane');
+    
   }
 
   passwordSection: any;
@@ -112,7 +113,7 @@ export class RegisterComponent implements OnInit {
       '.icon-email'
     ) as HTMLElement;
     this.iconEmail.classList.add('next');
-    console.log('email');
+    
   }
   
   emailNext() {
@@ -130,7 +131,7 @@ export class RegisterComponent implements OnInit {
   passwordIcon() {
     this.lock = document.querySelector('.icon-lock') as HTMLElement;
     this.lock.classList.add('next');
-    console.log('lock');
+    
   }
   successSection = document.querySelector('.success') as HTMLElement;
   passwordNext() {
@@ -139,7 +140,7 @@ export class RegisterComponent implements OnInit {
     ) as HTMLElement;
     this.successSection = document.querySelector('.success') as HTMLElement;
     this.onSubmit();
-    console.log(this.isSignUpFailed);
+    
     if (this.isSignUpFailed) {
       this.passwordSection.classList.add('fold-up');
     }

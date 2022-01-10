@@ -1,3 +1,5 @@
+//This post model allows a post object to be manipulated.
+
 import { User } from "./user.model";
 
 export interface Post {

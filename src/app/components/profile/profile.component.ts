@@ -65,7 +65,6 @@ export class ProfileComponent implements OnInit {
     this.lastName = '';
     this.email= '';
     this.bio= '';
-    // this.editMode= false;
   }
 
   changeToEditMode(){

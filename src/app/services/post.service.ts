@@ -12,7 +12,7 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    console.log('inside post service ts get all');
+    
     let url = `${environment.API_URL}/posts`;
     return this.http.get(url).pipe(map((res: any) => {            
       this.posts = res;

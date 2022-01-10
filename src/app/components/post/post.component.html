@@ -1,3 +1,5 @@
+<!-- Container object of an individual post -->
+
 <div class="post" [ngClass]="post.likes.length > 2 ? 'animate-border' : 'regular-border'">
     <div *ngIf="!post.parentId && post.image" class="post-image">
         <img class="post-picture" src={{post.image}} alt="">
