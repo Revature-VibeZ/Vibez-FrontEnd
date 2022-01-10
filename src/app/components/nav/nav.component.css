@@ -35,9 +35,17 @@ body {
 #container{
 	margin: 2rem;
 	width: 100%;
-	z-index: 3;
+	z-index: 90;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
+.test{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
 svg{
 	color: green;
@@ -286,6 +294,10 @@ a {
 	display: inline;
 }
 
+/* #search_submit{
+	z-index: 100;
+} */
+
 #wrap {
 	float: right;
 	display: inline-block;
@@ -296,6 +308,10 @@ a {
 
   #form{
 	  margin-right: 1rem;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  height: 100%;
   }
 
   #topnav{

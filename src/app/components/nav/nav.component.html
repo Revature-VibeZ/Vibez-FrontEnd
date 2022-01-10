@@ -1,15 +1,17 @@
 <nav class="navbar navbar-expand-lg" id="topnav">
   <div class="" id="container">
     <img src="../../../assets/thumbnail_VibeZ-Logo-Green.png" id="logo" routerLink='' alt="">
-    <a type="button" class="logoutBtn" (click)="logout()">
-      <img src="../../../assets/log-out.svg" id="logout" (click)="logout()" alt=""> Logout
-    </a>
-    <div id="wrap">
-      <form autocomplete="on" id="form">
-        <img src="../../../assets/search.svg" alt="">
-        <input id="search" [(ngModel)]="search" name="search" type="text" placeholder="Enter username">
-        <input id="search_submit" value="Rechercher" type="submit" (click)="searchByUsername(search)">
-      </form>
+    <div class="test">
+      <div id="wrap">
+        <form autocomplete="on" id="form">
+          <img src="../../../assets/search.svg" alt="">
+          <input id="search" [(ngModel)]="search" name="search" type="text" placeholder="Enter username">
+          <input id="search_submit" value="Rechercher" type="submit" (click)="searchByUsername(search)">
+        </form>
+      </div>
+      <a type="button" class="logoutBtn" (click)="logout()">
+        <img src="../../../assets/log-out.svg" id="logout" (click)="logout()" alt=""> Logout
+      </a>
     </div>
   </div>
 </nav>

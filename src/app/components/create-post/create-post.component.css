@@ -11,6 +11,7 @@ body {
     width: 70%;
     margin: 50px auto;
     box-shadow: 0 5px 15px 0 #777;
+    border-radius: 10px;
 }
 
 .post-date {
@@ -63,6 +64,12 @@ body {
 .post-content {
     flex: 0 0 60%;
     padding: 20px 30px;
+    color: whitesmoke
+}
+
+.dark{
+    background-color: #202020;
+    color: whitesmoke;
 }
 
 .post-link {
