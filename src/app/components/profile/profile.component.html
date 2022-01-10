@@ -1,76 +1,75 @@
 <div class="row gutters-sm main-body">
-  <div class="col-md-4 mb-3 max-width">
-    <div class="card">
-      <div class="card-body">
-        <div class="d-flex flex-column align-items-center text-center fix-width">
-          <img src={{profile.profilePicture}} alt="Admin" class="custom-round-circle" style ="max-width:100%;
+    <div class="col-md-4 mb-3 max-width">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center fix-width">
+                    <img src={{profile.profilePicture}} alt="Admin" class="custom-round-circle" style="max-width:100%;
           max-height:100%;">
-          <div class="mt-3">
-            <h4 id='u_usernameTitle'></h4>
-            <h6 class="mb-0">{{profile.username}}</h6>
-          </div>
+                    <div class="mt-3">
+                        <h4 id='u_usernameTitle'></h4>
+                        <h6 class="mb-0">{{profile.username}}</h6>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <div class="col-md-6">
-    <div class="card mb-3">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">First Name</h6>
-          </div>
-          <div class="col-sm-9 text-secondary">
-            <input type="text" class="form-control" id='u_firstname' placeholder={{profile.firstName}}>
-          </div>
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">First Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <input type="text" class="form-control" id='u_firstname' placeholder={{profile.firstName}} value={{firstName}} #firstName>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Last Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <input type="text" class="form-control" id='u_lastname' placeholder={{profile.lastName}} value={{lastName}} #lastName>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Username</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <input type="text" class="form-control" id='u_username' placeholder={{profile.username}} value={{username}} #username>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <input type="text" class="form-control" id='u_email' placeholder={{profile.email}} value={{email}} #email>
+                    </div>
+                </div>
+                <div class="row" *ngIf="isUser">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Password</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <input type="text" class="form-control" id='u_password' placeholder={{profile.password}} value={{password}} #password>
+                    </div>
+                </div>
+                <div class="row" *ngIf="isUser">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Profile Picture</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <input type="file" class="form-control" id="inputGroupFile04" (change)="uploadImage($event)" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                    </div>
+                </div>
+                <div class="row" *ngIf="isUser">
+                    <div class="col-sm-12">
+                        <button class="btn btn-info" id="updateBtn" (click)='update(firstName.value, lastName.value, username.value, password.value, email.value)'> Update</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Last Name</h6>
-          </div>
-          <div class="col-sm-9 text-secondary">
-            <input type="text" class="form-control" id='u_lastname' placeholder={{profile.lastName}}>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Username</h6>
-          </div>
-          <div class="col-sm-9 text-secondary">
-            <input type="text" class="form-control" id='u_username' placeholder={{profile.username}}>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Email</h6>
-          </div>
-          <div class="col-sm-9 text-secondary">
-            <input type="text" class="form-control" id='u_email' placeholder={{profile.email}}>
-          </div>
-        </div>
-        <div class="row" *ngIf="isUser">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Password</h6>
-          </div>
-          <div class="col-sm-9 text-secondary">
-            <input type="text" class="form-control" id='u_password' placeholder="New Password">
-          </div>
-        </div>
-        <div class="row" *ngIf="isUser">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Profile Picture</h6>
-          </div>
-          <div class="col-sm-9 text-secondary">
-            <input type="file" class="form-control" id="inputGroupFile04" (change)="uploadImage($event)"
-              aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-          </div>
-        </div>
-        <div class="row" *ngIf="isUser">
-          <div class="col-sm-12">
-            <button class="btn btn-info" id="updateBtn"> Update</button>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>

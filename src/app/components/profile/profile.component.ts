@@ -44,8 +44,8 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  update(password: string) {
-    this.us.update(password).subscribe(Response);
+  update(firstName: string, lastName: string, userName: string, password: string, email: string) {
+    this.us.update(firstName, lastName, userName, password, email).subscribe(Response);
   }
 
   // determineUser() {

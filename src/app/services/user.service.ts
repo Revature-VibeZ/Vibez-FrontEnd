@@ -34,11 +34,14 @@ export class UserService {
     return this.http.get(`${environment.API_URL}/users/${id}`);
   }
 
-  update(password: string) {
+  update(firstName: string, lastName: string, userName: string, password: string, email: string) {
     var username = sessionStorage.getItem('userToken')!;
     const formData = new FormData();
+    formData.append('firstName', firstName);
+    formData.append('lastName', lastName);
     formData.append('username', username);
     formData.append('password', password);
+    formData.append('email', email);
     return this.http.put(`${environment.API_URL}/users`, formData);
   }
 
