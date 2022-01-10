@@ -7,7 +7,7 @@ declare function sendMessage(usrname : string): void;
 declare function addMessage(msg : string): void;
 declare function dragElement(element: Element): void;
 
-
+// This component is responsible for setting up the chatroom function. It will create a websocket which will allow a user to send and receive messages.
 @Component({
   selector: 'app-chatroom',
   templateUrl: './chatroom.component.html',

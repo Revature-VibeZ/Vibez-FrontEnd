@@ -11,7 +11,7 @@ export class ChatService {
 
   constructor(private http: HttpClient) { }
 
-
+//Function to get chatroom history.
   getChatHistory(): Observable<string[]>{
     return this.http.get(`${environment.API_URL}/chat`)
       .pipe(
