@@ -12,6 +12,7 @@ import { User } from 'src/app/models/user.model';
 })
 export class ProfileComponent implements OnInit {
   isUser: boolean = true;
+  editMode: boolean = false;
   profile: any = {
     firstName: '',
     lastName: '',
@@ -25,7 +26,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private es: EventService,
-    private us: UserService
+    private us: UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -49,18 +51,26 @@ export class ProfileComponent implements OnInit {
   firstName: string = '';
   lastName: string = '';
   email: string = '';
+  bio: string = '';
 
-  update(firstName: string, lastName: string, email: string, password: string) {
-    this.us.update(firstName, lastName, email, password).subscribe(
+  update(firstName: string, lastName: string, email: string, password: string, bio: string) {
+    this.us.update(firstName, lastName, email, password, bio).subscribe(
       (res) => {
-        console.log("howdy");
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['profile']);
+        })
       });
     this.password = '';
     this.firstName= '';
     this.lastName = '';
     this.email= '';
+    this.bio= '';
+    // this.editMode= false;
   }
 
+  changeToEditMode(){
+    this.editMode= true;
+  }
   uploadImage(event: any) {
     const Uploadedfile: File = event.target.files[0];
     if (Uploadedfile) {
