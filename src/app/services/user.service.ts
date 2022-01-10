@@ -34,9 +34,9 @@ export class UserService {
     return this.http.get(`${environment.API_URL}/users/${id}`);
   }
 
-  update(firstName: string, lastName: string, password: string, email: string) {
+  update(firstName: string, lastName: string, password: string, email: string, bio: string) {
     var username = sessionStorage.getItem('userToken')!;
-    let currentUser: any = { username, password, firstName, lastName, email }
+    let currentUser: any = { username, password, firstName, lastName, email, bio }
     return this.http.put(`${environment.API_URL}/users/update`, currentUser);
   }
 
