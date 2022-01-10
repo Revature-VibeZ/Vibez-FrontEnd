@@ -25,12 +25,8 @@ export class CreatePostComponent implements OnInit {
     parentId: null
   }
 
-
-  file : File | undefined;
-
-  constructor(private postService: PostService) { }
 // This component contains logic for creating posts and sending it to the backend for processing.
-
+  
   constructor(private postService: PostService, private fb: FormBuilder, private es: EventService) {
     this.myForm = this.fb.group({
       img: [null],
