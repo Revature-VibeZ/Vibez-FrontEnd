@@ -175,3 +175,20 @@ input[type="text"] {
     margin: 0;
     padding: 0;
 }
+
+#back {
+   
+    background: linear-gradient(120grad, #643986, #98AED5);
+    position: absolute;
+    width: 100%;
+    /* height: 100vh; */
+}
+
+.like{
+    text-decoration: none;
+    font-size: xx-large;
+}
+
+#heart{
+    /* font-size: large; */
+}
