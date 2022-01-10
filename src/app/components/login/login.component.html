@@ -1,94 +1,45 @@
-<!-- <div class="col-md-12">
-    <div class="card card-container">
-        <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required minlength="3" maxlength="20" #username="ngModel" />
-                <div class="alert-danger" *ngIf="username.errors && f.submitted">
-                    <div *ngIf="username.errors['required']">Username is required</div>
-                    <div *ngIf="username.errors['minlength']">
-                        Username must be at least 3 characters
-                    </div>
-                    <div *ngIf="username.errors['maxlength']">
-                        Username must be at most 20 characters
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="3" #password="ngModel" />
-                <div class="alert-danger" *ngIf="password.errors && f.submitted">
-                    <div *ngIf="password.errors['required']">Password is required</div>
-                    <div *ngIf="password.errors['minlength']">
-                        Password must be at least 3 characters
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary btn-block">log in</button>
-
-            </div>
-            <div class="alert alert-warning" *ngIf="f.submitted && isSignInFailed">
-                Sign in failed!<br />{{ errorMessage }}
-            </div>
-        </form>
-
-        <div class="alert alert-success" *ngIf="isSuccessful">
-            Your log in is successful!
-        </div>
-    </div>
-</div> -->
-
 <div class="back">
   <div class="container">
-    <div class="row align-items-center">
-      <div class="col" id="log">
-        <img src="../../../assets/VibeZ-Logo-blue.png" id="logo" routerLink='' alt="">
-        <div class="typewriter">
-          <p class="line-1 anim-typewriter">Reimagine Positivity</p>
-        </div>
-       
+    <div class="col banner" id="log">
+      <img src="../../../assets/VibeZ-Logo-blue.png" id="logo" routerLink='' alt="">
+      <div class="typewriter">
+        <p class="line-1 anim-typewriter">Reimagine Positivity</p>
       </div>
-      
-      <div class="col">
-        <div class="vl"></div>
-        <div class="registration-form">
-          <header>
-            <h1>Log In</h1>
-            <p>If you do not have an account, sign up</p>
-            <a routerLink="/register">here</a>
-          </header>
-          <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-            <div class="input-section username-section">
-              <input class="username" type="username" name="username" placeholder="ENTER YOUR USERNAME HERE"
-                autocomplete="off" (keyup)="usernameIcon()" (keyup.enter)="usernameNext()" [(ngModel)]="form.username"
-                required minlength="3" maxlength="20" #username="ngModel" />
-              <div class="animated-button">
-                <span class="icon-paper-plane"><img src="../../../assets/user.svg" /></span><span
-                  class="next-button username" (click)="usernameNext()"><img src="../../../assets/arrow-up.svg"
-                    class="fa fa-arrow-up" /></span>
-              </div>
-            </div>
-            <div class="input-section password-section folded">
-              <input class="password" type="password" name="password" placeholder="ENTER YOUR PASSWORD HERE"
-                autocomplete="off" (keyup)="passwordIcon()" (keyup.enter)="passwordNext()" [(ngModel)]="form.password"
-                required minlength="3" #password="ngModel" />
-              <div class="animated-button">
-                <span class="icon-lock"><img src="../../../assets/lock.svg" /></span><span class="next-button password"
-                  (click)="passwordNext()"><img src="../../../assets/arrow-up.svg" class="fa fa-arrow-up" /></span>
-                <img src="" alt="" />
-              </div>
-            </div>
-            <div *ngIf="isSignInFailed" class="failure">
-              <p class="wrongInput" (click)="reload()">
-                Invalid Username or Password <br />
-                Click Here to Try Again
-              </p>
-            </div>
-          </form>
+    </div>
+    <div class="col registration-form">
+      <header>
+        <h1>Log In</h1>
+        <p>If you do not have an account, sign up</p>
+        <a routerLink="/register">here</a>
+      </header>
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="input-section username-section">
+          <input class="username" type="username" name="username" placeholder="ENTER YOUR USERNAME HERE"
+            autocomplete="off" (keyup)="usernameIcon()" (keyup.enter)="usernameNext()" [(ngModel)]="form.username"
+            required minlength="3" maxlength="20" #username="ngModel" />
+          <div class="animated-button">
+            <span class="icon-paper-plane"><img src="../../../assets/user.svg" /></span><span
+              class="next-button username" (click)="usernameNext()"><img src="../../../assets/arrow-up.svg"
+                class="fa fa-arrow-up" /></span>
+          </div>
         </div>
-      </div>
+        <div class="input-section password-section folded">
+          <input class="password" type="password" name="password" placeholder="ENTER YOUR PASSWORD HERE"
+            autocomplete="off" (keyup)="passwordIcon()" (keyup.enter)="passwordNext()" [(ngModel)]="form.password"
+            required minlength="3" #password="ngModel" />
+          <div class="animated-button">
+            <span class="icon-lock"><img src="../../../assets/lock.svg" /></span><span class="next-button password"
+              (click)="passwordNext()"><img src="../../../assets/arrow-up.svg" class="fa fa-arrow-up" /></span>
+            <img src="" alt="" />
+          </div>
+        </div>
+        <div *ngIf="isSignInFailed" class="failure">
+          <p class="wrongInput" (click)="reload()">
+            Invalid Username or Password <br />
+            Click Here to Try Again
+          </p>
+        </div>
+      </form>
     </div>
   </div>
 </div>
