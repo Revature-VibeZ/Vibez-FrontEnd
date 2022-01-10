@@ -3,7 +3,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable } from 'rxjs';
 
 import { AuthService } from '../services/auth.service';
-
+//This component will attach a header with the user's JWT token to any request made to the back end as a way of authorization. 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
     constructor(private authservice: AuthService) { }

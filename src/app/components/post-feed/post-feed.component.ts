@@ -6,6 +6,7 @@ import { PostService } from 'src/app/services/post.service';
   templateUrl: './post-feed.component.html',
   styleUrls: ['./post-feed.component.css']
 })
+//This function gets all posts and displays it on screen for the user to interact with.
 export class PostFeedComponent implements OnInit {
   posts: any = [];
 

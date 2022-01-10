@@ -1,3 +1,4 @@
+//This model allows for manipulation of a User object.
 export interface User {
     userId?: number;
     firstName?: string;

@@ -11,7 +11,7 @@ export class CreatePostComponent implements OnInit {
   file : File | undefined;
 
   constructor(private postService: PostService) { }
-
+// This component contains logic for creating posts and sending it to the backend for processing.
   ngOnInit(): void {
   }
 

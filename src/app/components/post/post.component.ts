@@ -9,7 +9,7 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-
+//This component is used to control likes and comments. It contains logic to make sure a single user can like a specific post once to prevent abusing system for likes. 
   @Input() post: Post = {
     comments: [],
     authorId: 0,
@@ -30,7 +30,7 @@ export class PostComponent implements OnInit {
   constructor(private es: EventService, private ps: PostService) { }
 
   ngOnInit(): void {
-    // (this.post.likes[0]['username']);
+    
     for (var val of this.post.likes) {
       if (val['username'] == sessionStorage.getItem('userToken')) {
         this.isLiked = true;

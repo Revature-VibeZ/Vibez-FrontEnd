@@ -11,7 +11,7 @@ export class EventService {
     @Output() deleteLikeEvent$: EventEmitter<any> = new EventEmitter();
     @Output() uploadProfileImageEvent$: EventEmitter<any> = new EventEmitter();
     @Output() searchProfileEvent$: EventEmitter<any> = new EventEmitter();
-    
+    //This service handles event emitters
     newPost(body: any) {
         this.newPostEvent$.emit(body);
     }
