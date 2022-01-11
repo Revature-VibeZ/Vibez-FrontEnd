@@ -10,12 +10,11 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', component: HomeComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'postfeed', component: PostFeedComponent},
-  { path: 'createpost', component: CreatePostComponent},
+  { path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  { path: 'postfeed', component: PostFeedComponent, canActivate: [AuthGuard]},
+  { path: 'createpost', component: CreatePostComponent, canActivate: [AuthGuard]},
   // { path: '', component: HomeComponent, canActivate: [AuthGuard] } Example of how to add authguard
-
   // { path: '**', redirectTo: '' }
 ];
 

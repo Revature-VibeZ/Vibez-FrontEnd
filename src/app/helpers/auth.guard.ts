@@ -1,21 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthService } from '../services/auth.service';
-
-@Injectable({ providedIn: 'root'})
+import { Router, CanActivate } from '@angular/router';
+//This interceptor's purpose to is reroute any unauthorized user to login if they try accessing a protected route in app-routing.module.ts
+@Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
-    constructor(
-        private router: Router,
-        private authservice: AuthService
-    )
-{}
-canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const currentUser = this.authservice.currentUserValue;
-    if (currentUser){
-        return true;
+    constructor(private router: Router) { }
+    canActivate() {
+        let currentUser: any = sessionStorage.getItem('currentUser');
+        if (currentUser) return true;
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate(['/login']);
+        })
+        return false;
     }
-    this.router.navigate(['/login'],{queryParams: {returnUrl: state.url}});
-    return false;
-}
 }

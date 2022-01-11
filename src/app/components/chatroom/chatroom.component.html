@@ -1,0 +1,40 @@
+<button id="toggleChatBox" class ="button-15" (click)='openChat()'>{{chatDisplay}}</button>
+<!-- This will display a chat box button which will start as hidden on the bottom right of user screen. Clicking button will expand and allow user to connect to the chat service and send/receive messages to all users. -->
+<div id="mydiv" hidden>
+    <div id="mydivheader">Chat Room - Lobby</div>
+
+    <div id="main-content" class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <form class="form-inline">
+                    <div style="text-align: center;" class="form-group" id ="SocketControls">
+                        <label for="connect">WebSocket:</label>
+                        <button id="connect" style="display: inline-block;" (click)='connectBtn()'
+                            type="submit">Connect</button>
+                        <button id="disconnect" style="display: inline-block;" type="submit" disabled="disabled">Disconnect
+                        </button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id = "usrmsgsBox">
+    <div id="usrmsgs"></div>
+    
+
+    <form class="chatBtn">
+        <div class="form-group">
+
+            <input  style ="line-height: 22px ; width: 80%; display:inline-block;" type="text" id="name" class="form-control" placeholder="Your text here..."
+                #usrmsg>
+                <button id="sendMsgBtn" style="float: right; display:inline-block;" mat-raised-button color="Warn" (click)='sendMsg()'>Send</button>
+
+        </div>
+    </form>
+</div>
+
+
+
+
+</div>

@@ -7,71 +7,92 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-    // loginForm: FormGroup;
-    // loading = false;
-    // isubmitted = false;
-    // returnUrl: string;
-    // error = '';
-    form: any = {
-      username: null,
-      password: null
-    };
-    isSuccessful = false;
-    isSignInFailed = false;
-    errorMessage = '';
-    returnUrl: any;
+
+  form: any = {
+    username: null,
+    password: null,
+  };
+  isSuccessful = false;
+  isSignInFailed = false;
+  errorMessage = '';
+  returnUrl: any;
   constructor(
-        private formBuilder: FormBuilder,
-        private route: ActivatedRoute,
-        private router: Router,
-        private authService: AuthService
-  ) { 
-    if (this.authService.currentUserValue){
-      this.router.navigate(['/']);
-    }
-  }
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
-    // this.loginForm = this.formBuilder.group({
-    //   username: ['', Validators.required],
-    //   password: ['', Validators.required]
-    // });
-    // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-
-
-}
-
-//get f() { return this.loginForm.controls; }
-
-onSubmit() {
-  const {username, password} = this.form;
-        //this.submitted = true;
-
-        // stop here if form is invalid
-        // if (this.loginForm.invalid) {
-        //     return;
-        // }
-
-        //this.loading = true;
-        this.authService.login(username, password)
-            .pipe(first())
-            .subscribe(
-                data => {
-                  this.isSuccessful = true;
-                this.isSignInFailed = false;
-                    //this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    this.errorMessage = error.message;
-                    this.isSignInFailed = true;
-                });
+    if (sessionStorage.getItem('userToken')) {
+      this.router.navigate(['/']);
     }
+    
+  }
 
+  //This file contains login logic necessary for the login to succeed. It makes a call to authservice with provided username and password. Other functions in here are for current CSS styling to work correctly (Such as displaying just username first, and then displaying password to enter in after Username entered and cleared constraint check.)
 
+  onSubmit() {
+    const { username, password } = this.form;
+    
+    this.authService
+      .login(username, password)
+      .pipe(first())
+      .subscribe(
+        (data: any) => {
+          this.isSuccessful = true;
+          this.isSignInFailed = false;
+        },
+        (error: { message: string }) => {
+          this.errorMessage = error.message;
+          this.isSignInFailed = true;
+        }
+      );
+  }
+
+  paperPlane = document.querySelector('.icon-paper-plane') as HTMLElement;
+  usernameIcon() {
+    this.paperPlane = document.querySelector(
+      '.icon-paper-plane'
+    ) as HTMLElement;
+    this.paperPlane.classList.add('next');
+    
+  }
+  usernameSwitch = document.querySelector('.username-section') as HTMLElement;
+  passwordSection = document.querySelector('.password-section');
+  usernameNext() {
+    this.usernameSwitch = document.querySelector(
+      '.username-section'
+    ) as HTMLElement;
+    this.usernameSwitch.classList.add('fold-up');
+    this.passwordSection = document.querySelector(
+      '.password-section'
+    ) as HTMLElement;
+    this.passwordSection.classList.remove('folded');
+  }
+
+  lock = document.querySelector('.icon-lock') as HTMLElement;
+  passwordIcon() {
+    this.lock = document.querySelector('.icon-lock') as HTMLElement;
+    this.lock.classList.add('next');
+    
+  }
   
+  successSection = document.querySelector('.success') as HTMLElement;
+  passwordNext() {
+    this.passwordSection = document.querySelector(
+      '.password-section'
+    ) as HTMLElement;
+    this.successSection = document.querySelector('.success') as HTMLElement;
+    this.onSubmit();
+    if (this.isSignInFailed) {
+      this.passwordSection.classList.add('fold-up');
+    }
+  }
+  reload() {
+    window.location.reload();
+  }
 }
-
-

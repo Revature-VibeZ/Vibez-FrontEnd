@@ -5,12 +5,8 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
-import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from './services/auth.service';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -28,6 +24,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { PostFeedComponent } from './components/post-feed/post-feed.component';
 import { PostComponent } from './components/post/post.component';
+import { ChatroomComponent } from './components/chatroom/chatroom.component';
 
 
 @NgModule({
@@ -40,7 +37,8 @@ import { PostComponent } from './components/post/post.component';
     NavComponent,
     ProfileComponent,
     PostFeedComponent,
-    PostComponent
+    PostComponent,
+    ChatroomComponent
   ],
   imports: [
     BrowserModule,

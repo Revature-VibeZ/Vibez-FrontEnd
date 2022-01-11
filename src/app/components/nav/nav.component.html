@@ -1,43 +1,37 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink=''>VibeZ</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      </ul>
-      <!-- Place Holder images -->
-      <img src="../../../assets/plus.png" routerLink='createpost' alt="">
-      <img src="../../../assets/smile.png" (click)="loadProfile()" alt="">
-      <img src="../../../assets/heart.png" alt=""> <!-- routerLink='friends' -->
-      <img src="../../../assets/star.png" (click)="loadPostFeed()" alt="">
-      <ng-container>
-        <div *ngIf="sessionStorage.getItem('currentUser')">
-          <button class="btn btn-primary" (click)="logout()">Logout</button>
-        </div>
-        <div *ngIf="!sessionStorage.getItem('currentUser')">
-          <button class="btn btn-primary" routerLink='login'>Login</button>
-          <button class="btn btn-primary" routerLink='register'>Register</button>
-        </div>
-      </ng-container>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Enter username" aria-label="Search" #username>
-        <button class="btn btn-primary" type="submit" (click)="searchByUsername(username.value)">Search</button>
-      </form>
+<nav class="navbar navbar-expand-lg" id="topnav">
+  <div class="" id="container">
+    <img src="../../../assets/thumbnail_VibeZ-Logo-Green.png" id="logo" routerLink='' alt="">
+    <div class="test">
+      <div id="wrap">
+        <form autocomplete="on" id="form">
+          <img src="../../../assets/search.svg" alt="">
+          <input id="search" [(ngModel)]="search" name="search" type="text" placeholder="Enter username">
+          <input id="search_submit" value="Rechercher" type="submit" (click)="searchByUsername(search)">
+        </form>
+      </div>
+      <a type="button" class="logoutBtn" (click)="logout()">
+        <img src="../../../assets/log-out.svg" id="logout" (click)="logout()" alt=""> Logout
+      </a>
     </div>
   </div>
 </nav>
 
-
-<!-- <form class="example-form">
-<mat-form-field class="example-full-width">
-<span matPrefix> </span>
-<input type="tel" matInput placeholder="Search" name= "search" [(ngModel)]= "search">
-<button matSuffix mat-button><mat-icon >search</mat-icon></button>
-</mat-form-field>
-<br/>
-{{search}}
-</form> -->
+<div id="draggableDiv1">
+  <menu id="menu" class="top-right close">
+    <!-- <a class="disc l1">
+      <div routerLink=''>Info</div>
+    </a> -->
+    <a class="disc l2">
+      <div routerLink=''>Info</div>
+    </a>
+    <a class="disc l3">
+      <div (click)="loadProfile()">Profile</div>
+    </a>
+    <a class="disc l4">
+      <div (click)="loadPostFeed()">Posts</div>
+    </a>
+    <a class="disc l5 toggle" (click)="toggleNav()" #toggle>
+      {{toggledText}}
+    </a>
+  </menu>
+</div>

@@ -1,12 +1,16 @@
+//This post model allows a post object to be manipulated.
+
+import { User } from "./user.model";
+
 export interface Post {
-    authorId: number,
-    comments: any[],
+    author: User,
+    comments: Post[],
     content: string,
     creationDate: string,
-    friends: any[],
-    id: number,
-    image: string,
+    friends: User[],
+    id?: number,
+    image?: string,
     likes: any[],
-    parentId: number,
+    parentId: number | null,
     title: string
 }

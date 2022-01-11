@@ -1,36 +1,141 @@
-.onepost {
-    background-color: darkgrey;
-    padding: 1rem;
-    margin: 1rem;
-    border-radius: 1.25rem;
-    font-size: 3rem;
-    font-family: Arial, Helvetica, sans-serif;
+* {
+    box-sizing: border-box;
 }
 
-.textarea-right {
-    text-align: left;
-    background-color: darkgrey;
+body {
+    font-family: Helvetica, Arial, sans-serif;
 }
 
-.textarea-right:focus {
-    /* outline: none !important; */
-    border:1px solid green;
-    box-shadow: 0 0 10px green;
+
+.post {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 50rem;
+    min-width: 5rem;
+    margin: 50px auto;
+    box-shadow: 0 5px 15px 0 #777;
+    border-radius: 10px;
+    color: whitesmoke
 }
 
-.profile-image {
-    height: 5rem;
-    width: 5rem;
-    border-radius: 5rem;
+.replies {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 45rem;
+    min-width: 5rem;
+    margin: 50px auto;
 }
 
-.inline {
+.post-date {
     display: inline;
-    margin: 1rem;
+    font-size: 13px;
+    color: #bbb;
 }
 
-.time-created {
-    font-size: 1rem;
+.post-author {
+    color: #555;
+}
+
+.post-excerpt {
+    /* letter-spacing: 1px; */
+    /* line-height: 1.33; */
+}
+
+input[type="text"] {
+    word-wrap: break-word;
+    word-break: break-all;
+    height: 80px;
+}
+
+.post-image {
+    position: relative;
+    /* flex: 0 0 40%; */
+    max-width: 20rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+.post-picture {
+    height: auto;
+    width: 100%;
+}
+
+.post-content {
+    margin: 1rem;
+    height: 100%;
+}
+
+.post-link {
+    display: inline-block;
+    margin: 0 0 15px;
+    padding: 16px 48px;
+    background: lightblue;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4em;
+    transition: background .2s ease-in-out;
+}
+
+.post-link:hover {
+    background: darken(lightblue, 10%);
+}
+
+@media screen and (max-width: 1024px) {
+    .post {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .post {
+        flex-direction: column;
+    }
+    .post-image {
+        height: 270px;
+        max-width: 100%;
+    }
+}
+
+
+/* ------------------------ */
+
+.btn {
+    background: fuchsia;
+    border: 1px solid fuchsia;
+    margin-top: 1rem;
+    color: black;
+    font-weight: bolder;
+}
+
+.btn:hover {
+    text-decoration: underline;
+}
+
+.like {
+    color: grey;
+}
+
+.dislike {
+    color: red;
+}
+
+.like,
+.dislike {
+    max-width: 2rem;
+    font-size: 2rem;
+    display: inline;
+    border: none;
+    /* border-radius: 1rem; */
+    background-color: #202020;
+}
+
+.show-comments:hover, .hide-comments:hover {
+    cursor: pointer;
 }
 
 .reset-div {
@@ -39,5 +144,54 @@
 }
 
 
+.animate-border {
+    animation-duration: 5s;
+    animation-name: funVibe;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
 
+@keyframes funVibe {
+    0% {border: 1rem solid red;}
+    20% {border: 1rem solid orange;}
+    40% {border: 1rem solid green;}
+    60% {border: 1rem solid blue;}
+    80% {border: 1rem solid indigo;}
+    100% {border: 1rem solid violet;}
+}
 
+.reply-profile-picture {
+    border-radius: 5rem;
+    height: 5rem;
+    width: 5rem;
+    margin-right: 1rem;
+    display: inline;
+}
+
+.profile-image {
+    position: relative;
+    
+    width: 10rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+#back {
+   
+    background: linear-gradient(120grad, #643986, #98AED5);
+    position: absolute;
+    width: 100%;
+    /* height: 100vh; */
+}
+
+.like{
+    text-decoration: none;
+    font-size: xx-large;
+}
+
+#heart{
+    /* font-size: large; */
+}
