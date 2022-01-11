@@ -6,7 +6,7 @@ import { map } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
 
-
+//This auth service is responsible for making HTTP calls for login/register and also declaring logout functionality. It also sets up a Behaviorsubject on the user as well, so other components can observe the object but not change the state of the object (to monitor login/logouts)
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' })
 
@@ -46,7 +46,7 @@ export class AuthService {
     }, httpOptions);
 
   }
-
+  //atob is responsible for decoding the JWT token. This function sends user data in, receives JWT token from backend, and assigns a decoded version of the key to user session storage.
   login(username: string, password: string) {
     return this.http.post<any>(`${environment.API_URL}` + '/auth', { username, password })
       .pipe(map(user => {
@@ -60,6 +60,7 @@ export class AuthService {
   }
 
 
+  //On log out, this sets behaviorsubject as null and removes session storage items.
   logout() {
     sessionStorage.removeItem('currentUser');
     sessionStorage.removeItem('userToken');

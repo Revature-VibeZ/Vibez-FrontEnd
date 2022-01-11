@@ -1,2 +1,30 @@
-<app-post-feed *ngIf="loggedIn"></app-post-feed>
-<div *ngIf="!loggedIn">Sorry, you have to be logged in to see this!</div>
+<!-- <app-post-feed *ngIf="loggedIn"></app-post-feed> -->
+<app-nav></app-nav>
+<div class="dark">
+    <!-- <div class="container">
+        <h2 class="neonText">Welcome to VibeZ!</h2> 
+     </div> -->
+
+     <link href='https://fonts.googleapis.com/css?family=Vibur:400' rel='stylesheet' type='text/css'>
+
+<div class="container">
+    <h1 class="neonText">
+        Welcome to <br> VibeZ!
+    </h1>
+
+ </div>
+
+<div class="card " style="width: 70rem;">
+    <div class="card-body">
+      <h5 class="card-title">About VibeZ</h5>
+      <p class="card-text">In today's world, we could all use some positivity. Vibez, a cutting-edge social media platform, allows you to send good, bad, and immaculate vibes to the posts of peers. Based on vibe check ratings, a mood ring appears after a post reaches a certain threshold of likes to draw attention to the good in this world. With users on this platform posting fit checks, fresh memes, motivations, devotions, small business support, outdoor adventures, or even their daily boring tasks, members have the opportunity to learn how others view their vibe. Vibez... put some good back in this world.</p>
+    </div>
+  </div>
+
+
+
+  <div *ngIf="!loggedIn" class="dark">Sorry, you have to be logged in to see this!</div>
+
+</div>
+
+

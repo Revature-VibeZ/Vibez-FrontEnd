@@ -1,49 +1,37 @@
-<div class="" id="container">
-  <img src="../../../assets/VibeZ-Logo-blue.png" id="logo" routerLink='' alt="">
-  <a (click)="logout()" class="logoutBtn">
-    <img src="../../../assets/log-out.svg" id="logout" alt="">
-  </a>
-  <form class="d-flex" >
-    <input class="form-control me-2" style="z-index: 10;" type="search" placeholder="Search profiles"
-      aria-label="Search" [(ngModel)]="search" name="search">
-    <img class="search-button" src="../../../assets/search.svg" (click)="searchByUsername(search)">
-  </form>
+<nav class="navbar navbar-expand-lg" id="topnav">
+  <div class="" id="container">
+    <img src="../../../assets/thumbnail_VibeZ-Logo-Green.png" id="logo" routerLink='' alt="">
+    <div class="test">
+      <div id="wrap">
+        <form autocomplete="on" id="form">
+          <img src="../../../assets/search.svg" alt="">
+          <input id="search" [(ngModel)]="search" name="search" type="text" placeholder="Enter username">
+          <input id="search_submit" value="Rechercher" type="submit" (click)="searchByUsername(search)">
+        </form>
+      </div>
+      <a type="button" class="logoutBtn" (click)="logout()">
+        <img src="../../../assets/log-out.svg" id="logout" (click)="logout()" alt=""> Logout
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div id="draggableDiv1">
+  <menu id="menu" class="top-right close">
+    <!-- <a class="disc l1">
+      <div routerLink=''>Info</div>
+    </a> -->
+    <a class="disc l2">
+      <div routerLink=''>Info</div>
+    </a>
+    <a class="disc l3">
+      <div (click)="loadProfile()">Profile</div>
+    </a>
+    <a class="disc l4">
+      <div (click)="loadPostFeed()">Posts</div>
+    </a>
+    <a class="disc l5 toggle" (click)="toggleNav()" #toggle>
+      {{toggledText}}
+    </a>
+  </menu>
 </div>
-
-<menu id="menu" class="top-right close">
-  <a class="disc l1">
-    <div routerLink='createpost'>Add</div>
-  </a>
-  <a class="disc l2">
-    <div (click)="loadProfile()">Profile</div>
-  </a>
-  <a class="disc l3">
-    <div>Friends</div>
-    <!--router link for friends-->
-  </a>
-  <a class="disc l4">
-    <div (click)="loadPostFeed()">Posts</div>
-  </a>
-  <a class="disc l5 toggle" (click)="toggleNav()" #toggle>
-    {{toggledText}}
-  </a>
-</menu>
-
-<!-- <nav id="nav-bar" class="top-right close">
-  <a class="disc l1">
-    <div routerLink='createpost'>Add</div>
-  </a>
-  <a class="disc l2">
-    <div (click)="loadProfile()">Profile</div>
-  </a>
-  <a class="disc l3">
-    <div>Friends</div>
-    router link for friends
-  </a>
-  <a class="disc l4">
-    <div (click)="loadPostFeed()">Posts</div>
-  </a>
-  <a class="disc l5 toggle" (click)="toggleNav()" #toggle>
-    {{toggledText}}
-  </a>
-</nav> -->

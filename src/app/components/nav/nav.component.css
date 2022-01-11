@@ -4,13 +4,19 @@ html, body {
 	height: 100%;
 }
 
+#draggableDiv1 {
+	position: absolute;
+	z-index: 9;	
+  }
+
+
 body {
 	background: beige;
 	font-family: Alegreya Sans, sans-serif;
 }
 
 #logo{
-	width: 150px;
+	width: 11rem;
 }
 
 #logout{
@@ -21,12 +27,28 @@ body {
 	cursor: pointer;
 }
 
+.logoutBtn{
+	float: right;
+	color: #80FF01;
+}
+
 #container{
+	margin: 2rem;
+	width: 100%;
+	z-index: 90;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 1rem;
-	width: 100%;
+}
+
+.test{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+svg{
+	color: green;
 }
 
 /* #pop{
@@ -42,13 +64,13 @@ body {
 }
 
 #menu {
-	display: block;
-	position: fixed;
+	display: block;	
 	width: 500px;
 	height: 500px;
 	user-select: none;
 	transform: translate3d(25px, -25px, 0);
 	transition: transform 0.5s cubic-bezier(0.3, 1.4, 0.5, 0.9);
+	z-index: 1;
 }
 
 #menu.open {
@@ -56,7 +78,7 @@ body {
 }
 
 #menu.top-right {
-	top: -100px;
+	top: -60px;
 	right: -140px;
 }
 
@@ -74,6 +96,7 @@ body {
 	opacity: 0;
 	cursor: pointer;
 	transition: transform 0.5s cubic-bezier(0.3, 1.4, 0.5, 0.9), opacity 0.5s;
+	color: #0310EA;
 }
 
 .disc div {
@@ -92,6 +115,7 @@ body {
 	bottom: 0px;
 	background: #61F9FA;
 	transition-delay: 0s;
+	color: #0310EA;
 }
 
 .open .l1 {
@@ -101,14 +125,18 @@ body {
 }
 
 .open .l1:hover {
-	background: shade(#FC33DB, 90%);
-	color: #FC33DB;
+	background: shade(#ff7a39, 90%);
+	color: #ff7a39;
 	transition-delay: 0s;
+	text-shadow: 0.03em 0 black, 0 0.03em black, -0.03em 0 black, 0 -0.03em black;
+
 }
 
 .open .l1:active {
 	background: shade(#ff6347, 50%);
 	color: #ff6347;
+	text-shadow: 0.03em 0 black, 0 0.03em black, -0.03em 0 black, 0 -0.03em black;
+
 }
 
 .open .l1.toggle {
@@ -120,8 +148,9 @@ body {
 	left: 50px;
 	right: 50px;
 	bottom: 50px;
-	background: #ff7a39;
+	background: #61F9FA;
 	transition-delay: 0.1s;
+	color: #0310EA;
 }
 
 .open .l2 {
@@ -134,11 +163,15 @@ body {
 	background: shade(#ff7a39, 90%);
 	color: #ff7a39;
 	transition-delay: 0s;
+	text-shadow: 0.03em 0 black, 0 0.03em black, -0.03em 0 black, 0 -0.03em black;
+
 }
 
 .open .l2:active {
 	background: shade(#ff7a39, 50%);
 	color: #ff7a39;
+	text-shadow: 0.03em 0 black, 0 0.03em black, -0.03em 0 black, 0 -0.03em black;
+
 }
 
 .open .l2.toggle {
@@ -150,8 +183,9 @@ body {
 	left: 100px;
 	right: 100px;
 	bottom: 100px;
-	background: #ff912b;
+	background: #80FF01;
 	transition-delay: 0.2s;
+	color:#0310EA;
 }
 
 .open .l3 {
@@ -164,11 +198,15 @@ body {
 	background: shade(#ff912b, 90%);
 	color: #ff912b;
 	transition-delay: 0s;
+	text-shadow: 0.03em 0 black, 0 0.03em black, -0.03em 0 black, 0 -0.03em black;
+
 }
 
 .open .l3:active {
 	background: shade(#ff912b, 50%);
 	color: #8A3CFA;
+	text-shadow: 0.03em 0 black, 0 0.03em black, -0.03em 0 black, 0 -0.03em black;
+
 }
 
 .open .l3.toggle {
@@ -180,8 +218,9 @@ body {
 	left: 150px;
 	right: 150px;
 	bottom: 150px;
-	background: #2EF964;
+	background: #FBC226;
 	transition-delay: 0.3s;
+	color: #0310EA;
 }
 
 .open .l4 {
@@ -194,11 +233,13 @@ body {
 	background: shade(#ffa91c, 90%);
 	color: #ffa91c;
 	transition-delay: 0s;
+	text-shadow: 0.03em 0 black, 0 0.03em black, -0.03em 0 black, 0 -0.03em black;
 }
 
 .open .l4:active {
 	background: shade(#ffa91c, 50%);
 	color: #ffa91c;
+	text-shadow: 0.03em 0 black, 0 0.03em black, -0.03em 0 black, 0 -0.03em black;
 }
 
 .open .l4.toggle {
@@ -212,23 +253,29 @@ body {
 	bottom: 200px;
 	background: #ffc00e;
 	transition-delay: 0.4s;
+	color: black;
 }
 
 .open .l5 {
 	transition-delay: 0.4s;
 	transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 190deg);
 	opacity: 1;
+	color: #0310EA;
 }
 
 .open .l5:hover {
-	background: shade(#ffc00e, 90%);
-	color: #ffc00e;
+	background: shade(#ffa91c, 90%);
+	color: #ffa91c;
 	transition-delay: 0s;
+	text-shadow: 0.03em 0 black, 0 0.03em black, -0.03em 0 black, 0 -0.03em black;
+
 }
 
 .open .l5:active {
-	background: shade(#ffc00e, 50%);
-	color: #ffc00e;
+	background: shade(#ffa91c, 50%);
+	color: #ffa91c;
+	text-shadow: 0.03em 0 black, 0 0.03em black, -0.03em 0 black, 0 -0.03em black;
+
 }
 
 .open .l5.toggle {
@@ -240,10 +287,12 @@ body {
 	padding: 0;
 	width: 100px;
 	background: #FC33DB;
+	/* #FC33DB #7FFF00*/
 	opacity: 1;
 	transform: none;
 	pointer-events: auto;
 	transition-delay: 0s;
+	/* color: #0310EA; */
 }
 
 .open .toggle {
@@ -268,27 +317,43 @@ a {
 	text-decoration: none;
 }
 
+.search-button {
+	display: inline;
+}
+
+/* #search_submit{
+	z-index: 100;
+} */
+
 #wrap {
+	float: right;
 	display: inline-block;
 	position: relative;
 	height: 60px;
 	padding: 0;
-	z-index: 100;
-  }
+  } 
 
   #form{
-	  margin-top: 1rem;
+	  margin-right: 1rem;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  height: 100%;
+  }
+
+  #topnav{
+	  background-color: #101010;
   }
   
   input[type="text"] {
-	height: 56px;
+	height: 40px;
 	font-size: 20px;
 	display: inline-block;
 	font-family: "Lato";
 	font-weight: 100;
 	border: none;
 	outline: none;
-	color: #555;
+	color: #80FF01;
 	padding: 3px;
 	padding-right: 60px;
 	width: 0px;

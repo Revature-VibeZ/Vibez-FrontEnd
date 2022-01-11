@@ -1,11 +1,19 @@
-<p>create-post!</p>
+<!-- This button will allow the Post to be submitted to be populated on the post feed. -->
 
-<form>
-    <label for="fname">Create Post:</label><br>
-    <input type="text" id="fname" name="fname" #post><br>
-    <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
-
-    <button id = "exchangeButton"
-    (click)='createPost(post.value)'
-    >Post</button>
-</form>
+<div class="post">
+    <div class="post-image" *ngIf="filePath && filePath !== ''">
+        <img class="post-image" [src]="filePath" [alt]="myForm.value.name">
+    </div>
+    <div class="post-image" *ngIf="!filePath">
+        <img class="post-image" src='https://user-images.githubusercontent.com/2351721/31314483-7611c488-ac0e-11e7-97d1-3cfc1c79610e.png' alt='placeholder-image'>
+    </div>
+    <div class="post-content">
+        <input type="text" class="post-title dark" [(ngModel)]="post.title" placeholder="Title...">
+        <input type="textarea" class="post-excerpt dark" [(ngModel)]="post.content" placeholder="Share your thoughts">
+        
+        <form [formGroup]="myForm" class="input-group mb-3" style="max-width: 80%">
+            <input type="file" accept="image/*" class="form-control" id="inputGroupFile01" (change)="imagePreview($event)">
+        </form>
+        <div class="btn btn-primary"(click)="createPost(post, file)">Add Post</div>
+    </div>
+</div>

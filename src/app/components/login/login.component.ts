@@ -10,11 +10,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  // loginForm: FormGroup;
-  // loading = false;
-  // isubmitted = false;
-  // returnUrl: string;
-  // error = '';
+
   form: any = {
     username: null,
     password: null,
@@ -34,26 +30,14 @@ export class LoginComponent implements OnInit {
     if (sessionStorage.getItem('userToken')) {
       this.router.navigate(['/']);
     }
-    // this.loginForm = this.formBuilder.group({
-    //   username: ['', Validators.required],
-    //   password: ['', Validators.required]
-    // });
-    // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    
   }
 
-  //get f() { return this.loginForm.controls; }
+  //This file contains login logic necessary for the login to succeed. It makes a call to authservice with provided username and password. Other functions in here are for current CSS styling to work correctly (Such as displaying just username first, and then displaying password to enter in after Username entered and cleared constraint check.)
 
   onSubmit() {
     const { username, password } = this.form;
-    //this.submitted = true;
-    console.log(this.form);
-    console.log('Username: ' + username + ' Password: ' + password);
-    // stop here if form is invalid
-    // if (this.loginForm.invalid) {
-    //     return;
-    // }
-
-    //this.loading = true;
+    
     this.authService
       .login(username, password)
       .pipe(first())
@@ -61,7 +45,6 @@ export class LoginComponent implements OnInit {
         (data: any) => {
           this.isSuccessful = true;
           this.isSignInFailed = false;
-          //this.router.navigate([this.returnUrl]);
         },
         (error: { message: string }) => {
           this.errorMessage = error.message;
@@ -76,7 +59,7 @@ export class LoginComponent implements OnInit {
       '.icon-paper-plane'
     ) as HTMLElement;
     this.paperPlane.classList.add('next');
-    console.log('paper plane');
+    
   }
   usernameSwitch = document.querySelector('.username-section') as HTMLElement;
   passwordSection = document.querySelector('.password-section');
@@ -95,7 +78,7 @@ export class LoginComponent implements OnInit {
   passwordIcon() {
     this.lock = document.querySelector('.icon-lock') as HTMLElement;
     this.lock.classList.add('next');
-    console.log('lock');
+    
   }
   
   successSection = document.querySelector('.success') as HTMLElement;

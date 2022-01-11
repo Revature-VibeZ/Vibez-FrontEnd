@@ -26,7 +26,7 @@ describe('CreatePostComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it("testing title", ()=> {
-    expect(component.componentName). toBe("post1")
-  })
+  // it("testing title", ()=> {
+  //   expect(component.componentName). toBe("post1")
+  // })
 });
