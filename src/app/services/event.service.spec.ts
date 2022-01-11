@@ -9,7 +9,9 @@ describe('EventService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterTestingModule]
+
+      imports: [HttpClientModule, RouterTestingModule,]
+
     });
     service = TestBed.inject(EventService);
   });

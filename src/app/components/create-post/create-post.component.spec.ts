@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { CreatePostComponent } from './create-post.component';
 
+
 describe('CreatePostComponent', () => {
   let component: CreatePostComponent;
   let fixture: ComponentFixture<CreatePostComponent>;
@@ -25,4 +26,7 @@ describe('CreatePostComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it("testing title", ()=> {
+    expect(component.componentName). toBe("post1")
+  })
 });

@@ -1,1 +1,2 @@
-<p>home works!</p>
+<app-post-feed *ngIf="loggedIn"></app-post-feed>
+<div *ngIf="!loggedIn">Sorry, you have to be logged in to see this!</div>

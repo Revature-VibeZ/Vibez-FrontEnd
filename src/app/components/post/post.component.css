@@ -1,10 +1,35 @@
-.onepost {
+.onepost-fancy {
+    display: grid;
+    align-items: center;
+    justify-content: center;
     background-color: darkgrey;
     padding: 1rem;
     margin: 1rem;
     border-radius: 1.25rem;
     font-size: 3rem;
     font-family: Arial, Helvetica, sans-serif;
+    
+    
+    border-radius: 1rem;
+    animation-duration: 5s;
+    animation-name: funVibe;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+
+.onepost-regular {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background-color: darkgrey;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 1.25rem;
+    font-size: 3rem;
+    font-family: Arial, Helvetica, sans-serif;
+
+    
+    border: 1px solid black;
 }
 
 .textarea-right {
@@ -13,15 +38,23 @@
 }
 
 .textarea-right:focus {
-    /* outline: none !important; */
-    border:1px solid green;
-    box-shadow: 0 0 10px green;
+    
+    border:1px solid white;
+    box-shadow: 0 0 10px white;
 }
 
 .profile-image {
     height: 5rem;
     width: 5rem;
     border-radius: 5rem;
+}
+
+.post-image {
+    max-height: 20rem;
+    max-width: 20rem;
+    border-radius: 1rem;
+    margin: 0 auto;
+    margin-top: 1rem;
 }
 
 .inline {
@@ -38,6 +71,64 @@
     margin: 0;
 }
 
+.fancy-border {
+    border-radius: 1rem;
+    animation-duration: 1s;
+    animation-name: funVibe;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
 
+@keyframes funVibe {
+    0% {border: 10px solid red;}
+    20% {border: 10px solid orange;}
+    40% {border: 10px solid green;}
+    60% {border: 10px solid blue;}
+    80% {border: 10px solid indigo;}
+    100% {border: 10px solid violet;}
+}
 
+.like { 
+    color: grey;
+}
 
+.dislike { 
+    color: red;
+}
+
+.like, .dislike {
+    max-width: 5rem;
+    font-size: 4rem;
+    display: inline;
+    border: none;
+    border-radius: 1rem;
+    background-color: darkgrey;
+}
+/* 
+body {
+    background-color: #eee
+}
+
+.time {
+    font-size: 9px !important
+}
+
+.socials i {
+    margin-right: 14px;
+    font-size: 17px;
+    color: #d2c8c8;
+    cursor: pointer
+}
+
+.feed-image img {
+    width: 100%;
+    height: auto
+}
+
+#back {
+   
+    background: linear-gradient(120grad, #643986, #98AED5);
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+} */

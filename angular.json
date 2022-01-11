@@ -34,7 +34,10 @@
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.js",
-              "node_modules/jquery/dist/jquery.js"
+              "node_modules/jquery/dist/jquery.js",
+              "src/assets/js/stomp.min.js",
+              "src/assets/js/sockjs.min.js",
+              "src/assets/js/app.js"   
             ]
           },
           "configurations": {
@@ -43,7 +46,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",

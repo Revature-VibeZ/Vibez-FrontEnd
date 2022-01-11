@@ -1,97 +1,98 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileService } from 'src/app/services/profile.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { EventService } from 'src/app/services/event.service';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
+  isUser: boolean = true;
+  profile: any = {
+    firstName: '',
+    lastName: '',
+    username: '',
+    password: '',
+    email: '',
+    profilePicture: '',
+  };
+  message: string = '';
+  file?: File;
 
-  constructor(private profileService: ProfileService, private router: Router) { }
+  constructor(
+    private es: EventService,
+    private us: UserService
+  ) {}
 
   ngOnInit(): void {
-    this.determineUser()
+    let username = sessionStorage.getItem('userToken');
+    this.us.getUserByUsername(username).subscribe((res: User[]) => {
+      this.profile = res[0];
+    });
+    this.es.uploadProfileImageEvent$.subscribe((res: any) => {
+      if (!this.profile) return;
+      this.profile.profilePicture = res;
+    });
+    this.es.searchProfileEvent$.subscribe((res: any) => {
+      if(res.length !== 1) return;
+      let loggedInUsername = sessionStorage.getItem('userToken')
+      this.isUser = res[0].username === loggedInUsername;
+      this.profile = res[0];
+    })
   }
-  message: string = '';
-update(password : string){
-this.profileService.update(password).subscribe(
-(Response)
-);
-}
 
-  // determineUser(){
-  //   if (searched username = token or whatever info we have on current user){
-  //     this.getProfile();
+  update(password: string) {
+    this.us.update(password).subscribe(Response);
+  }
+
+  // determineUser() {
+  //   if (sessionStorage.getItem("username") === null) {
+  //     this.username = sessionStorage.getItem("userToken")
+  //     this.getProfile()
   //   }
-  //   else{
-  //     this.getOtherProfile();
+  //   else if (sessionStorage.getItem("userToken") != null) {
+  //     this.username = sessionStorage.getItem("username")
+  //     this.isUser = false;
+  //     this.getProfile()
+  //   }
+  //   else {
+  //     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+  //       this.router.navigate(['']);
+  //     })
   //   }
   // }
 
   /*
-  This function is to determine if the profile being loaded is the logged in user 
-  or if they are searching for someone else. Since some values are hard coded in
-  currently the conditionals will have to be changed to use whatever will determine
-  the logged in user.
-
-  */
-
-  determineUser() {
-    if (sessionStorage.getItem("username") === null) {
-      this.username = sessionStorage.getItem("userToken")
-      this.getProfile()
-    }
-    else if(sessionStorage.getItem("userToken") != null){
-      this.username = sessionStorage.getItem("username")
-      this.getProfile()
-    }
-    else{
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['']);
-      })
-    }
-  }
-
-
-  username?: any;
-  //Object to recieve the JSON that will include all the user information
-  profile?: any
   //Function to get the profile of the logged in user
-  // getProfile() {
-  //   //To be replaced with a function call to retrieve the id of the logged in user
-  //   let id = 4;
-  //   //Preforms a get request on the id of the user and maps the response to this.profile
-  //   this.profileService.getUserById(id).subscribe((response) => {
-  //     this.profile = response;
-
-  //   });
-
-  // }
-
-
-  /*
   Retrieve the data on the requested user based on username inputted into the search bar
   Once the user is retrieved the sessionStorage is cleared so a new search may be preformed.
   */
-  getProfile() {
-    
-    this.profileService.getUserByUsername(this.username).subscribe((response) => {
-      this.profile = response[0];
-      sessionStorage.removeItem("username")
-    });
-  }
+  // getProfile() {
+  //   this.us.getUserByUsername(this.username).subscribe((response) => {
+  //     this.profile = response[0];
+  //     sessionStorage.removeItem("username");
+  //   })
+  // }
 
   /*`
   Reloads the profile conponent without reloading the page.
   */
-  reloadProfile() {
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['profile']);
-    })
+  // reloadProfile() {
+  //   this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+  //     this.router.navigate(['profile']);
+  //   })
+  // }
+
+  uploadImage(event: any) {
+    const Uploadedfile: File = event.target.files[0];
+    if (Uploadedfile) {
+      this.file = Uploadedfile;
+      this.us.uploadProfilePicture(this.file).subscribe((res: any) => {        
+        this.es.uploadProfileImage(res.profilePicture);
+      });
+    }
   }
-
-
-
 }
