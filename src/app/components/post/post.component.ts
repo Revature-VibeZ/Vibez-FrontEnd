@@ -100,9 +100,10 @@ export class PostComponent implements OnInit {
   }
   
   loadProfile(username: string) {
+    this.router.navigate(['/profile']);
     this.us.getUserByUsername(username).subscribe((res: any) => {
       this.es.searchProfile(res);
-      this.router.navigate(['/profile']);
+      
     });
   }
 

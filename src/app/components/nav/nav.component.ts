@@ -18,22 +18,22 @@ export class NavComponent implements OnInit {
     private es: EventService
   ) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     dragElement2(document.getElementById("draggableDiv1")!);
-    
+
   }
 
   //Used for data binding on the search bar. Saves user input for use in profile search.
   search: string = '';
-  
+
   //Function used to locate username from input provided by user.
 
   searchByUsername(username: string) {
+    this.router.navigate(['/profile']);
+    this.search = '';
     this.us.getUserByUsername(username).subscribe((res: any) => {
-      if(res.length !== 1) return;
+      if (res.length !== 1) return;
       this.es.searchProfile(res);
-      this.search = '';
-      this.router.navigate(['/profile']);
     });
   }
 
@@ -41,8 +41,10 @@ export class NavComponent implements OnInit {
   Reloads the profile component without reloading the page.
   */
   loadProfile() {
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['profile']);
+    this.router.navigate(['/profile']);
+    this.us.getUserByUsername(sessionStorage.getItem('userToken')).subscribe((res: any) => {
+      if (res.length !== 1) return;
+      this.es.searchProfile(res);
     });
   }
   /*

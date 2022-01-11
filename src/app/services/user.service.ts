@@ -24,7 +24,6 @@ export class UserService {
       .get(`${environment.API_URL}/users?username=${username}`)
       .pipe(
         map((res: any) => {        
-          console.log(res);
           
           return res;
         })
