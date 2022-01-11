@@ -1,26 +1,33 @@
-import { TestBed } from '@angular/core/testing';
+import { getTestBed, TestBed } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 import { BehaviorSubject, Observable, of } from 'rxjs';
+
 import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 
 import { AuthService } from './auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpTestingController } from '@angular/common/http/testing';
 
 describe('AuthService', () => {
+  let injector: TestBed;
   let service: AuthService;
-  let spy: any;
-  
+  let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterTestingModule]
-    });
-    service = TestBed.inject(AuthService);
+      providers: [AuthService],imports: [HttpClientModule, RouterTestingModule,]
+ 
+  
+ 
   });
-
+  httpTestingController =
+    TestBed.inject(HttpTestingController);
+    service = TestBed.inject(AuthService);
+  let spy: any;
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
@@ -50,4 +57,4 @@ describe('AuthService', () => {
 
 });
 
-
+})
