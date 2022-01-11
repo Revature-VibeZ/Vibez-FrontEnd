@@ -10,7 +10,9 @@ describe('NavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+
       imports: [HttpClientModule, RouterTestingModule,],
+
       declarations: [ NavComponent ]
     })
     .compileComponents();

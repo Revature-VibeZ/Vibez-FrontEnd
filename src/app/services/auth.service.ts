@@ -46,6 +46,7 @@ export class AuthService {
     }, httpOptions);
 
   }
+
   login(username: string, password: string) {
     return this.http.post<any>(`${environment.API_URL}` + '/auth', { username, password })
       .pipe(map(user => {
@@ -58,6 +59,7 @@ export class AuthService {
       }));
   }
 
+
   logout() {
     sessionStorage.removeItem('currentUser');
     sessionStorage.removeItem('userToken');
@@ -65,3 +67,4 @@ export class AuthService {
   }
 
 }
+// 
