@@ -81,6 +81,8 @@ function dragElement(elmnt) {
     /* otherwise, move the DIV from anywhere inside the DIV:*/
     elmnt.onmousedown = dragMouseDown;
   }
+  elmnt.style.top = (elmnt.offsetTop - -300) + "px";
+  elmnt.style.left = (elmnt.offsetLeft - -400) + "px";
 
   function dragMouseDown(e) {
     e = e || window.event;
