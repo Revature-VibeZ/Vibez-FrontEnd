@@ -9,7 +9,9 @@
             <h4 id='u_usernameTitle'></h4>
             <h4 class="mb-0">{{profile.username}}</h4>
           </div>
-          <img src={{profile.profilePicture}} alt="Admin" class="custom-round-circle" style ="max-width:100%;
+          <img *ngIf="profile.profilePicture" src={{profile.profilePicture}} alt="Profile Picture" class="custom-round-circle" style ="max-width:100%;
+          max-height:100%;">
+          <img *ngIf="!profile.profilePicture" src='https://cdn-icons-png.flaticon.com/512/847/847969.png' alt="Profile Picture" class="custom-round-circle" style ="max-width:100%;
           max-height:100%;">
           <div class="mt-3">
             <h4 id='u_usernameTitle'></h4>
