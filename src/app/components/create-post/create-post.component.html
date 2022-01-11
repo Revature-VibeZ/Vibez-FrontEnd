@@ -10,6 +10,7 @@
     <div class="post-content">
         <input type="text" class="post-title dark" [(ngModel)]="post.title" placeholder="Title...">
         <input type="textarea" class="post-excerpt dark" [(ngModel)]="post.content" placeholder="Share your thoughts">
+        
         <form [formGroup]="myForm" class="input-group mb-3" style="max-width: 80%">
             <input type="file" accept="image/*" class="form-control" id="inputGroupFile01" (change)="imagePreview($event)">
         </form>
