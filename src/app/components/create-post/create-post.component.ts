@@ -7,6 +7,9 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./create-post.component.css']
 })
 export class CreatePostComponent implements OnInit {
+  
+//test case for testing
+  componentName="post1"
 
   file : File | undefined;
 
