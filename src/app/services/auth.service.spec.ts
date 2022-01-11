@@ -15,28 +15,19 @@ import { HttpTestingController } from '@angular/common/http/testing';
 describe('AuthService', () => {
   let injector: TestBed;
   let service: AuthService;
-<<<<<<< HEAD
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AuthService],
-=======
-  let spy: any;
+      providers: [AuthService],imports: [HttpClientModule, RouterTestingModule,]
+ 
   
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-
->>>>>>> e19dd00abc1cf27bc10797b84892fdd54d98d811
-      imports: [HttpClientModule, RouterTestingModule,]
-
-    });
-    httpTestingController =
+ 
+  });
+  httpTestingController =
     TestBed.inject(HttpTestingController);
     service = TestBed.inject(AuthService);
-  });
- 
+  let spy: any;
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
@@ -66,4 +57,4 @@ describe('AuthService', () => {
 
 });
 
-
+})

@@ -11,11 +11,8 @@ describe('ProfileService', () => {
   let injector: TestBed;
   beforeEach(() => {
     TestBed.configureTestingModule({
-<<<<<<< HEAD
       providers: [ProfileService],
-=======
 
->>>>>>> e19dd00abc1cf27bc10797b84892fdd54d98d811
       imports: [HttpClientModule, RouterTestingModule,]
 
     });
