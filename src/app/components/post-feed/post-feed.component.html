@@ -2,6 +2,8 @@
     <app-nav></app-nav>
     <ng-container>
         <app-create-post></app-create-post>
+        <img class="scroll" src="../../../assets/caret-double-up.svg" (click)="scroll()" type="button">
+        
         <div *ngFor="let post of posts">
             <app-post class="fix" [post]="post"></app-post>
         </div>
