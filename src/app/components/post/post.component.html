@@ -5,12 +5,12 @@
         <img class="post-picture" src={{post.image}} alt="">
     </div>
     <div class="post-content">
-        <div *ngIf="post.parentId" class="profile-image">
+        <div class="profile-image">
             <img *ngIf="post.author.profilePicture" class="reply-profile-picture" src={{post.author.profilePicture}} alt="">
             <img *ngIf="!post.author.profilePicture" class="reply-profile-picture" src='https://cdn-icons-png.flaticon.com/512/847/847969.png' alt="">
             <p class="post-date">Posted on <time datetime="16-11-2018">{{post.creationDate | date:'EE, MMMM dd, yyyy h:mm a'}}</time> by <a class="post-author" (click)="loadProfile(post.author.username)">{{post.author.username}}</a></p>
         </div>
-        <p *ngIf="!post.parentId" class="post-date">Posted on <time datetime="16-11-2018">{{post.creationDate | date:'EE, MMMM dd, yyyy h:mm a'}}</time> by <a class="post-author" (click)="loadProfile(post.author.username)">{{post.author.username}}</a></p>
+        <!-- <p *ngIf="!post.parentId" class="post-date">Posted on <time datetime="16-11-2018">{{post.creationDate | date:'EE, MMMM dd, yyyy h:mm a'}}</time> by <a class="post-author" (click)="loadProfile(post.author.username)">{{post.author.username}}</a></p> -->
         <h2 class="post-title">{{post.title}}</h2>
         <div class="post-excerpt">
             <p>{{post.content}}</p>
