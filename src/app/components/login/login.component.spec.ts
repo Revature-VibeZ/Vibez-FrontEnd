@@ -5,6 +5,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { LoginComponent } from './login.component';
@@ -15,6 +16,7 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let service: AuthService;
   let fixture: ComponentFixture<LoginComponent>;
+  let spy: any;
   //const authServiceSpy = jasmine.createSpyObj<AuthService>('AuthService', ['login']);
 
   beforeEach(() => {
@@ -29,7 +31,7 @@ describe('LoginComponent', () => {
       ]
 
     });
-   // fixture = TestBed.createComponent(LoginComponent);
+   fixture = TestBed.createComponent(LoginComponent);
 
     //service = new AuthService();
     //component = new LoginComponent(FormBuilder, ActivatedRoute, Router, service);
@@ -46,10 +48,10 @@ describe('LoginComponent', () => {
 
 
   it('should call login method', () => {
-    let user1 = { userId: 0, firstName: "test", lastname: "test", username:"user", password: "pass", email: "test@test.test", bio: "test", profilePic: null, token: null};
+    let user1 = { userId: 0, firstName: "test", lastname: "test", username:"user", password: "pass", email: "test@test.test", bio: "test"};
     let loginElement: DebugElement;
 
-    //spyOn(service, 'currentUserValue').and.returnValue(user1);
+    spy = spyOn(service, 'login').and.callFake(()=>of(user1));
 
 
     //expect(component.isSuccessful()).toBe(true);
