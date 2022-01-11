@@ -1,36 +1,41 @@
 import { HttpClientModule } from '@angular/common/http';
-import { TestBed } from '@angular/core/testing';
+import { TestBed, getTestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ChatService, } from './chat.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { environment } from 'src/environments/environment';
 
 describe('ChatService', () => {
-  let httpTestingController: HttpTestingController;
+  let injector: TestBed;
   let service: ChatService;
+  let httpMock: HttpTestingController;
 
-  // beforeEach(() => { service = new ChatService();
+  beforeEach(() => { 
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterTestingModule,]
+      providers: [ChatService],
+      imports: [HttpClientModule, RouterTestingModule, HttpClientTestingModule]
+     
     });
-    httpTestingController = TestBed.inject(HttpTestingController);
+    injector = getTestBed();
     service = TestBed.inject(ChatService);
+    httpMock = injector.get(HttpTestingController);
   });
   afterEach(() => {
-    // httpTestingController.verify();
+    httpMock.verify();
+  }); 
+  const dummyChatListResponse = {
+    data: [" "] 
+  };  
+  it('getChatList() should return data', () => {
+    service.getChatHistory().subscribe((res) => {
+      return expect(res).toHaveBeenCalled
+    });
+    const req = httpMock.expectOne(`${environment.API_URL}/chat`);
+    expect(req.request.method).toBe('GET');
+    req.flush(dummyChatListResponse);
   });
-  // it('#getData should use GET to retrieve data', () => {
-  //   service.getChatHistory().subscribe();
- 
-  //   const testRequest = httpTestingController.expectOne(`${environment.API_URL}/chat`);
- 
-  //   expect(testRequest.request.method).toEqual('GET');
-  // });
- 
-
-//   it('should be created', () => {
-//     expect(service).toBeTruthy();
-//   });
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
   
-  
-// });
+});
