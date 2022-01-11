@@ -1,83 +1,43 @@
-<ng-container>
-    <div class="onepost-regular" (click)="click($event)" [ngClass]="post.likes.length > 2 ? 'onepost-fancy' : 'onepost-regular'">
-        <img class="post-image" src={{post.image}} alt="catbear">
-        <p class="inline">{{post.title}}</p>
-        <div>{{post.content}}</div>
-        <div class="time-created">{{post.creationDate | date:'EE, MMMM dd, yyyy h:mm a'}}</div>
-        
-        <div>
-            {{post.likes.length}} 
-            <button 
-                [ngClass]="isLiked ? 'dislike' : 'like'" (click)="createLike(post.id, $event)">
+<!-- Container object of an individual post -->
+
+<div class="post" [ngClass]="post.likes.length > 2 ? 'animate-border' : 'regular-border'">
+    <div *ngIf="!post.parentId && post.image" class="post-image">
+        <img class="post-picture" src={{post.image}} alt="">
+    </div>
+    <div class="post-content">
+        <div *ngIf="post.parentId" class="profile-image">
+            <img *ngIf="post.author.profilePicture" class="reply-profile-picture" src={{post.author.profilePicture}} alt="">
+            <img *ngIf="!post.author.profilePicture" class="reply-profile-picture" src='https://cdn-icons-png.flaticon.com/512/847/847969.png' alt="">
+            <p class="post-date">Posted on <time datetime="16-11-2018">{{post.creationDate | date:'EE, MMMM dd, yyyy h:mm a'}}</time> by <a class="post-author" (click)="loadProfile(post.author.username)">{{post.author.username}}</a></p>
+        </div>
+        <p *ngIf="!post.parentId" class="post-date">Posted on <time datetime="16-11-2018">{{post.creationDate | date:'EE, MMMM dd, yyyy h:mm a'}}</time> by <a class="post-author" (click)="loadProfile(post.author.username)">{{post.author.username}}</a></p>
+        <h2 class="post-title">{{post.title}}</h2>
+        <div class="post-excerpt">
+            <p>{{post.content}}</p>
+        </div>
+        <div style="display: inline" (click)="createLike(post.id, $event)">
+            {{post.likes.length}}
+            <button [ngClass]="isLiked ? 'dislike' : 'like'">
                 ♥
             </button>
         </div>
-
-
-        <form>
+        <div style="display: inline; font-size: 1rem; padding-left: 1rem;" (click)="toggleReply($event)">
+            REPLY
+        </div>
+        <div *ngIf="post.comments.length > 0"  (click)="click($event)" [ngClass]="showComments ? 'show-comments' : 'hide-comments'">
+            {{showComments? "Hide" : "View"}} {{numberOfNestedReplies}} {{numberOfNestedReplies === 1 ? "reply" : "replies"}}  {{showComments ? "🔼" : "🔽"}}
+        </div>
+        <form *ngIf="showReplyForm">
             <div class="form-group">
                 <label for="exampleFormControlTextarea1"></label>
-                <textarea (click)="stopClickPropagation($event)" class="form-control textarea-right"
-                    placeholder="Add a comment..." type="text" id="exampleFormControlTextarea1" rows="3"
-                    [(ngModel)]="content" name="content"></textarea>
+                <textarea (click)="stopClickPropagation($event)" class="form-control textarea-right" placeholder="Add a reply..." type="text" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="content" name="content"></textarea>
             </div>
             <button class="btn btn-primary" (click)="createComment(post.id, content)">Reply</button>
         </form>
-        <div class="reset-div" *ngIf="showComments && post.comments.length > 0">
-            <div *ngFor="let comment of post.comments">
-                <app-post [showComments]="true" [post]="comment"></app-post>
-            </div>
-        </div>
-    </div>
-</ng-container>
-<!-- 
-<div id = "back">
-<div class="container mt-4 mb-5">
-    <div class="d-flex justify-content-center row">
-        <div class="col-md-8">
-            <div class="feed p-2">
-                <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white border">
-                    <div class="feed-text px-2">
-                        <h6 class="text-black-50 mt-2">What's on your mind</h6>
-                    </div>
-                    <div class="feed-icon px-2"><i class="fa fa-long-arrow-up text-black-50"></i></div>
-                
-                </div>
-                <div class="bg-white border mt-2">
-                    <div>
-                        <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
-                            <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="https://i.imgur.com/aoKusnD.jpg" width="45">
-                                <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">Thomson ben</span><span class="text-black-50 time">40 minutes ago</span></div>
-                            </div>
-                            <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
-                        </div>
-                    </div>
-                    <div class="p-2 px-3"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
-                    <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
-                </div>
-                <div class="bg-white border mt-2">
-                    <div>
-                        <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
-                            <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="https://i.imgur.com/aoKusnD.jpg" width="45">
-                                <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">Thomson ben</span><span class="text-black-50 time">40 minutes ago</span></div>
-                            </div>
-                            <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
-                        </div>
-                    </div>
-                    <div class="feed-image p-2 px-3"><img class="img-fluid img-responsive" src="https://i.imgur.com/aoKusnD.jpg"></div>
-                    <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
-                </div>
-                <div>
-                    {{post.likes.length}} 
-                    <button 
-                        [ngClass]="isLiked ? 'dislike' : 'like'" (click)="createLike(post.id, $event)">
-                        ♥
-                    </button>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
-
-
-</div> -->
+<div class="replies" *ngIf="showComments && post.comments.length > 0">
+    <div *ngFor="let comment of post.comments">
+        <app-post [showComments]="false" [post]="comment"></app-post>
+    </div>
+</div>

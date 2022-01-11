@@ -3,6 +3,7 @@ body {
 }
 
 #updateBtn {
+    margin :auto;
     background-color: #9999F8;
     border-color: black;
 }
@@ -17,14 +18,32 @@ body {
 .main-body {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    background: linear-gradient(120grad, #643986, #98AED5);
-    flex-direction: column;
+    justify-content: center;
+    background: #202020;
     width: 100vw;
     height: 100vh;
-    padding: 10rem 0;
 }
 
 input {
     margin-bottom: 1rem;
 }
+
+.max-width {
+    max-width: 43%;
+}
+
+textarea {
+    box-sizing: border-box;
+    border: 1px solid gray;
+    border-radius: 4px;
+    /* height: 150px; */
+    resize: none;
+    width: 70%;
+  }
+
+  #editBtn {
+    margin :auto;
+    background-color: #9999F8;
+    border-color: black;
+}
+  
