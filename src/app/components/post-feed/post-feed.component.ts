@@ -26,4 +26,8 @@ export class PostFeedComponent implements OnInit {
       if(!res.parentId) this.posts.push(res);
     })
   }
+
+  scroll(){
+    window.scroll(0,0);
+  }
 }
