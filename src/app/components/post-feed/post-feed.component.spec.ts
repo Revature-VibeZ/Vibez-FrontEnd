@@ -10,7 +10,9 @@ describe('PostFeedComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+
       imports: [HttpClientModule, RouterTestingModule,],
+
       declarations: [ PostFeedComponent ]
     })
     .compileComponents();

@@ -1,9 +1,11 @@
+
 import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { HttpTestingController } from '@angular/common/http/testing';
 import { getTestBed, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { environment } from 'src/environments/environment';
 import { Post } from '../models/Post';
+
 
 import { PostService } from './post.service';
 
@@ -20,6 +22,7 @@ describe('PostService', () => {
   let valueServiceSpy: jasmine.SpyObj<PostService>;
 
   beforeEach(() => {
+
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
     service = new PostService(httpClientSpy);
 
@@ -31,6 +34,7 @@ describe('PostService', () => {
       ],
 
       imports: [HttpClientModule, RouterTestingModule,]
+
     });
     httpMock = injector.get(HttpTestingController);
     injector = getTestBed();
