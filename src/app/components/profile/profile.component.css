@@ -47,3 +47,23 @@ textarea {
     border-color: black;
 }
   
+.dark{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 50rem;
+    min-width: 5rem;
+    margin: 50px auto;
+    box-shadow: 0 5px 15px 0 #777;
+    border-radius: 10px;
+    color: whitesmoke;
+    background-color: #202020;
+}
+
+.mb-3{
+    margin-bottom: 5rem!important;
+}
+
+p{
+    color: whitesmoke;
+}
