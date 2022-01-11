@@ -29,7 +29,7 @@ export class EventService {
         this.uploadProfileImageEvent$.emit(body);
     }
 
-    searchProfile(body: User) {
+    searchProfile(body: any) {
         this.searchProfileEvent$.emit(body);
     }
 }
