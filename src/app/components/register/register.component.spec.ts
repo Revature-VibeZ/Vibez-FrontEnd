@@ -1,10 +1,12 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 
@@ -13,6 +15,11 @@ import { RegisterComponent } from './register.component';
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
+  let spy: any;
+  var service: AuthService;
+  let http: HttpClient;
+  let router: Router;
+
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -21,6 +28,7 @@ describe('RegisterComponent', () => {
       declarations: [ RegisterComponent  ],
       providers: [AuthService]
     });
+    service = new AuthService(http,router);
 
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
@@ -28,18 +36,11 @@ describe('RegisterComponent', () => {
     });
 
 
-  it('should call register method', async(() => {
-    let registerElement: DebugElement;
-    const DebugElement = fixture.debugElement;
-    let authservice = DebugElement.injector.get(AuthService);
-    let registerSpy = spyOn(authservice, 'register').and.callThrough();
-    registerElement = fixture.debugElement.query(By.css('form'));
-    component.form.controls['firstName'].setValue('first');
-    component.form.controls['lastName'].setValue('last');
-    component.form.controls['userName'].setValue('user');
-    component.form.controls['email'].setValue('email');
-    component.form.controls['password'].setValue('pass');
-    registerElement.triggerEventHandler('ngSubmit', null);
-    expect(registerSpy).toHaveBeenCalledTimes(1);
-  }));
+  it('should call register method', () => {
+    let user1 = { userId: 0, firstName: "test", lastname: "test", username:"user", password: "pass", email: "test@test.test", bio: "test"};
+
+    spy = spyOn(service, 'register').and.callFake(()=>of(user1));
+    service.register("test","test", "testUser", "test@email.com", "password");
+    expect(service.register).toHaveBeenCalledTimes(1);
+  });
 });
