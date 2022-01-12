@@ -15,9 +15,7 @@ export class PostFeedComponent implements OnInit {
   constructor(private ps: PostService, private es: EventService) { }
 
   ngOnInit(): void {    
-    this.ps.getAll().subscribe(_ => {
-      console.log(this.ps.posts);
-      
+    this.ps.getAll().subscribe(_ => {      
       this.posts = this.ps.posts;
     });
     this.es.newPostEvent$.subscribe((res: Post) => {      

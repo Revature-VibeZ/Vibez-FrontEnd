@@ -12,9 +12,7 @@ export class UserService {
   getAll() {
     this.http
       .get<User[]>(`${environment.API_URL}/users`)
-      .subscribe((res: any) => {
-        console.log(res);
-        
+      .subscribe((res: any) => {        
         return res;
       });
   }
