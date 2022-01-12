@@ -1,4 +1,4 @@
-import { getTestBed, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
@@ -10,30 +10,28 @@ import { environment } from 'src/environments/environment';
 
 import { AuthService } from './auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpTestingController } from '@angular/common/http/testing';
 
 describe('AuthService', () => {
-  let injector: TestBed;
   let service: AuthService;
-  let httpTestingController: HttpTestingController;
+  let spy: any;
+  let userToken: any;
+  
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AuthService],imports: [HttpClientModule, RouterTestingModule,]
- 
-  
- 
-  });
-  httpTestingController =
-    TestBed.inject(HttpTestingController);
+
+      imports: [HttpClientModule, RouterTestingModule,]
+
+    });
     service = TestBed.inject(AuthService);
-  let spy: any;
+  });
+
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
   it('should logout', () =>{
-
+    sessionStorage.setItem(userToken, 'test');
     service.logout();
     expect(sessionStorage.getItem('userToken')).toBeFalsy();
     expect(sessionStorage.getItem('currentUser')).toBeFalsy();
@@ -42,19 +40,13 @@ describe('AuthService', () => {
     let user1 = { userId: 0, firstName: "test", lastname: "test", username:"user", password: "pass", email: "test@test.test", bio: "test"};
 
 
-    spy = spyOn(service, 'login').and.callFake(()=>of(user1));
+    spy = spyOn(service, 'login').and.callThrough();
     service.login("username1","password");
 
     expect(service.login).toHaveBeenCalled();
   
   });
 
-  // it('should login', () =>{
-  //   service.login("username1","password");
-  //   expect(sessionStorage.getItem('userToken')).toBeTruthy();
-  //   expect(sessionStorage.getItem('currentUser')).toBeTruthy();
-  // })
+
 
 });
-
-})
