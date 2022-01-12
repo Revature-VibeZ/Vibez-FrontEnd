@@ -111,6 +111,7 @@ export class PostComponent implements OnInit {
     this.ps.createReply(body).subscribe((res: any) => {
       //if post succeeds update page to show comment
       this.es.newPost(res);
+      this.showReplyForm = !this.showReplyForm;
     })
   }
 
