@@ -49,12 +49,6 @@ describe('AuthService', () => {
   
   });
 
-  // it('should login', () =>{
-  //   service.login("username1","password");
-  //   expect(sessionStorage.getItem('userToken')).toBeTruthy();
-  //   expect(sessionStorage.getItem('currentUser')).toBeTruthy();
-  // })
-
 });
 
 })

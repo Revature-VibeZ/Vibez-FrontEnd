@@ -16,12 +16,12 @@ describe('ProfileService', () => {
       imports: [HttpClientModule, RouterTestingModule,]
 
     });
-    httpMock = injector.get(HttpTestingController);
+    // httpMock = injector.get(HttpTestingController);
     service = TestBed.inject(ProfileService);
     injector = getTestBed();
   });
   afterEach(() => {
-    httpMock.verify();
+    // httpMock.verify();
   }); 
   const dummyChatListResponse = {
     data: [" "] 
