@@ -18,9 +18,13 @@ export class NavComponent implements OnInit {
     private es: EventService
   ) { }
 
+  mousePosition = {
+    x: 0,
+    y: 0
+  };
+
   ngOnInit(): void {
     dragElement2(document.getElementById("draggableDiv1")!);
-
   }
 
   //Used for data binding on the search bar. Saves user input for use in profile search.
@@ -67,7 +71,10 @@ export class NavComponent implements OnInit {
   nav = document.querySelector('menu') as HTMLElement;
   toggledText = "Menu";
 
-  toggleNav() {
+  toggleNav(e: MouseEvent) {
+    if (!(this.mousePosition.x === e.screenX) || !(this.mousePosition.y === e.screenY)) {
+      return;
+    }
     if (document.querySelector('menu') as HTMLElement) {
       this.nav = document.querySelector('menu') as HTMLElement;
     }
@@ -80,5 +87,10 @@ export class NavComponent implements OnInit {
       this.nav.classList.toggle('close');
       this.toggledText = "Menu";
     }
+  }
+
+  onMouseDown(e: MouseEvent) {
+    this.mousePosition.x = e.screenX;
+    this.mousePosition.y = e.screenY;
   }
 }
