@@ -79,7 +79,8 @@
         </div>
         <div class="row" *ngIf="isUser && !editMode">
           <div class="col-sm-12">
-            <button class="btn btn-info" id="editBtn" (click)="changeToEditMode()"> Edit</button>
+            <button class="btn btn-info" id="editBtn" (click)="changeToEditMode()">Edit</button>
+            <button *ngIf='profile.firstName === ""' class="btn btn-info" id="editBtn" (click)="getOwnProfile()">Refresh Data</button>
           </div>
         </div>
         <div class="row" *ngIf="isUser && editMode">

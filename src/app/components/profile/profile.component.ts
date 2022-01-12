@@ -82,4 +82,11 @@ export class ProfileComponent implements OnInit {
       });
     }
   }
+
+  getOwnProfile(){
+    let username = sessionStorage.getItem('userToken');
+    this.us.getUserByUsername(username).subscribe((res: User[]) => {
+      this.profile = res[0];
+    });
+  }
 }
