@@ -45,7 +45,6 @@ export class CreatePostComponent implements OnInit {
       this.clearImagePreview();
     },
       err => {
-        console.log('err');
       }
     );
   }
