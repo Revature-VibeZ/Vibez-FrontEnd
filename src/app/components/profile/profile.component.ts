@@ -58,16 +58,16 @@ export class ProfileComponent implements OnInit {
 
   update(firstName: string, lastName: string, email: string, password: string, bio: string) {
     this.us.update(firstName, lastName, email, password, bio).subscribe(
-      (res) => {
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['profile']);
-        })
+      (res: any) => {
+        this.profile = res[0];
       });
     this.password = '';
     this.firstName = '';
     this.lastName = '';
     this.email = '';
     this.bio = '';
+    this.editMode = false;
+    this.router.navigate(['/profile']);
   }
 
   changeToEditMode() {
