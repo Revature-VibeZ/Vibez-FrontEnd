@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit {
   bio: string = '';
 
   update(firstName: string, lastName: string, email: string, password: string, bio: string) {
-    this.us.update(firstName, lastName, email, password, bio).subscribe(
+    this.us.update(firstName, lastName, password, email, bio).subscribe(
       (res: any) => {
         this.profile = res[0];
       });
