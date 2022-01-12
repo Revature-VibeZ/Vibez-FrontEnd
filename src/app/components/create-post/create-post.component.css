@@ -10,6 +10,7 @@ body {
     display: flex;
     width: 70%;
     margin: 50px auto;
+    max-width: 45rem;
     box-shadow: 0 5px 15px 0 #777;
     border-radius: 10px;
 }
