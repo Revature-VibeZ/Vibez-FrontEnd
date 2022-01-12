@@ -2,9 +2,10 @@
     <app-nav></app-nav>
     <ng-container>
         <app-create-post></app-create-post>
-        <div *ngFor="let post of posts">
+        <img class="scroll" src="../../../assets/caret-double-up.svg" (click)="scroll()" type="button">        
+        <div *ngFor="let post of posts.concat().reverse()">
             <app-post class="fix" [post]="post"></app-post>
         </div>
     </ng-container>
-    <app-chatroom></app-chatroom>
+    
 </div>

@@ -14,7 +14,7 @@ export class PostService {
   getAll() {
     
     let url = `${environment.API_URL}/posts`;
-    return this.http.get(url).pipe(map((res: any) => {            
+    return this.http.get(url).pipe(map((res: any) => {                  
       this.posts = res;
     }));
   }

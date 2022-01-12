@@ -32,9 +32,12 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     let username = sessionStorage.getItem('userToken');
-    this.us.getUserByUsername(username).subscribe((res: User[]) => {
-      this.profile = res[0];
-    });
+    if (this.profile.username !== "") {
+      this.us.getUserByUsername(username).subscribe((res: User[]) => {
+        this.profile = res[0];
+      });
+    }
+
     this.es.uploadProfileImageEvent$.subscribe((res: any) => {
       if (!this.profile) return;
       this.profile.profilePicture = res;
@@ -61,14 +64,14 @@ export class ProfileComponent implements OnInit {
         })
       });
     this.password = '';
-    this.firstName= '';
+    this.firstName = '';
     this.lastName = '';
-    this.email= '';
-    this.bio= '';
+    this.email = '';
+    this.bio = '';
   }
 
-  changeToEditMode(){
-    this.editMode= true;
+  changeToEditMode() {
+    this.editMode = true;
   }
   uploadImage(event: any) {
     const Uploadedfile: File = event.target.files[0];
@@ -78,5 +81,12 @@ export class ProfileComponent implements OnInit {
         this.es.uploadProfileImage(res.profilePicture);
       });
     }
+  }
+
+  getOwnProfile(){
+    let username = sessionStorage.getItem('userToken');
+    this.us.getUserByUsername(username).subscribe((res: User[]) => {
+      this.profile = res[0];
+    });
   }
 }

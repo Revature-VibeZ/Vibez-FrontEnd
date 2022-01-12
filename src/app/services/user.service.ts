@@ -12,9 +12,7 @@ export class UserService {
   getAll() {
     this.http
       .get<User[]>(`${environment.API_URL}/users`)
-      .subscribe((res: any) => {
-        console.log(res);
-        
+      .subscribe((res: any) => {        
         return res;
       });
   }
@@ -24,7 +22,6 @@ export class UserService {
       .get(`${environment.API_URL}/users?username=${username}`)
       .pipe(
         map((res: any) => {        
-          console.log(res);
           
           return res;
         })

@@ -58,6 +58,8 @@ export class AuthService {
         return user;
       }));
   }
+
+
   //On log out, this sets behaviorsubject as null and removes session storage items.
   logout() {
     sessionStorage.removeItem('currentUser');
@@ -66,3 +68,4 @@ export class AuthService {
   }
 
 }
+// 

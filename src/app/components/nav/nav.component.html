@@ -30,7 +30,7 @@
     <a class="disc l4">
       <div (click)="loadPostFeed()">Posts</div>
     </a>
-    <a class="disc l5 toggle" (click)="toggleNav()" #toggle>
+    <a class="disc l5 toggle" (mousedown)="onMouseDown($event)" (click)="toggleNav($event)" #toggle>
       {{toggledText}}
     </a>
   </menu>

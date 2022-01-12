@@ -18,22 +18,26 @@ export class NavComponent implements OnInit {
     private es: EventService
   ) { }
 
-  ngOnInit(): void { 
+  mousePosition = {
+    x: 0,
+    y: 0
+  };
+
+  ngOnInit(): void {
     dragElement2(document.getElementById("draggableDiv1")!);
-    
   }
 
   //Used for data binding on the search bar. Saves user input for use in profile search.
   search: string = '';
-  
+
   //Function used to locate username from input provided by user.
 
   searchByUsername(username: string) {
+    this.router.navigate(['/profile']);
+    this.search = '';
     this.us.getUserByUsername(username).subscribe((res: any) => {
-      if(res.length !== 1) return;
+      if (res.length !== 1) return;
       this.es.searchProfile(res);
-      this.search = '';
-      this.router.navigate(['/profile']);
     });
   }
 
@@ -41,8 +45,10 @@ export class NavComponent implements OnInit {
   Reloads the profile component without reloading the page.
   */
   loadProfile() {
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['profile']);
+    this.router.navigate(['/profile']);
+    this.us.getUserByUsername(sessionStorage.getItem('userToken')).subscribe((res: any) => {
+      if (res.length !== 1) return;
+      this.es.searchProfile(res);
     });
   }
   /*
@@ -65,7 +71,10 @@ export class NavComponent implements OnInit {
   nav = document.querySelector('menu') as HTMLElement;
   toggledText = "Menu";
 
-  toggleNav() {
+  toggleNav(e: MouseEvent) {
+    if (!(this.mousePosition.x === e.screenX) || !(this.mousePosition.y === e.screenY)) {
+      return;
+    }
     if (document.querySelector('menu') as HTMLElement) {
       this.nav = document.querySelector('menu') as HTMLElement;
     }
@@ -78,5 +87,10 @@ export class NavComponent implements OnInit {
       this.nav.classList.toggle('close');
       this.toggledText = "Menu";
     }
+  }
+
+  onMouseDown(e: MouseEvent) {
+    this.mousePosition.x = e.screenX;
+    this.mousePosition.y = e.screenY;
   }
 }

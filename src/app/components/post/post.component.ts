@@ -5,6 +5,7 @@ import { EventService } from 'src/app/services/event.service';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -12,7 +13,6 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-
   @Input() post: Post = {
     comments: [],
     author: {},
@@ -31,6 +31,7 @@ export class PostComponent implements OnInit {
   content: String = "";
   numberOfNestedReplies = 0;
   isLiked: boolean = false;
+  subs: Subscription[] = [];
   constructor(private es: EventService, private ps: PostService, private us: UserService, private router: Router) { }
 
   ngOnInit(): void {
@@ -40,44 +41,32 @@ export class PostComponent implements OnInit {
         this.isLiked = true;
       }
     }
-    this.es.newPostEvent$.subscribe((res: Post) => {
+    let sub1 = this.es.newPostEvent$.subscribe((res: Post) => {
       if (this.post.id !== res.parentId) return;
       this.showComments = true;
       this.numberOfNestedReplies += 1;
       this.post.comments.push(res);
     })
-    this.es.newLikeEvent$.subscribe((res: any) => {
+    let sub2 = this.es.newLikeEvent$.subscribe((res: any) => {
       if (this.post.id !== res.postId) return;
-      console.log('res: ', res);
-      console.log('this.post.likes: ', this.post.likes);
-      
       this.isLiked = true;
       this.post.likes.push(res)
-      console.log(this.post.likes);
-
     })
-    this.es.deleteLikeEvent$.subscribe((confirmedDeletedId: number) => {      
+    let sub3 = this.es.deleteLikeEvent$.subscribe((confirmedDeletedId: number) => {      
       let copy = this.post.likes;
-      console.log(copy);
-      
       for (let i = 0; i < copy!.length; i++) {
         let like = copy![i];
-        console.log(like);
-        
         if(confirmedDeletedId === like.id){
-          console.log('made it');
-          console.log(this.isLiked);
-          
           this.isLiked = false;
-          console.log(this.isLiked);
-          console.log(this.post.likes);
-          
           this.post.likes!.splice(i, 1);
-          console.log(this.post.likes);
-
         }
       }
     })
+    this.subs = this.subs.concat(sub1, sub2, sub3);
+  }
+
+  ngOnDestroy() {
+    for(let sub of this.subs) sub.unsubscribe();
   }
 
   recursiveCountReplies(replies: Post[]): number{
@@ -100,9 +89,10 @@ export class PostComponent implements OnInit {
   }
   
   loadProfile(username: string) {
+    this.router.navigate(['/profile']);
     this.us.getUserByUsername(username).subscribe((res: any) => {
       this.es.searchProfile(res);
-      this.router.navigate(['/profile']);
+      
     });
   }
 
@@ -121,6 +111,7 @@ export class PostComponent implements OnInit {
     this.ps.createReply(body).subscribe((res: any) => {
       //if post succeeds update page to show comment
       this.es.newPost(res);
+      this.showReplyForm = !this.showReplyForm;
     })
   }
 
